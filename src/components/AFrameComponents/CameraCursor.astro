@@ -1,0 +1,59 @@
+---
+
+const {position} = Astro.props;
+
+const cursorSize="1 1 1";
+const cursorSizeActive="1 1 1";
+const cursorSizeFuseEnd="0.5 0.5 0.5";
+---
+<!-- 
+<a-entity position="0 1.8 2" look-controls camera>
+	<a-entity position="0 0 0.65">
+		<a-text position="0.1 0.1 0.01" width="1" wrapCount="50" color="white" font="sourcecodepro">TEST</a-text>
+		<a-text position="0 0 0.01" width="1" wrapCount="50" color="white" font="sourcecodepro">⌝</a-text>
+		<a-text position="0 0 0.01" width="1" wrapCount="50" color="white" font="sourcecodepro">⌞</a-text>
+		<a-text position="0 0 0.01" width="1" wrapCount="50" color="white" font="sourcecodepro">⌟</a-text>
+	</a-entity>
+	<a-entity 
+		cursor 
+		fuse="true"
+		fuse-timeout=“1000”
+		class="camera-cursor"
+		raycaster="objects: .clickable"
+		geometry="primitive: plane; width:0.025; height:0.025;"
+		material="color: #FF0000; shader: flat"
+		position="0 0 -0.15"
+		animation__fusing="property: position; startEvents: fusing; easing: easeInCubic; dur: 1500; from: 0 0 -0.15; to: 0 0 -0.35"
+	></a-entity>
+</a-entity> -->
+
+<a-entity position="0 2 3">
+    <a-entity 
+		camera 
+		look-controls 
+		wasd-controls 
+		raycaster="objects: .clickable"
+	>
+      	<a-entity 
+			id="cursor"
+			position="0 0 -0.25"
+			geometry="primitive: plane; width:0.005; height:0.005;"
+			material="color: cyan; shader: flat"
+			cursor="maxDistance: 30; fuse: true"
+			raycaster="objects: .clickable"
+			animation__click=`property: scale; startEvents: click; easing: linear; dur: 150; from: ${cursorSizeFuseEnd}; to: ${cursorSize}`
+			animation__fusing=`property: scale; startEvents: fusing; easing: linear; dur: 1500; from: ${cursorSizeActive}; to: ${cursorSizeFuseEnd}`
+			animation__mouseenter=`property: scale; startEvents: mouseenter; easing: linear; dur: 0; to: ${cursorSizeActive}`
+			animation__mouseleave=`property: scale; startEvents: mouseleave; easing: linear; dur: 500; to: ${cursorSize}`
+  		>
+			<a-image 
+				src="/images/vr-assets-global/cursor-reticule-white.svg" 
+				width="0.035" height="0.035"
+			></a-image>	
+			
+		</a-entity>
+			
+		
+      	
+    </a-entity>
+</a-entity>

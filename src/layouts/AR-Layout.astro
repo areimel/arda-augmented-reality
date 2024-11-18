@@ -1,0 +1,122 @@
+---
+//Styles
+	import "@styles/main.scss"
+
+//Props
+	const { title } = Astro.props;
+
+
+---
+
+<!doctype html>
+<html lang="en" data-theme="light">
+	<head>
+		<meta charset="UTF-8" />
+		<title>{title} | Augmented Reality Hologram Display</title>
+		<!-- <meta name="description" content={description ? description : "Marketing Analytics Plugins & Tools"} /> -->
+		<meta name="viewport" content="width=device-width" />
+    	<script is:inline src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
+    	<script is:inline src="https://cdn.jsdelivr.net/npm/mind-ar@1.2.5/dist/mindar-image-aframe.prod.js"></script>
+
+	</head>
+	<body>
+		
+		<!-- ===== =========================== ===== -->
+		<!-- ===== Slot - Inner Content Insert ===== -->
+		<!-- ===== =========================== ===== -->
+		<slot />
+		
+		<!-- ===== ================== ===== -->
+		<!-- ===== Javascript Plugins ===== -->
+		<!-- ===== ================== ===== -->
+		<script is:inline src="/scripts/wake-lock.js"></script>
+
+	</body>
+</html>
+
+<style is:global></style>
+
+<style lang="scss">
+	main{
+		border: var(--border-settings-main);
+		max-width: var(--container-width);
+		margin: auto;
+		//padding: var(--padding-1);
+
+	}
+
+	.headerSection{
+		border: var(--border-settings-main);
+		border-bottom: 0;
+		max-width: var(--container-width);
+		height: 150px;
+		margin: auto;
+		
+		display: flex;
+		flex-direction: row;
+		justify-content: flex-start;
+		align-items: flex-start;
+
+
+		.logo{
+			width: 200px;
+			height: 100%;
+			padding: 1rem;
+			font-size: 3rem;
+			display: flex;
+			flex-direction: row;
+			justify-content: center;
+			align-items: center;
+			background: var(--black);
+			color: var(--white);
+			a{
+				color: var(--white);
+				text-decoration: none;
+			}
+		}
+		.text{
+			width: calc(100% - 200px);
+			height: 100%;
+			border-left: var(--border-settings-main);
+			
+			display: flex;
+			flex-direction: column;
+			justify-content: flex-start;
+			align-items: flex-start;
+			.top{
+				padding: 1rem 1rem;
+				width: 100%;
+				border-bottom: var(--border-settings-main);
+				height: 50px;
+				display: flex;
+				flex-direction: column;
+				justify-content: center;
+				align-items: flex-start;
+			}
+			.bottom{
+				padding: 1rem 1rem;
+				width: 100%;
+				height: 100px;
+				display: flex;
+				flex-direction: column;
+				justify-content: center;
+				align-items: flex-start;
+			}
+		}
+		h1{
+			margin: 0;
+			font-size: 2rem;
+		}
+	}
+
+	.footerSection{
+		border: var(--border-settings-main);
+		border-top: 0;
+		max-width: var(--container-width);
+		margin: auto;
+		padding: var(--padding-1);
+		h1{
+			margin: 0;
+		}
+	}
+</style>	

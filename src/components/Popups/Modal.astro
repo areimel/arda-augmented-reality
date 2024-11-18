@@ -1,0 +1,79 @@
+---
+interface Props {
+	title?: string;
+	isOpen?: boolean;
+	closeModal?: () => void;
+}
+
+const { title, isOpen = false, closeModal } = Astro.props;
+---
+
+<div class={`modal-overlay ${isOpen ? 'active' : ''}`} id="modalOverlay">
+	<div class="modal">
+		<div class="modal-header">
+			{title && <h2>{title}</h2>}
+			<button class="close-button" onclick="closeModal">×</button>
+		</div>
+		<div class="modal-content">
+			<slot />
+		</div>
+	</div>
+</div>
+
+<style lang="scss">
+	.modal-overlay {
+		position: fixed;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		background: rgba(0, 0, 0, 0.5);
+		display: none;
+		justify-content: center;
+		align-items: center;
+		z-index: 1000;
+
+		&.active {
+			display: flex;
+		}
+	}
+
+	.modal {
+		background: var(--background-color);
+		border: var(--border-settings-main);
+		box-shadow: var(--shadow-1);
+		width: 90%;
+		max-width: var(--element-width-1);
+		position: relative;
+		padding: 1.5rem;
+	}
+
+	.modal-header {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		margin-bottom: 1rem;
+
+		h2 {
+			margin: 0;
+			color: var(--text-color);
+		}
+	}
+
+	.close-button {
+		background: none;
+		border: none;
+		font-size: 1.5rem;
+		cursor: pointer;
+		color: var(--text-color);
+		padding: 0.5rem;
+
+		&:hover {
+			opacity: 0.7;
+		}
+	}
+
+	.modal-content {
+		color: var(--text-color);
+	}
+</style>

@@ -1,0 +1,48 @@
+---
+
+const {position} = Astro.props;
+---
+
+<!-- <a-box 
+    id="ClickTestCube"
+    class="clickable"
+    position="-1 0.5 1" 
+    rotation="0 45 0" 
+    color="#4CC3D9"
+
+></a-box> -->
+
+<a-entity
+	id="ClickEventTester" 
+	class="clickable"
+	position="-0.65 1.45 2" 
+    rotation="0 25 0"
+	geometry="primitive: plane; width:1.15; height:0.5;"
+	material="color: #0000FF; side: double;"
+>	
+	<a-text 
+		position="0 0.15 0"
+		value="position: 0 1.45 2 | rotation: 0 25 0 "
+		width="0.8" 
+		wrapCount="50" lineHeight="50" letterSpacing="5" 
+		color="white" font="sourcecodepro" 
+		anchor="center" align="center"
+	></a-text>
+	<a-text 
+		position="0 0.05 0"
+		value="Test Click Event: "
+		width="1.25" 
+		wrapCount="50" lineHeight="50" letterSpacing="5" 
+		color="white" font="sourcecodepro" 
+		anchor="center" align="center"
+	></a-text>
+	<a-text 
+		class="updatableText"
+		position="0 -0.05 0"
+        value="Aim Reticule to Fuse-Click (1.5s)"
+		width="1.25" 
+        wrapCount="50" lineHeight="50" letterSpacing="5" 
+		color="white" font="sourcecodepro" 
+		anchor="center" align="center"
+	></a-text>
+</a-entity>

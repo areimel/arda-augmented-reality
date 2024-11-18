@@ -1,0 +1,11 @@
+---
+//const currentUrl = window.location.href;
+const {link, id} = Astro.props;
+---
+
+<div 
+	class="qrcodeElement" 
+	id={id ? id : "qrcode"}
+	data-link={link ? link : "test.com"}
+></div>
+

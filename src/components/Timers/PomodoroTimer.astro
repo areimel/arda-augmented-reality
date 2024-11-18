@@ -1,0 +1,37 @@
+---
+
+const { timer1, timer2 } = Astro.props;
+---
+
+<div 
+    id="pomodoroTimerTest"
+    data-timer-1={timer1}
+    data-timer-2={timer2}
+>
+    <div class="timerGroup">
+        <div class="timer1">00:00:00</div>
+        <div class="timer2">00:00:00</div>
+    </div>
+
+    <div class="messageGroup">
+        <p>Event: <span class="message"></span></p>
+        
+    </div>
+
+    <div>
+        <button class="startButton">Start</button>
+        <button class="pauseButton" >Pause</button>
+        <!-- <button class="stopButton">Stop</button>
+        <button class="resetButton">Reset</button> -->
+    </div>
+    
+</div>
+
+<style>
+    .messageGroup{
+        display: inline-block;
+        width: 400px;
+        background-color: var(--black);
+        color: var(--white);
+    }
+</style>

@@ -1,0 +1,35 @@
+---
+/*========================================*/
+/*	PAGE: Home/Index
+		NOTES:	
+*/
+/*========================================*/
+
+//Essential Components
+	import Layout from '@layouts/Layout.astro';
+
+//Content Components
+	//import MasterComponent from '@components/MasterComponent.astro';
+	import LinkCards from '@components/contentComponents/LinkCards.astro';
+	// SplitLayout from '@components/contentLayouts/SplitLayout.astro';
+	import FooterNotice from '@components/contentComponents/FooterNotice.astro';
+	import SiteQRCodeLink from '@components/contentComponents/SiteQRCodeLink.astro';
+	//import DisplayBits from '@components/DisplayBits.astro';
+---
+
+<Layout 
+	title="Index"
+	heading="The Grovery AR Experiences"
+>
+	
+	<section>
+		<h2 class="text-size-3">Links</h2>
+		<LinkCards/>	
+	</section>
+
+	
+	
+
+</Layout>
+
+

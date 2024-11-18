@@ -1,0 +1,47 @@
+---
+/*========================================*/
+/*	PAGE: Home/Index
+		NOTES:	
+*/
+/*========================================*/
+
+//Essential Components
+import Layout from '@layouts/PrintoutLayout.astro';
+
+//Content Components
+	//import MasterComponent from '@components/MasterComponent.astro';
+	import LinkCards from '@components/contentComponents/LinkCards.astro';
+	// SplitLayout from '@components/contentLayouts/SplitLayout.astro';
+	import FooterNotice from '@components/contentComponents/FooterNotice.astro';
+	import SiteQRCodeLink from '@components/contentComponents/SiteQRCodeLink.astro';
+	//import DisplayBits from '@components/DisplayBits.astro';
+---
+
+<Layout 
+	title="Index"
+	heading="XYZ Building Preview"
+>
+	
+	<section class="markerSection">
+		
+		<img src="/markers/grovery-holiday-marker-v2.jpg"/>
+		
+	</section>
+
+	
+	
+
+</Layout>
+
+
+<style lang="scss">
+	.markerSection{
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		img{
+			width: 100%;
+			max-width: 85vh;
+		}
+	}
+</style>

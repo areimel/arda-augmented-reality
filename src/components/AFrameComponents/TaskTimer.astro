@@ -1,0 +1,25 @@
+---
+
+const {} = Astro.props;
+---
+
+<a-entity
+	position="0 0.7 0.01"
+	geometry="primitive:plane; width:0.65; height:0.075;"
+	material="color: #00FF00"
+>
+	<a-text 
+		position="0.2 0.01 0"
+		value="Task Timer: "
+		width="1" wrapCount="50" lineHeight="50" letterSpacing="5" 
+		color="white" font="sourcecodepro" anchor="center" align="left"
+	></a-text>
+	<a-text 
+		position="0.6 0.01 0"
+		id="TaskTimer" value="$timer"
+		width="1" wrapCount="50" lineHeight="50" letterSpacing="5" 
+		color="white" font="sourcecodepro" anchor="center" align="left"
+	></a-text>
+</a-entity>
+
+

@@ -1,0 +1,172 @@
+---
+//Styles
+	import "@styles/main.scss"
+
+	import QRCode from '@components/QRCode.astro';
+
+//Props
+	const { title, description, heading } = Astro.props;
+
+
+---
+
+<!doctype html>
+<html lang="en" data-theme="light">
+	<head>
+		<meta charset="UTF-8" />
+		<title>{title} | Grovery AR Experiences</title>
+		<meta name="description" content={description ? description : "Marketing Analytics Plugins & Tools"} />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="generator" content={Astro.generator} />
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Kode+Mono&family=Montserrat:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet">
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js" integrity="sha512-CNgIRecGo7nphbeZ04Sc13ka07paqdeTu0WR1IM4kNcpmBAUSHSQX0FslNhTDadL4O5SAGapGt4FodqL8My0mA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+		<!-- ===== ================== ===== -->
+		<!-- ===== Javascript Plugins ===== -->
+		<!-- ===== ================== ===== -->
+		<script is:inline src="/scripts/qrcode.js"></script>
+		
+	</head>
+	<body>
+		
+		<header class="headerSection">
+			<div class="logo">
+				<QRCode link="https://grovery-ar.netlify.app/ar-test-1/"/>
+				</div>
+			<div class="text">
+				<div class="top">Interzone Technology Group | Augmented Reality Hologram Display</div>
+				<div class="middle">
+					<h1>{heading}</h1>
+				</div>
+				<div class="bottom">
+					<p>
+						Instructions: Scan the QR code to open the asset link, then point your phone's camera at the marker image below to view the asset.
+					</p>
+				</div>
+			</div>
+			
+		</header>
+		
+		<main>
+			<slot />
+		</main>
+
+		<footer class="footerSection">
+			<div>Interzone Technology Group</div>
+		</footer>
+
+		
+		
+
+		
+
+	</body>
+</html>
+
+<style is:global>
+	
+
+	
+</style>
+
+<style lang="scss">
+	main{
+		border: var(--border-settings-main);
+		max-width: var(--container-width);
+		margin: auto;
+		//padding: var(--padding-1);
+
+	}
+
+	.headerSection{
+		border: var(--border-settings-main);
+		border-bottom: 0;
+		max-width: var(--container-width);
+		width: 100%;
+		height: 300px;
+		margin: auto;
+		padding: 0;
+		
+		display: flex;
+		flex-direction: row;
+		justify-content: flex-start;
+		align-items: flex-start;
+
+
+		.logo{
+			width: 300px;
+			height: 100%;
+			padding: 1rem;
+			font-size: 3rem;
+			display: flex;
+			flex-direction: row;
+			justify-content: center;
+			align-items: center;
+			//background: var(--black);
+			color: var(--white);
+			a{
+				color: var(--white);
+				text-decoration: none;
+			}
+		}
+		.text{
+			width: calc(100% - 200px);
+			height: 100%;
+			border-left: var(--border-settings-main);
+			
+			display: flex;
+			flex-direction: column;
+			justify-content: flex-start;
+			align-items: flex-start;
+			color: var(--black);
+			font-size: 1.25rem;
+			.top{
+				padding: 1rem 1rem;
+				width: 100%;
+				border-bottom: var(--border-settings-main);
+				height: 25%;
+				display: flex;
+				flex-direction: column;
+				justify-content: center;
+				align-items: flex-start;
+			}
+			.middle{
+				padding: 1rem 1rem;
+				width: 100%;
+				border-bottom: var(--border-settings-main);
+				height: 25%;
+				display: flex;
+				flex-direction: column;
+				justify-content: center;
+				align-items: flex-start;
+			}
+			.bottom{
+				padding: 1rem 1rem;
+				width: 100%;
+				height: 50%;
+				display: flex;
+				flex-direction: column;
+				justify-content: center;
+				align-items: flex-start;
+			}
+		}
+		h1{
+			margin: 0;
+			font-size: 2rem;
+		}
+	}
+
+	.footerSection{
+		border: var(--border-settings-main);
+		border-top: 0;
+		max-width: var(--container-width);
+		margin: auto;
+		padding: var(--padding-1);
+		h1{
+			margin: 0;
+		}
+	}
+</style>	

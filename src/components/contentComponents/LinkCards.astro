@@ -1,0 +1,84 @@
+---
+
+const {} = Astro.props;
+---
+
+<div class="flexContainer">
+
+	<div class="Card">
+		<h2>Grovery Holiday Card</h2>
+		<p>
+			Open link, point your camera at a marker image, and see a 3D model appear.
+		</p>
+		<div class="link">
+			<a href="/grovery-holiday-ar/">[Open AR Experience]</a>
+			<br/><br/>
+			<a href="/grovery-holiday-ar/splash">[Web Splash Page]</a>
+			<br/><br/>
+			<a href="/grovery-holiday-ar/qr-codes">[QR Code Info]</a>
+			<br/><br/>
+			<a href="/grovery-holiday-ar/printout">[Printable Version]</a>
+		</div>
+	</div>
+
+
+
+</div>
+
+
+
+<style lang="scss">
+	.flexContainer{
+		display: flex;
+		justify-content: center;
+		align-items: flex-start;
+		flex-direction: row;
+		flex-wrap: wrap;
+		margin: -1rem;
+	}
+	.Card{
+		max-width: 100%;
+		width:350px;
+		//flex:1;
+		align-self: stretch;
+		border: var(--border-settings-main);
+		box-shadow: var(--shadow-1);
+		padding: 1rem;
+		margin: 1rem;
+		h2{
+			margin: 0;
+			padding-bottom: 0.5rem;
+			text-align: center;
+			border-bottom: var(--border-settings-main);
+		}
+		.tagline{
+			margin-top: 0.5rem;
+			font-weight: 800;
+		}
+		.link{
+			text-align: center;
+			padding: 1rem 0;
+			a{
+				background-color: var(--black);
+				color: var(--white);
+				padding: 0.5em 1em;
+				text-decoration: none;
+				&:hover{
+					text-decoration: underline;
+					text-decoration-style: dotted;
+				}
+			}
+		}
+		.linkGroup{
+			border-top: var(--border-settings-main);
+			padding-top: 1rem;
+			a{
+				text-decoration: none;
+				&:hover{
+					text-decoration: underline;
+					text-decoration-style: dotted;
+				}
+			}
+		}
+	}
+</style>
