@@ -1,0 +1,37 @@
+{
+    "projectName": "Deliverator Gif",
+    "projectDescription": "v1 Basic Video Test.",
+    "projectBaseUrl": "https://interzone-ar.netlify.app/deliverator",
+    "markerFile": "/markers/deliverator-marker.mind",
+    "markerImage": "/markers/deliverator-marker.jpg",
+    "modelFile": "/images/deliverator.gif",
+    "experienceType": "gif",
+    "displayFile": "/images/deliverator.gif",
+    "customUI": {
+        "bigText": "Scan the Marker",
+        "smallText": "Point your camera at the marker image to view the 3D object.",
+        "flashingText": "[Marker Not In View]"
+    },
+    "modelSettings":{
+        "defaultScale": "1 1 1",
+        "defaultRotationSetting": "wall",
+        "defaultPosition": "0 0 0.1",
+        "wallRotationSetting": "0 0 0",
+        "wallPositionSetting": "0 0 0.1",
+        "wallScaleSetting": "1 1 1",
+        "flatRotationSetting": "90 0 0",
+        "flatPositionSetting": "0 0 0.1",
+        "flatScaleSetting": "1 1 1",
+        "cardRotationSetting": "90 0 0",
+        "cardPositionSetting": "0 0 0.1",
+        "cardScaleSetting": "1 1 1"
+    },
+    "splashPage":{
+        "backgroundImage": "NULL"        
+    },
+    "pdfs":{
+        "available": true,
+        "wall": "/pdf/deliverator-AssetPrintout-Wall.pdf",
+        "flat": "/pdf/deliverator-AssetPrintout-Flat.pdf"
+    }
+}

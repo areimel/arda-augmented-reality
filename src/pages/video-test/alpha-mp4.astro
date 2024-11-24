@@ -1,0 +1,178 @@
+---
+//Components
+import ARLayout from '@layouts/AR-Layout.astro';
+import CustomUI from '@components/ARComponents/CustomUI.astro';
+
+//Project Data
+const projectData = await import("src/data/projectData/video-test.json");
+
+/*===== Main Settings =====*/
+	let defaultRotation = projectData.modelSettings.defaultRotationSetting; // "flat" or "wall"
+	const defaultScale = projectData.modelSettings.defaultScale;
+	const markerFile = projectData.markerFile;
+	const markerImage = projectData.markerImage;
+	const modelFile = projectData.modelFile;
+	const infoLink = projectData.projectBaseUrl + "/project-info";
+
+/*===== Position Configurations =====*/
+	let rotationSetting = "";
+	let positionSetting = "";
+	//Wall surface configuration - 
+	let WallRotationSetting = projectData.modelSettings.wallRotationSetting;		//don't change
+	let WallpositionSetting = projectData.modelSettings.wallPositionSetting;	//change as needed
+
+	//Flat surface configuration
+	let FlatRotationSetting = projectData.modelSettings.flatRotationSetting;		//don't change
+	let FlatpositionSetting = projectData.modelSettings.flatPositionSetting;	//probably don't change
+
+	//Card surface configuration
+	let CardRotationSetting = projectData.modelSettings.cardRotationSetting;		//don't change
+	let CardpositionSetting = projectData.modelSettings.cardPositionSetting;	//change as needed
+
+/*===== Starting Rotation Settings =====*/
+	if(defaultRotation == "flat"){
+		rotationSetting = projectData.modelSettings.flatRotationSetting;
+		positionSetting = projectData.modelSettings.flatPositionSetting;
+	}else{
+		rotationSetting = projectData.modelSettings.wallRotationSetting;
+		positionSetting = projectData.modelSettings.wallPositionSetting;
+	}
+
+---
+
+<ARLayout 
+	title={projectData.projectName}
+	type="video"
+>
+
+<div class="links">
+	<a href={infoLink}>Project Info</a>
+	<a href="/learn-more">Learn More</a>
+</div>
+
+<div class="controls">
+	<div 
+		class="controlButton" 
+		data-control-button="wall"
+	>
+		Switch View: Wall
+	</div>
+
+	<div 
+		class="controlButton" 
+		data-control-button="flat"
+	>
+		Switch View: Flat
+	</div>
+</div>
+
+<CustomUI/>
+
+<a-scene 
+	mindar-image={`imageTargetSrc: ${markerFile}; uiScanning: #custom-scanning-overlay;`}
+	color-space="sRGB" 
+	renderer="colorManagement: true, physicallyCorrectLights" 
+	vr-mode-ui="false" 
+	xr-mode-ui="enabled: false"
+	device-orientation-permission-ui="enabled: false"
+>
+	<a-assets>
+		<img id="card" src="/images/grovery-vr-logo.png" />
+
+		<a-asset-item 
+			id="myvideo" 
+			src={modelFile}
+		></a-asset-item>
+	</a-assets>
+
+	<a-camera 
+		position="0 0 0" 
+		look-controls="enabled: false"
+	></a-camera>
+
+	<a-entity 
+		id="mind-ar-target"
+		mindar-image-target="targetIndex: 0"
+	>
+		<a-entity
+			id="objectWrapper"
+			rotation={rotationSetting ? rotationSetting : "90 0 0"}
+			position={positionSetting ? positionSetting : "0 0 0.1"}
+			data-rotation-setting="flat"
+			
+			data-wall-position={WallpositionSetting}
+			data-wall-rotation={WallRotationSetting}
+
+			data-flat-position={FlatpositionSetting}
+			data-flat-rotation={FlatRotationSetting}
+
+			data-card-position={CardpositionSetting}
+			data-card-rotation={CardRotationSetting}
+		>
+			<a-video id="ar-video" src="/videos/alpha-mp4-test.mp4" width="2" height="1"></a-video>
+			
+		</a-entity>
+	</a-entity>
+
+</a-scene>
+
+</ARLayout>
+
+
+<style lang="scss">
+	.controls{
+		position: fixed;
+		z-index: 500000;
+		bottom: 5px;
+		left: 50%;
+		transform:translate(-50%, 0%);
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		width: 100%;
+		max-width: 500px;
+		margin: auto;
+
+		.controlButton{
+			//width: 175px;
+			margin: 0 10px;
+			border: solid 2px #FFF;
+			padding: 0.25em 0.5em;
+			color: #FFF;
+			font-size: var(--ar-font-size-1);
+			text-align: center;
+			display: none; // Hide buttons by default
+		}
+
+		// Show the appropriate button based on the current rotation setting
+		&[data-current-rotation="wall"] .controlButton[data-control-button="flat"],
+		&[data-current-rotation="flat"] .controlButton[data-control-button="wall"] {
+			display: block;
+		}
+	}
+
+	.links{
+		position: fixed;
+		z-index: 500000;
+		top: 5px;
+		left: 50%;
+		transform:translate(-50%, 0%);
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		width: 100%;
+		max-width: 500px;
+		margin: auto;
+
+		a{
+			//width: 175px;
+			margin: 0 10px;
+			border: solid 2px #FFF;
+			padding: 0.25em 0.5em;
+			color: #FFF;
+			font-size: var(--ar-font-size-1);
+			text-align: center;
+		}
+	}
+</style>
+

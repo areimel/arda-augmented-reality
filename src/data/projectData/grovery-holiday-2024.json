@@ -1,0 +1,35 @@
+{
+    "projectName": "The Grovery Holiday Card 2024",
+    "projectDescription": "Augmented Reality experience for viewing a virtual 3D 'hologram' that is attached to a holiday card.",
+    "projectBaseUrl": "https://grovery-ar.netlify.app/grovery-holiday-ar",
+    "markerFile": "/markers/grovery-holiday-marker-v2.mind",
+    "markerImage": "/markers/grovery-holiday-marker-v2.jpg",
+    "modelFile": "/3d-objects/snowglobe_gltf/scene.gltf",
+    "customUI": {
+        "bigText": "Scan the Marker",
+        "smallText": "Point your camera at the marker image to view the 3D object.",
+        "flashingText": "[Marker Not In View]"
+    },
+    "modelSettings":{
+        "defaultScale": "7 7 7",
+        "defaultRotationSetting": "wall",
+        "defaultPosition": "0 0 0.1",
+        "wallRotationSetting": "0 0 0",
+        "wallPositionSetting": "0 0 0.1",
+        "wallScaleSetting": "7 7 7",
+        "flatRotationSetting": "90 0 0",
+        "flatPositionSetting": "0 0 0.1",
+        "flatScaleSetting": "7 7 7",
+        "cardRotationSetting": "90 0 0",
+        "cardPositionSetting": "0 0 0.1",
+        "cardScaleSetting": "10 10 10"
+    },
+    "splashPage":{
+        "backgroundImage": "/images/christmas-bg.jpg"        
+    },
+    "pdfs":{
+        "available": true,
+        "wall": "/pdf/grovery-holiday-card-2024-AssetPrintout-Wall.pdf",
+        "flat": "/pdf/grovery-holiday-card-2024-AssetPrintout-Flat.pdf"
+    }
+}

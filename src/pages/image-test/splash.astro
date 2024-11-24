@@ -1,0 +1,29 @@
+---
+/*========================================*/
+/*	PAGE: Web Splash Page
+		NOTES:	This is a template-driven page and it will have minimal inner content, just props and variables.
+*/
+/*========================================*/
+
+//Essential Components
+import Layout from '@layouts/SplashLayout.astro';
+
+//Content Components
+	//import MasterComponent from '@components/MasterComponent.astro';
+	
+//Project Data
+const projectData = await import("src/data/projectData/grovery-holiday-2024.json");
+
+---
+
+<Layout 
+	title={projectData.projectName}
+	heading={projectData.projectName}
+	description={projectData.projectDescription}
+	marker={projectData.markerImage}
+	qrcode={projectData.projectBaseUrl + "?position=wall"}
+	background={projectData.splashPage.backgroundImage}
+	pdfs={projectData.pdfs}
+>
+</Layout>
+

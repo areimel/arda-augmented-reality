@@ -2,8 +2,11 @@
 //Styles
 	import "@styles/main.scss"
 
+//Components
+	import HeadAR from "@components/HeadAR.astro";
+
 //Props
-	const { title } = Astro.props;
+	const { title, description, type } = Astro.props;
 
 
 ---
@@ -11,12 +14,8 @@
 <!doctype html>
 <html lang="en" data-theme="light">
 	<head>
-		<meta charset="UTF-8" />
-		<title>{title} | Augmented Reality Hologram Display</title>
-		<!-- <meta name="description" content={description ? description : "Marketing Analytics Plugins & Tools"} /> -->
-		<meta name="viewport" content="width=device-width" />
-    	<script is:inline src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
-    	<script is:inline src="https://cdn.jsdelivr.net/npm/mind-ar@1.2.5/dist/mindar-image-aframe.prod.js"></script>
+		<HeadAR title={title} description={description}/>
+		<!-- {type == "video" && <script src="/scripts/ar-video-handler.js"></script>} -->
 
 	</head>
 	<body>
@@ -26,10 +25,6 @@
 		<!-- ===== =========================== ===== -->
 		<slot />
 		
-		<!-- ===== ================== ===== -->
-		<!-- ===== Javascript Plugins ===== -->
-		<!-- ===== ================== ===== -->
-		<script is:inline src="/scripts/wake-lock.js"></script>
 
 	</body>
 </html>

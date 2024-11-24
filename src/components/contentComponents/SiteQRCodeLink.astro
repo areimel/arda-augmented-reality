@@ -1,23 +1,24 @@
 ---
 import SplitLayout from '@components/contentLayouts/SplitLayout.astro';
-
+import QRCode from '@components/QRCode.astro';
 const {} = Astro.props;
+
+//Site Data
+const siteData = await import("src/data/siteData.json");
 ---
 
 <section class="noPadding">
 	<SplitLayout>
 		<Fragment slot="left-slot"> 
 			<h2>Scan To Open On Mobile</h2>
-			<p>This QR code simply links to the page you're looking at right now. WebVR is best experienced on your phone, preferably with a headset. Scan it, and open the VR Construct you'd like to use.</p>
+			<p>Augmented Reality experiences are best viewed on your phone. Scan the QR code to open this page on your phone and select the experience you'd like to view.</p>
 		</Fragment>
 		<Fragment slot="right-slot"> 
-			<div id="siteQrCode"></div>
-			<script type="text/javascript">
-				document.addEventListener("DOMContentLoaded", function(){
-					//runs code after DOM load
-					new QRCode(document.getElementById("siteQrCode"), "https://grovery-ar.netilfy.app");
-				});
-			</script>
+			<QRCode 
+				id="default-qrcode"
+				link={siteData.siteURL}
+			/>
+			<a class="qrCodeSubLink" href={siteData.siteURL} target="_blank">{siteData.siteURL}</a>
 		</Fragment>
 	</SplitLayout>
 </section>

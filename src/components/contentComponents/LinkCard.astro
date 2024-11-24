@@ -1,0 +1,70 @@
+---
+
+const {name, description, link} = Astro.props;
+---
+
+<div class="Card">
+	<h2>{name}</h2>
+	<p>
+		{description}
+	</p>
+	<div class="link">
+		<a href={link}>[Open AR Experience]</a>
+			<br/><br/>
+			<a href={`${link}/splash`}>[Web Splash Page]</a>
+			<br/><br/>
+			<a href={`${link}/project-info`}>[Project Info]</a>
+	</div>
+</div>
+
+
+
+<style lang="scss">
+	
+	.Card{
+		width: 100%;
+		max-width:350px;
+		//flex:1;
+		align-self: stretch;
+		border: var(--border-settings-main);
+		box-shadow: var(--shadow-1);
+		padding: 1rem;
+		margin: 1rem;
+		h2{
+			margin: 0;
+			padding-bottom: 0.5rem;
+			text-align: center;
+			text-wrap: balance;
+			border-bottom: var(--border-settings-main);
+		}
+		.tagline{
+			margin-top: 0.5rem;
+			font-weight: 800;
+		}
+		.link{
+			text-align: center;
+			padding: 1rem 0;
+			a{
+				background-color: var(--black);
+				color: var(--white);
+				padding: 0.5em 1em;
+				text-decoration: none;
+				&:hover{
+					text-decoration: underline;
+					text-decoration-style: dotted;
+				}
+			}
+		}
+		.linkGroup{
+			border-top: var(--border-settings-main);
+			padding-top: 1rem;
+			a{
+				text-decoration: none;
+				&:hover{
+					text-decoration: underline;
+					text-decoration-style: dotted;
+				}
+			}
+		}
+	}
+</style>

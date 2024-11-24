@@ -1,7 +1,7 @@
 ---
 /*========================================*/
-/*	PAGE: Home/Index
-		NOTES:	
+/*	PAGE: Web Splash Page
+		NOTES:	This is a template-driven page and it will have minimal inner content, just props and variables.
 */
 /*========================================*/
 
@@ -9,99 +9,21 @@
 import Layout from '@layouts/SplashLayout.astro';
 
 //Content Components
+	//import MasterComponent from '@components/MasterComponent.astro';
+	
+//Project Data
+const projectData = await import("src/data/projectData/grovery-holiday-2024.json");
 
 ---
 
 <Layout 
-	title="Grovery Holiday AR"
-	heading="Grovery Holiday AR"
-	marker="/markers/grovery-holiday-marker-v2.jpg"
-	qrcode="https://grovery-ar.netlify.app/grovery-holiday-ar?position=wall"
-	background="/images/grovery-holiday-background.jpg"
+	title={projectData.projectName}
+	heading={projectData.projectName}
+	description={projectData.projectDescription}
+	marker={projectData.markerImage}
+	qrcode={projectData.projectBaseUrl + "?position=wall"}
+	background={projectData.splashPage.backgroundImage}
+	pdfs={projectData.pdfs}
 >
-	<div class="metaDetails">
-		<p class="clientName">The Grovery | Holiday Card Hologram</p>
-		<p class="companyName">The Grovery | Augmented Reality 3D Object Display</p>
-	</div>
-	<div class="subheading">
-		<span class="symbol">⚠ ⚠ ⚠</span>
-		<span class="text">Instructions:</span>
-		<span class="symbol">⚠ ⚠ ⚠</span>
-	</div>
-	<div class="bodyText">
-		<ol class="instructions">
-			<li>Scan the QR code below with your phone to open the web viewer. The page will ask if it can access your camera - allow this.</li>
-			<li>Once the viewer loads, point your camera at the marker image to the right.</li>
-			<li>The 3D hologram will appear floating in front of the marker image.</li>
-		</ol>
-	</div>
 </Layout>
 
-<style lang="scss">
-	
-	.clientName, .companyName {
-			font-size: 1rem;
-			margin-bottom: 0;
-			padding: 1rem 0.5rem;
-			font-weight: 500;
-			border-bottom: var(--border-settings-main);
-			/* display: flex;
-			flex-direction: row;
-			justify-content: flex-start;
-			align-items: center; */
-		}
-
-		.subheading{
-				display: flex;
-				flex-direction: row;
-				justify-content: center;
-				align-items: center;
-				padding: 1rem 0.5rem 1rem;
-				border-bottom: var(--border-settings-main);
-				background-color: var(--accent-color);
-				color: var(--background-color);
-				border-color: solid 2px var(--background-color);
-				.symbol{
-					
-				}
-				.text{
-					margin:0 1em;
-					font-weight: 800;
-					font-size: 1.5em;
-					
-				}
-			}
-
-		.bodyText {
-			font-size: 1rem;
-			line-height: 1.6;
-			padding: 0.25rem 2rem 1rem;
-			border-bottom: var(--border-settings-main);
-			background-color: var(--accent-color);
-			color: var(--background-color);
-			
-			strong{
-				text-decoration: underline;
-			}
-			.symbol{
-				font-size: 1.75em;
-				text-align: center;
-			}
-			
-			.instructions{
-				li{
-					margin-bottom: 0.25em;
-				}
-			}
-		}
-	
-	.markerSection{
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		img{
-			width: 100%;
-			max-width: 85vh;
-		}
-	}
-</style>

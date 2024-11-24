@@ -1,0 +1,13 @@
+{
+    "siteURL": "https://interzone-ar.netlify.app",
+    "titleSuffix": "| Interzone Technology Group",
+    "companyName": "Interzone Technology Group",
+    "companyLogo": "/images/logo.png",
+    "companyLogoGlyph": "/images/logo-glyph.svg",
+    "projectName": "Interzone AR",
+    "fallbackDescription": "Augmented Reality Experiences",
+    "siteMetadata": {
+        "author": "The Grovery",
+        "themeColor": "light"
+    }
+}  

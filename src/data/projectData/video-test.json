@@ -1,0 +1,35 @@
+{
+    "projectName": "Video Test",
+    "projectDescription": "v1 Basic Video Test.",
+    "projectBaseUrl": "https://grovery-ar.netlify.app/video-test",
+    "markerFile": "/markers/grovery-holiday-marker-v2.mind",
+    "markerImage": "/markers/grovery-holiday-marker-v2.jpg",
+    "modelFile": "/videos/alpha-webm-test.webm",
+    "customUI": {
+        "bigText": "Scan the Marker",
+        "smallText": "Point your camera at the marker image to view the 3D object.",
+        "flashingText": "[Marker Not In View]"
+    },
+    "modelSettings":{
+        "defaultScale": "5 5 5",
+        "defaultRotationSetting": "wall",
+        "defaultPosition": "0 0 0.1",
+        "wallRotationSetting": "0 0 0",
+        "wallPositionSetting": "0 0 0.1",
+        "wallScaleSetting": "5 5 5",
+        "flatRotationSetting": "90 0 0",
+        "flatPositionSetting": "0 0 0.1",
+        "flatScaleSetting": "5 5 5",
+        "cardRotationSetting": "90 0 0",
+        "cardPositionSetting": "0 0 0.1",
+        "cardScaleSetting": "5 5 5"
+    },
+    "splashPage":{
+        "backgroundImage": "/images/christmas-bg.jpg"        
+    },
+    "pdfs":{
+        "available": true,
+        "wall": "/pdf/grovery-holiday-card-2024-AssetPrintout-Wall.pdf",
+        "flat": "/pdf/grovery-holiday-card-2024-AssetPrintout-Flat.pdf"
+    }
+}

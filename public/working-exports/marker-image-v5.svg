@@ -1,0 +1,19 @@
+<svg width="250" height="250" viewBox="0 0 250 250" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect x="13.5" y="13.5" width="222" height="222" fill="white" stroke="black" stroke-width="3" stroke-dasharray="25 20"/>
+<rect x="40" y="170" width="40" height="40" stroke="black" stroke-width="10"/>
+<rect x="55" y="185" width="10" height="10" fill="black"/>
+<rect x="165" y="205" width="10" height="10" fill="black"/>
+<rect x="165" y="165" width="10" height="10" fill="black"/>
+<rect x="205" y="205" width="10" height="10" fill="black"/>
+<rect x="205" y="165" width="10" height="10" fill="black"/>
+<rect x="185" y="185" width="10" height="10" fill="black"/>
+<rect x="185" y="165" width="10" height="10" fill="black"/>
+<rect x="205" y="185" width="10" height="10" fill="black"/>
+<rect x="185" y="205" width="10" height="10" fill="black"/>
+<rect x="165" y="185" width="10" height="10" fill="black"/>
+<path d="M40 40H80V80H40V40Z" stroke="black" stroke-width="10"/>
+<rect x="55" y="55" width="10" height="10" fill="black"/>
+<rect x="170" y="40" width="40" height="40" stroke="black" stroke-width="10"/>
+<rect x="185" y="55" width="10" height="10" fill="black"/>
+<path d="M124.5 95L156.976 151.25H92.024L124.5 95Z" fill="black"/>
+</svg>

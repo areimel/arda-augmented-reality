@@ -1,0 +1,25 @@
+---
+//Props
+	const { title, description } = Astro.props;
+
+//Site Data
+	const siteData = await import("src/data/siteData.json");
+---
+
+<meta charset="UTF-8" />
+<title>{title} {siteData.titleSuffix}</title>
+<meta name="description" content={description ? description : siteData.fallbackDescription} />
+<meta name="viewport" content="width=device-width" />
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<meta name="generator" content={Astro.generator} />
+
+<!-- ===== Fonts ===== -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Kode+Mono&family=Montserrat:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<!-- ===== Javascript Plugins ===== -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js" integrity="sha512-CNgIRecGo7nphbeZ04Sc13ka07paqdeTu0WR1IM4kNcpmBAUSHSQX0FslNhTDadL4O5SAGapGt4FodqL8My0mA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<!-- ===== Internal Javascript ===== -->
+<script is:inline src="/scripts/qrcode.js"></script>
