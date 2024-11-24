@@ -4,7 +4,7 @@ import ARLayout from '@layouts/AR-Layout.astro';
 import CustomUI from '@components/ARComponents/CustomUI.astro';
 
 //Project Data
-const projectData = await import("src/data/projectData/grovery-holiday-2024.json");
+const projectData = await import("src/data/projectData/deliverator.json");
 
 /*===== Main Settings =====*/
 	let defaultRotation = projectData.modelSettings.defaultRotationSetting; // "flat" or "wall"
@@ -108,7 +108,7 @@ const projectData = await import("src/data/projectData/grovery-holiday-2024.json
 			data-card-position={CardpositionSetting}
 			data-card-rotation={CardRotationSetting}
 		>
-			<a-plane src="#card" position="0 0 0" height="0.5" width="1.2" rotation="0 0 0"></a-plane>
+			<!-- <a-plane src="#card" position="0 0 0" height="0.5" width="1.2" rotation="0 0 0"></a-plane> -->
 			<!-- <a-gltf-model 
 				rotation="0 0 0" 
 				position="0 0 0.1" 
@@ -116,6 +116,11 @@ const projectData = await import("src/data/projectData/grovery-holiday-2024.json
 				src="#displayModel"
 				animation="property: rotation; to: 0 360 0; loop: true; dur: 10000; easing: linear;"
 			/> -->
+
+			<!-- <a-entity geometry="primitive:box;" material="shader:gif;src:url(nyancat.gif);color:green;opacity:.8"></a-entity> -->
+			<a-entity geometry="primitive:box;" material={`shader:gif;src:url(${projectData.displayFile});color:purple;opacity:1`}></a-entity>
+
+			
 		</a-entity>
 	</a-entity>
 
