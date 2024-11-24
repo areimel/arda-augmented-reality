@@ -125,3 +125,57 @@
 	justify-content: flex-start;
 	align-content: flex-start;
 }
+
+
+
+/*===================================*/
+/*===== QR Code Links & Related =====*/
+/*===================================*/
+.qrCodeSubLink{
+	font-size: 0.65rem;
+	margin-top: 1rem;
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	text-decoration: none;
+	background-color: var(--accent-color);
+	color: var(--background-color);
+	padding: 0.5rem 1rem;
+	&::before{
+		content: "[";
+		font-size: 1.5em;
+		text-decoration: none;
+	}
+	&::after{
+		content: "]";
+		font-size: 1.5em;
+	}
+}
+
+/*===================================*/
+/*===== Instructions & Warnings =====*/
+/*===================================*/
+.cautionStripes{
+	width: 100%;
+	background-image: linear-gradient(45deg, 
+		var(--black) 25%, 
+		var(--white) 25%, 
+		var(--white) 50%, 
+		var(--black) 50%, 
+		var(--black) 75%, 
+		var(--white) 75%, 
+		var(--white) 100%);
+	background-size: 50px 50px;
+	border: solid 5px var(--black);
+	padding: 0.5rem;
+	p{
+		background-color: var(--black);
+		color: var(--white);
+		padding: 0.5rem 1rem;
+		width: 100%;
+		text-align: center;
+		text-wrap: balance;
+		margin: 0;
+	}
+}

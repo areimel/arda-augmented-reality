@@ -9,8 +9,8 @@
 		white 60%
 	);*/
 	//color pallete
-		--black: #28282B;
-		--white: #FAF9F6;
+		--black: #000000;
+		--white: #FFFFFF;
 	//functional colors
 		--background-color: var(--white);
 		--text-color: var(--black);
@@ -31,10 +31,6 @@
 		--padding-3: 7.5rem;
 		--element-width-1: 500px;
 		--element-width-2: 800px;
-
-	//Dynamic Font Sizes
-		--ar-font-size-1: clamp(18px, 2vw, 26pxpx);
-		--ar-font-size-2: clamp(16px, 1.5vw, 20px);
 }
 /*dark mode*/
 [data-theme="dark"] {

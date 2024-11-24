@@ -7,12 +7,7 @@
 //Props
 	const { title, description, heading } = Astro.props;
 
-//Site Data
-	const siteData = await import("src/data/siteData.json");
-	const siteURL = siteData.baseUrl;
-	const titleSuffix = siteData.titleSuffix;
-	const companyName = siteData.companyName;
-	const companyDescription = siteData.companyDescription;
+
 ---
 
 <!doctype html>
@@ -39,7 +34,7 @@
 		
 		<header class="headerSection">
 			<div class="logo">
-				<QRCode link={`${baseURL}/${heading}`}/>
+				<QRCode link="https://grovery-ar.netlify.app/ar-test-1/"/>
 				</div>
 			<div class="text">
 				<div class="top">Interzone Technology Group | Augmented Reality Hologram Display</div>

@@ -10,26 +10,55 @@
 
 //Content Components
 	//import MasterComponent from '@components/MasterComponent.astro';
-	import LinkCards from '@components/contentComponents/LinkCards.astro';
+	import LinkCard from '@components/contentComponents/LinkCard.astro';
 	// SplitLayout from '@components/contentLayouts/SplitLayout.astro';
 	import FooterNotice from '@components/contentComponents/FooterNotice.astro';
 	import SiteQRCodeLink from '@components/contentComponents/SiteQRCodeLink.astro';
 	//import DisplayBits from '@components/DisplayBits.astro';
+
+//Site Data
+	const siteData = await import("src/data/siteData.json");
 ---
 
 <Layout 
-	title="Index"
-	heading="The Grovery AR Experiences"
+	title={siteData.projectName}
+	heading={siteData.projectName}
 >
 	
 	<section>
 		<h2 class="text-size-3">Links</h2>
-		<LinkCards/>	
+		<div class="card-grid">
+			<LinkCard
+			name="Grovery Holiday Card 2024"
+			description="Augmented Reality Holiday Card"
+			link="/grovery-holiday-ar"
+		/>	
+
+		<LinkCard
+			name="Video Test"
+			description="v1 Basic Video Test."
+			link="/video-test"
+		/>	
+
+		<LinkCard
+			name="Deliverator Gif"
+			description="Augmented Reality Gif"
+			link="/deliverator"
+		/>	
+		</div>
+		
 	</section>
 
-	
-	
+	<SiteQRCodeLink/>
+	<FooterNotice/>
 
 </Layout>
 
 
+<style>
+	.card-grid{
+		display: flex;
+		flex-wrap: wrap;
+		gap: 1rem;
+	}
+</style>
