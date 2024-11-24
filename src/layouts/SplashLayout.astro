@@ -7,17 +7,24 @@
 //Props
 	const { title, description, heading, qrcode, marker, background } = Astro.props;
 
-
+//Site Data
+	const siteData = await import("src/data/siteData.json");
+	const siteURL = siteData.siteURL;
+	const titleSuffix = siteData.titleSuffix;
+	const companyName = siteData.companyName;
+	const fallbackDescription = siteData.fallbackDescription;
 ---
 
 <!doctype html>
 <html lang="en" data-theme="light">
 	<head>
 		<meta charset="UTF-8" />
-		<title>{title} | Augmented Reality Hologram Display</title>
-		<meta name="description" content={description ? description : "Marketing Analytics Plugins & Tools"} />
 		<meta name="viewport" content="width=device-width" />
+		
+		<title>{title} {titleSuffix}</title>
+		<meta name="description" content={description ? description : fallbackDescription} />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
 		<meta name="generator" content={Astro.generator} />
 		<link rel="preconnect" href="https://fonts.googleapis.com">
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -39,6 +46,7 @@
 				<div class="text-content">
 					<h1>{heading ? heading : "3d Object Preview"}</h1>
 					<slot>
+						<!-- FALLBACK CONTENT -->
 						<div class="metaDetails">
 							<p class="clientName">Client Name | Project Name</p>
 							<p class="companyName">Company Name | Product Series Name</p>
@@ -47,7 +55,8 @@
 							<p class="instructions">
 								Instructions: Scan the QR code to open the asset link, then point your phone's camera at the marker image to view the asset.
 							</p>
-						</div>						
+						</div>		
+						<!-- END FALLBACK CONTENT -->				
 					</slot>
 					
 					<div class="QRCodeWrapper">
@@ -64,8 +73,15 @@
 			<section class="right-section">
 				<div class="image-container">
 					<!-- Large image will be placed here -->
-					 <p>Marker Image - Point your camera at this image to view the asset.</p>
-					<img src={marker ? marker : "/markers/complex-marker-v1.jpg"}/>						
+					<div class="stripesWrapper">
+						<p><strong>Marker Image</strong> - Point your camera at this image to view the asset.</p>
+					</div>
+					
+					<img src={marker ? marker : "/markers/complex-marker-v1.jpg"}/>
+					
+					<div class="stripesWrapper">
+						<p>This images acts as a <strong>real-world anchor point</strong> for the virtual hologram.</p>
+					</div>
 				</div>
 			</section>
 			
@@ -119,6 +135,46 @@
 		background-color: var(--secondary-color);
 	}
 
+	.text-content {
+		text-align: left;
+		max-width: 100%;
+		border: var(--border-settings-main);
+		background-color: var(--background-color);
+		h1 {
+			font-size: 3rem;
+			margin-bottom: 0;
+			margin-top: 0;
+			padding: 1.5rem 0.5rem;
+			line-height: 1.2;
+			text-align: center;
+			text-wrap: balance;
+			border-bottom: var(--border-settings-main);
+		}
+
+		.clientName, .companyName {
+			font-size: 1.2rem;
+			margin-bottom: 0;
+			padding: 1rem 0.5rem;
+			font-weight: 500;
+			border-bottom: var(--border-settings-main);
+			/* display: flex;
+			flex-direction: row;
+			justify-content: flex-start;
+			align-items: center; */
+		}
+
+		.bodyText {
+			font-size: 1rem;
+			line-height: 1.6;
+			padding: 1rem 0.5rem;
+			border-bottom: var(--border-settings-main);
+			//background-color: var(--accent-color);
+			//color: var(--background-color);
+			//padding: 1rem;
+			//border-radius: 0.5rem;
+		}
+	}
+
 	.QRCodeWrapper{
 		margin: 2rem;
 		display: flex;
@@ -153,45 +209,6 @@
 		}
 	}
 
-	.text-content {
-		text-align: left;
-		max-width: 100%;
-		border: var(--border-settings-main);
-		background-color: var(--background-color);
-		h1 {
-			font-size: 3rem;
-			margin-bottom: 0;
-			margin-top: 0;
-			padding: 1.5rem 0.5rem;
-			line-height: 1.2;
-			text-align: center;
-			border-bottom: var(--border-settings-main);
-		}
-
-		.clientName, .companyName {
-			font-size: 1.2rem;
-			margin-bottom: 0;
-			padding: 1rem 0.5rem;
-			font-weight: 500;
-			border-bottom: var(--border-settings-main);
-			/* display: flex;
-			flex-direction: row;
-			justify-content: flex-start;
-			align-items: center; */
-		}
-
-		.bodyText {
-			font-size: 1rem;
-			line-height: 1.6;
-			padding: 1rem 0.5rem;
-			border-bottom: var(--border-settings-main);
-			//background-color: var(--accent-color);
-			//color: var(--background-color);
-			//padding: 1rem;
-			//border-radius: 0.5rem;
-		}
-	}
-
 	.image-container {
 		width: 100%;
 		height: 100%;
@@ -203,11 +220,30 @@
 		img{
 			width: 80%;
 			height: auto;
+			margin: 1rem auto;
 		}
-		p{
-			background-color: var(--accent-color);
-			color: var(--background-color);
-			padding: 0.5rem 1rem;
+		.stripesWrapper{
+			width: 100%;
+			background-image: linear-gradient(45deg, 
+					#28282b 25%, 
+					#faf9f6 25%, 
+					#faf9f6 50%, 
+					#28282b 50%, 
+					#28282b 75%, 
+					#faf9f6 75%, 
+					#faf9f6 100%);
+			background-size: 56.57px 56.57px;
+			border: solid 5px var(--black);
+			padding: 0.5rem;
+			p{
+				background-color: var(--accent-color);
+				color: var(--background-color);
+				padding: 0.5rem 1rem;
+				width: 100%;
+				text-align: center;
+				text-wrap: balance;
+				margin: 0;
+			}
 		}
 	}
 

@@ -8,24 +8,35 @@
 //Essential Components
 import Layout from '@layouts/SplashLayout.astro';
 
+//Site Data
+const siteData = await import("src/data/siteData.json");
+	const siteURL = siteData.siteURL;
+	const titleSuffix = siteData.titleSuffix;
+	const companyName = siteData.companyName;
+	const companyDescription = siteData.companyDescription;
 
+//Project Data
+	const projectPage = "/interzone-business-card/";
+	const baseURL = `${siteURL}${projectPage}`;
+	const marker = "/markers/interzone-business-card.jpg";
+	const projectName = "Interzone Augmented Reality Card";
+	//const companyName = "Interzone Technology Group";
 ---
 
 <Layout 
-	title="Grovery Holiday AR"
-	heading="Grovery Holiday AR"
-	marker="/markers/grovery-holiday-marker-v2.jpg"
-	qrcode="https://grovery-ar.netlify.app/grovery-holiday-ar?position=wall"
-	background="/images/grovery-holiday-background.jpg"
+	title={projectName}
+	heading={projectName}
+	marker={marker}
+	qrcode={baseURL}
+	background="/images/splash-background-1.jpg"
 >
-	<div class="metaDetails">
-		<p class="clientName">The Grovery | Holiday Card Hologram</p>
-		<p class="companyName">The Grovery | Augmented Reality 3D Object Display</p>
-	</div>
+	<!-- <div class="metaDetails">
+		<p class="projectName">{projectName}</p>
+	</div> -->
 	<div class="subheading">
-		<span class="symbol">⚠ ⚠ ⚠</span>
+		<!-- <div class="symbol">⚠ ⚠ ⚠ ⚠ ⚠</div> -->
 		<span class="text">Instructions:</span>
-		<span class="symbol">⚠ ⚠ ⚠</span>
+		<!-- <div class="symbol">⚠ ⚠ ⚠ ⚠ ⚠</div> -->
 	</div>
 	<div class="bodyText">
 		<ol class="instructions">
@@ -38,7 +49,7 @@ import Layout from '@layouts/SplashLayout.astro';
 
 <style lang="scss">
 	
-	.clientName, .companyName {
+	.projectName, .companyName {
 			font-size: 1rem;
 			margin-bottom: 0;
 			padding: 1rem 0.5rem;
@@ -55,19 +66,33 @@ import Layout from '@layouts/SplashLayout.astro';
 				flex-direction: row;
 				justify-content: center;
 				align-items: center;
-				padding: 1rem 0.5rem 1rem;
-				border-bottom: var(--border-settings-main);
-				background-color: var(--accent-color);
+				font-size: 1.5rem;
+				padding: 0.5rem 0.5rem;
+				//border-bottom: var(--border-settings-main);
+				//background-color: var(--accent-color);
+				background-image: linear-gradient(45deg, 
+					#28282b 25%, 
+					#faf9f6 25%, 
+					#faf9f6 50%, 
+					#28282b 50%, 
+					#28282b 75%, 
+					#faf9f6 75%, 
+					#faf9f6 100%);
+				background-size: 56.57px 56.57px;
+				border: solid 5px var(--black);
 				color: var(--background-color);
-				border-color: solid 2px var(--background-color);
+				//border-color: solid 2px var(--background-color);
 				.symbol{
-					
+					font-size: 1.5em;
 				}
 				.text{
 					margin:0 1em;
 					font-weight: 800;
-					font-size: 1.5em;
-					
+					background-color: var(--accent-color);
+					padding: 0.5em 1em;
+					margin: 0;
+					width: 100%;
+					text-align: center;
 				}
 			}
 

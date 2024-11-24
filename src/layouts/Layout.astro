@@ -5,17 +5,24 @@
 //Props
 	const { title, description, heading } = Astro.props;
 
-
+//Site Data
+	const siteData = await import("src/data/siteData.json");
+	const siteURL = siteData.siteURL;
+	const titleSuffix = siteData.titleSuffix;
+	const companyName = siteData.companyName;
+	const fallbackDescription = siteData.fallbackDescription;
 ---
 
 <!doctype html>
 <html lang="en" data-theme="light">
 	<head>
 		<meta charset="UTF-8" />
-		<title>{title} | The Grovery AR Experiences</title>
-		<meta name="description" content={description ? description : "The Grovery AR Experience"} />
 		<meta name="viewport" content="width=device-width" />
+
+		<title>{title} {titleSuffix}</title>
+		<meta name="description" content={description ? description : fallbackDescription} />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
 		<meta name="generator" content={Astro.generator} />
 		<link rel="preconnect" href="https://fonts.googleapis.com">
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -25,7 +32,8 @@
 		<!-- ===== ================== ===== -->
 		<!-- ===== Javascript Plugins ===== -->
 		<!-- ===== ================== ===== -->
-		
+		<script is:inline src="/scripts/qrcode.js"></script>
+
 	</head>
 	<body>
 		
@@ -38,7 +46,7 @@
 			</div>
 
 			<div class="text">
-				<div class="top">The Grovery</div>
+				<div class="top">{companyName}</div>
 				<div class="bottom">
 					<h1>{heading}</h1>
 				</div>
@@ -51,7 +59,7 @@
 		</main>
 
 		<footer class="footerSection">
-			<div>Brought to you by The Grovery</div>
+			<div>Brought to you by {companyName}</div>
 		</footer>
 
 		

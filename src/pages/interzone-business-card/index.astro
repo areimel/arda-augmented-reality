@@ -1,14 +1,20 @@
 ---
-//Essential Components
+//Components
 import ARLayout from '@layouts/AR-Layout.astro';
 import CustomUI from '@components/ARComponents/CustomUI.astro';
 
+/*===== Main Settings =====*/
 let defaultRotation = "wall"; // "flat" or "wall"
-let rotationSetting = "";
-let positionSetting = "";
+let markerFile = "/markers/interzone-business-card.mind";
+let markerImage = "/markers/interzone-business-card.jpg";
+let infoLink = "https://interzone-ar.netlify.app/interzone-business-card/info";
+
 
 /*===== Position Configurations =====*/
-	//Wall surface configuration - 
+	let rotationSetting = "";
+	let positionSetting = "";
+
+//Wall surface configuration - 
 	let WallRotationSetting = "0 0 0";		//don't change
 	let WallpositionSetting = "0 0 0.1";	//change as needed
 
@@ -37,7 +43,7 @@ let positionSetting = "";
 
 <div class="links">
 	<a href="/">Back to Landing Page</a>
-	<a href="/">Learn More</a>
+	<a href="/learn-more">Learn More</a>
 </div>
 
 <div class="controls">
@@ -59,7 +65,7 @@ let positionSetting = "";
 <CustomUI/>
 
 <a-scene 
-	mindar-image="imageTargetSrc: /markers/grovery-holiday-marker-v2.mind; uiScanning: #custom-scanning-overlay;"
+	mindar-image="imageTargetSrc: /markers/interzone-business-card.mind; uiScanning: #custom-scanning-overlay;"
 	color-space="sRGB" 
 	renderer="colorManagement: true, physicallyCorrectLights" 
 	vr-mode-ui="false" 
