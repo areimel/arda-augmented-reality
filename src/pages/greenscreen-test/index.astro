@@ -1,10 +1,14 @@
 ---
+//NOTES:
+//greenscreen video code: https://www.8thwall.com/playground/alpha-video-slam-aframe
+
+
 //Components
 import ARLayout from '@layouts/AR-Layout.astro';
 import CustomUI from '@components/ARComponents/CustomUI.astro';
 
 //Project Data
-const projectData = await import("src/data/projectData/deliverator.json");
+const projectData = await import("src/data/projectData/video-test.json");
 
 /*===== Main Settings =====*/
 	let defaultRotation = projectData.modelSettings.defaultRotationSetting; // "flat" or "wall"
@@ -12,7 +16,6 @@ const projectData = await import("src/data/projectData/deliverator.json");
 	const markerFile = projectData.markerFile;
 	const markerImage = projectData.markerImage;
 	const modelFile = projectData.modelFile;
-	const displayFile = projectData.displayFile;
 	const infoLink = projectData.projectBaseUrl + "/project-info";
 
 /*===== Position Configurations =====*/
@@ -43,7 +46,28 @@ const projectData = await import("src/data/projectData/deliverator.json");
 
 <ARLayout 
 	title={projectData.projectName}
+	type="video"
 >
+
+<script is:inline>
+	document.addEventListener("DOMContentLoaded", function(e){
+		//runs code after DOM load
+		const videoTarget = document.querySelector('#mind-ar-target');
+		const videoMedia = document.querySelector('#alpha-video');
+
+		videoTarget.addEventListener("targetFound", event => {
+			console.log("target found");
+			videoMedia.play();
+		});
+		// detect target lost
+		videoTarget.addEventListener("targetLost", event => {
+			console.log("target lost");
+			videoMedia.pause();
+		});
+	});
+
+	
+</script>
 
 <div class="links">
 	<a href={infoLink}>Project Info</a>
@@ -75,14 +99,27 @@ const projectData = await import("src/data/projectData/deliverator.json");
 	vr-mode-ui="false" 
 	xr-mode-ui="enabled: false"
 	device-orientation-permission-ui="enabled: false"
->
+	xrextras-gesture-detector
+	landing-page
+	xrextras-loading
+	xrextras-runtime-error
+	renderer="colorManagement: true"
+	xrweb="allowedDevices: any; defaultEnvironmentFogIntensity: 0.5; defaultEnvironmentFloorTexture: #grass;defaultEnvironmentFloorColor: #FFF;defaultEnvironmentSkyBottomColor: #B4C4CC; defaultEnvironmentSkyTopColor: #5ac8fa; defaultEnvironmentSkyGradientStrength: 0.5;">
 	<a-assets>
 		<img id="card" src="/images/grovery-vr-logo.png" />
 
 		<a-asset-item 
-			id="displayModel" 
+			id="myvideo" 
 			src={modelFile}
 		></a-asset-item>
+
+		<video
+			id="alpha-video"
+			playsinline
+			crossorigin="anonymous"
+			loop="true"
+			src="/videos/video-test-green-screen.mp4">
+		</video>
 	</a-assets>
 
 	<a-camera 
@@ -109,8 +146,19 @@ const projectData = await import("src/data/projectData/deliverator.json");
 			data-card-position={CardpositionSetting}
 			data-card-rotation={CardRotationSetting}
 		>
-			<a-video id="ar-video" src={displayFile} width="0.637" height="0.253"></a-video>
-			
+			<!-- <a-video id="ar-video" src={modelFile} width="2" height="1"></a-video> -->
+			<a-entity
+				id="alphaVideo"
+				custom-hold-drag="riseHeight: 0.915"
+				play-video="video: #alpha-video; autoplay: true"
+				material="shader: chromakey; src: #alpha-video; color: 0.1 0.9 0.2; side: double; depthTest: true;"
+				geometry="primitive: plane; height: 1; width: 1.78;"
+				xrextras-two-finger-rotate
+				xrextras-pinch-scale
+				look-at="target: #camera; tilt: false"
+				position="0 0 0"
+				scale="1 1 1"
+			></a-entity>
 		</a-entity>
 	</a-entity>
 
@@ -175,4 +223,3 @@ const projectData = await import("src/data/projectData/deliverator.json");
 		}
 	}
 </style>
-
