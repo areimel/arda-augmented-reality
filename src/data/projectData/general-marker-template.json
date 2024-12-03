@@ -1,0 +1,43 @@
+{
+    "projectName": "General Marker Template",
+    "projectDescription": "Marker-based Augmented Reality Experience template. Contains the most up-to-date code for working with this project. Includes green-screen video support.",
+    "projectBaseUrl": "https://interzone-ar.netlify.app/general-marker-template",
+    "markerFile": "/markers/grovery-holiday-marker-v2.mind",
+    "markerImage": "/markers/grovery-holiday-marker-v2.jpg",
+    "experienceType": "video",
+    "assetFile": "/videos/deliverator.mp4",
+    "assetWidth": "1.6",
+    "assetHeight": "0.9",
+    "assetScale": "1",
+    "customUI": {
+        "bigText": "Scan the Marker",
+        "smallText": "Point your camera at the marker image to view the 3D object.",
+        "flashingText": "[Marker Not In View]"
+    },
+    "modelSettings":{
+        "defaultScale": "1 1 1",
+        "defaultRotationSetting": "wall",
+        "defaultPosition": "0 0 0.1",
+        "wallRotationSetting": "0 0 0",
+        "wallPositionSetting": "0 0 0.1",
+        "wallScaleSetting": "1 1 1",
+        "flatRotationSetting": "90 0 0",
+        "flatPositionSetting": "0 0 0.1",
+        "flatScaleSetting": "1 1 1",
+        "cardRotationSetting": "90 0 0",
+        "cardPositionSetting": "0 0 0.1",
+        "cardScaleSetting": "1 1 1"
+    },
+    "splashPage":{
+        "backgroundImage":{
+            "active": true,
+            "desktop": "/images/grovery-holiday-splash.jpg",
+            "mobile": "/images/grovery-holiday-splash-mobile.jpg"
+        }       
+    },
+    "pdfs":{
+        "available": true,
+        "wall": "/pdf/deliverator-AssetPrintout-Wall.pdf",
+        "flat": "/pdf/deliverator-AssetPrintout-Flat.pdf"
+    }
+}

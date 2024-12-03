@@ -11,6 +11,14 @@
 	//color pallete
 		--black: #000000;
 		--white: #FFFFFF;
+
+		--off-black: #050A0E;
+		--off-white: #FAFAFA;
+		--yellow: #F3E600;
+		--red: #FF003C;
+		--teal: #00F0FF;
+
+		--trans-black: rgba(0, 0, 0, 0.5);
 	//functional colors
 		--background-color: var(--white);
 		--text-color: var(--black);
@@ -31,7 +39,15 @@
 		--padding-3: 7.5rem;
 		--element-width-1: 500px;
 		--element-width-2: 800px;
+
+	//AR-UI
+		//aim for 1vw, with minimum of 5px and maximum of 10px
+		//use this to keep AR UI elements consistent across devices
+		--ar-ui-scale: clamp(14px, 2.5vw, 18px);
+		--ar-ui-size-1: calc(var(--ar-ui-scale) * 1);
+		--ar-ui-size-2: calc(var(--ar-ui-scale) * 2.5);
 }
+
 /*dark mode*/
 [data-theme="dark"] {
 	--border-color: #DAD9D6;
@@ -40,7 +56,6 @@
 	--accent-color: #DAD9D6;
 	--accent-color-light: #08080B;
 }
-
 
 @mixin card-style {
 	border: var(--border-settings-main);

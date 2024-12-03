@@ -1,0 +1,109 @@
+---
+
+const { infoLink } = Astro.props;
+---
+
+<!-- Upper Section | Links, Project Info, General Info, Share -->
+<div class="ui-row upper links">
+	<div class="flexRow centered">
+		<a href={infoLink} class="arButton">Project Info</a>
+		<a href="/learn-more" class="arButton">Learn More</a>
+	</div>
+</div>
+
+<!-- Lower Section | Control Buttons, -->
+<div class="ui-row lower controls">
+	
+	<div class="uiHeading flexRow centered">
+		<span>Switch Viewing Angle:</span>
+	</div>
+	
+	<div class="flexRow centered">
+		<div 
+			class="arButton controlButton" 
+			data-control-button="wall"
+		>
+			Wall Surface Preset
+		</div>
+	
+		<div 
+			class="arButton controlButton" 
+			data-control-button="flat"
+		>
+			Flat Surface Preset
+		</div>
+	</div>
+
+</div>
+
+<!-- End HTML / Start CSS -->
+
+<style lang="scss">
+	.ui-row{
+		/* display: flex;
+		flex-direction: row;
+		justify-content: center;
+		align-items: center; */
+		background-color: var(--trans-black);
+		width: 100%;
+		padding: 0.5rem;
+		color: var(--white);
+		&.upper{
+			position: fixed;
+			z-index: 500000;
+			top: 0px;
+			left: 50%;
+			transform:translate(-50%, 0%);
+		}
+		&.lower{
+			position: fixed;
+			z-index: 500000;
+			bottom: 0px;
+			left: 50%;
+			transform:translate(-50%, 0%);
+		}
+
+		.uiHeading{
+			font-size: var(--ar-ui-size-1);
+			margin-bottom: 0.5em;
+			text-align: center;
+			text-wrap: balance;
+		}
+	}
+
+	.arButton{
+		font-size: var(--ar-ui-size-1);
+		margin: 0 10px;
+		border: solid 2px var(--white);
+		padding: 0.25em 0.5em;
+		color: var(--white);
+		text-align: center;
+		text-wrap: balance;
+		cursor: pointer;
+	}
+	
+	
+	.controls{
+		.controlButton{
+			display: none; // Hide buttons by default
+		}
+		// Show the appropriate button based on the current data-current-rotation setting
+		&[data-current-rotation="wall"] .controlButton[data-control-button="flat"],
+		&[data-current-rotation="flat"] .controlButton[data-control-button="wall"] {
+			display: block;
+		}
+	}
+
+	.links{
+		
+		a{
+			//width: 175px;
+			margin: 0 10px;
+			border: solid 2px #FFF;
+			padding: 0.25em 0.5em;
+			color: #FFF;
+			//font-size: var(--ar-font-size-1);
+			text-align: center;
+		}
+	}
+</style>

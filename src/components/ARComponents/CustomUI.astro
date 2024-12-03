@@ -24,14 +24,23 @@ const { bigText, smallText, flashingText } = Astro.props;
 </div>
 -->
 
-<!--
-<div class="mindar-ui-overlay mindar-ui-loading">
+
+<!-- <div class="mindar-ui-overlay mindar-ui-loading">
 	<div class="loader"></div>
 </div> -->
 
 <div class="mindar-ui-overlay mindar-ui-scanning" id="custom-scanning-overlay">
 	<div class="scanning">
+		
 		<div class="inner">
+			
+			<div class="CornerBits">
+				<div class="bit topLeft"></div>
+				<div class="bit topRight"></div>
+				<div class="bit bottomLeft"></div>
+				<div class="bit bottomRight"></div>
+			</div>
+
 			<div class="scanline"></div>
 			<div class="scanning-text">
 				<div class="scanning-text-large">{bigText ? bigText : "Scanning..."}</div>
@@ -59,6 +68,7 @@ const { bigText, smallText, flashingText } = Astro.props;
 		bottom: 0;
 		background: transparent;
 		z-index: 2;
+		font-size: var(--ar-ui-size-1);
 
 		&.hidden {
 			display: none;
@@ -97,11 +107,11 @@ const { bigText, smallText, flashingText } = Astro.props;
 
 	.mindar-ui-scanning {
 		.scanning {
-			background-color:rgba(0,0,0,0.5);
+			background-color: var(--trans-black);
 			mix-blend-mode: difference;
 			@media (min-aspect-ratio: "1/1") {
-				width: 50vh;
-				height: 50vh;
+				width: 65vh;
+				height: 65vh;
 			}
 			@media (max-aspect-ratio: "1/1") {
 				width: 80vw;
@@ -113,7 +123,7 @@ const { bigText, smallText, flashingText } = Astro.props;
 				height: 100%;
 				opacity: 1;
 
-				background:
+				/* background:
 					linear-gradient(to right, var(--white) $scan-mask-border, transparent $scan-mask-border) 0 0,
 					linear-gradient(to right, var(--white) $scan-mask-border, transparent $scan-mask-border) 0 100%,
 					linear-gradient(to left, var(--white) $scan-mask-border, transparent $scan-mask-border) 100% 0,
@@ -124,7 +134,50 @@ const { bigText, smallText, flashingText } = Astro.props;
 					linear-gradient(to top, var(--white) $scan-mask-border, transparent $scan-mask-border) 100% 100%;
 
 				background-repeat: no-repeat;
-				background-size: 8vh 8vh;
+				background-size: 8vh 8vh; */
+				background: none;
+
+				.CornerBits{
+					position: absolute;
+					width: 100%;
+					height: 100%;
+					pointer-events: none;
+					--size: 50px;
+					--thickness: 8px;
+					--offset: 0px;
+					--color: var(--white);
+
+
+					.bit{
+						width: 50px;
+						height: 50px;
+						position: absolute;
+					}
+					.topLeft{
+						top: var(--offset);
+						left: var(--offset);
+						border-top: solid var(--thickness) var(--color);
+						border-left: solid var(--thickness) var(--color);
+					}
+					.bottomRight{
+						top: var(--offset);
+						right: var(--offset);
+						border-top: solid var(--thickness) var(--color);
+						border-right: solid var(--thickness) var(--color);
+					}
+					.bottomLeft{
+						bottom: var(--offset);
+						left: var(--offset);
+						border-bottom: solid var(--thickness) var(--color);
+						border-left: solid var(--thickness) var(--color);
+					}
+					.topRight{
+						bottom: var(--offset);
+						right: var(--offset);
+						border-bottom: solid var(--thickness) var(--color);
+						border-right: solid var(--thickness) var(--color);
+					}
+				}
 
 				.scanline {
 					position: absolute;
@@ -148,25 +201,28 @@ const { bigText, smallText, flashingText } = Astro.props;
 			transform: translate(-50%, -50%);
 			width: 100%;
 			padding: 1em 0.5em;
-			font-size: var(--ar-font-size-1);
+			font-size: var(--ar-ui-size-1);
 			color: var(--white);
 			.scanning-text-large{
-				font-size: 2em;
+				font-size: var(--ar-ui-size-2);
 				font-weight: bold;
 				text-align: center;
-				margin-bottom: 1em;
+				text-wrap: balance;
+				margin-bottom: 0.5em;
 			}
 			.scanning-text-small{
-				font-size: 1em;
+				font-size: 1.25em;
+				text-align: center;
+				text-wrap: balance;
 			}
 			.dynamicText{
-				font-size: 1em;
+				font-size: 1.25em;
 				text-align: center;
 				margin-top: 1em;
 				background-color: #FF0000;
 				padding: 0.1em 0;
 
-				animation: flash 1s linear infinite;
+				animation: flash 1.5s linear infinite;
 
 				@keyframes flash {
 					0%, 49% { opacity: 1; }
