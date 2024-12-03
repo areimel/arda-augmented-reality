@@ -24,6 +24,9 @@
 		
 		<main class="fullscreen-layout" style={background ? `background-image: url(${background}); background-size: cover; background-position: center;` : ""}>
 			
+			<!-- ============================= -->
+			<!-- Left Section | Text & QR Code -->
+			<!-- ============================= -->
 			<section class="left-section">
 				
 				<div class="text-content">
@@ -33,9 +36,11 @@
 						<p>{description ? description : "Augmented Reality experience for viewing virtual 3D objects in the real world, similar to a hologram."}</p>
 					</div>
 					<div class="subheading cautionStripes">
-						<!-- <div class="symbol">⚠ ⚠ ⚠ ⚠ ⚠</div> -->
-						<p>⚠ Instructions ⚠</p>
-						<!-- <div class="symbol">⚠ ⚠ ⚠ ⚠ ⚠</div> -->
+						<p>
+							<span>⚠</span> 
+							Instructions
+							<span>⚠</span>
+						</p>
 					</div>
 
 					<div class="bodyText invert">
@@ -47,14 +52,21 @@
 					</div>
 					
 					<div class="QRCodeWrapper">
-						<QRCode link={qrcode} id="qrcode" />
-						<a href={qrcode} target="_blank">{qrcode}</a>
+						<QRCode 
+							link={qrcode} 
+							id="splash-qrcode" 
+							textLink={true}
+							corners={true}
+						/>
+						<!-- <a href={qrcode} target="_blank">{qrcode}</a> -->
 					</div>
 					{pdfs.available &&
 						<div class="subheading cautionStripes">
-							<!-- <div class="symbol">⚠ ⚠ ⚠ ⚠ ⚠</div> -->
-						<p>⚠ Printable PDFs ⚠</p>
-						<!-- <div class="symbol">⚠ ⚠ ⚠ ⚠ ⚠</div> -->
+							<p>
+								<span>⚠</span> 
+								Printable PDFs
+								<span>⚠</span>
+							</p>
 					</div>
 					<div class="bodyText">
 						<p>These PDFs can be printed out and used to present the 3D hologram in a physical space. They come with a QR code link and brief instructions.</p>
@@ -73,7 +85,11 @@
 
 			</section>
 			
+			<!-- ============================ -->
+			<!-- Right Section | Marker Image -->
+			<!-- ============================ -->
 			<section class="right-section">
+				
 				<div class="image-container">
 					<!-- Large image will be placed here -->
 					<div class="cautionStripes">
@@ -86,6 +102,7 @@
 						<p>This image acts as a <strong>real-world anchor point</strong> for the virtual hologram.</p>
 					</div>
 				</div>
+
 			</section>
 			
 		</main>
@@ -160,6 +177,17 @@
 		.subheading{
 			font-size: 1.75rem;
 			text-align: center;
+			p{
+				display: flex;
+				flex-direction: row;
+				justify-content: center;
+				align-items: center;
+			}
+			span{
+				display: inline-block;
+				font-size: 2em;
+				margin: 0 0.75em;
+			}
 		}
 		.bodyText {
 			font-size: 1rem;
