@@ -73,25 +73,7 @@ const projectData = await import("src/data/projectData/general-marker-template.j
 		});
 	</script>
 
-	<script is:inline>
-		const lookAtComponent = {
-			schema: {
-				target: {type: 'string'},
-				tilt: {default: false},
-			},
-			init() {
-				if (!this.data.target) console.error('no target provided to look-at')
-				this.target = document.querySelector(this.data.target)
-			},
-			tick() {
-				this.targetPos = this.target.object3D.position.clone()
-				if (!this.data.tilt) this.targetPos.setY(0)
-				this.el.object3D.lookAt(this.targetPos)
-			},
-		}
-		
-		export {lookAtComponent}
-	</script>
+	
 
 	<!-- Normal 'Page' Layer Elements -->
 	<ExtraUI infoLink={infoLink}/>
@@ -105,6 +87,7 @@ const projectData = await import("src/data/projectData/general-marker-template.j
 		vr-mode-ui="false" 
 		xr-mode-ui="enabled: false"
 		device-orientation-permission-ui="enabled: false"
+		real-world-meshing
 	>
 		<a-assets>
 			<img id="card" src="/images/grovery-vr-logo.png" />
@@ -140,9 +123,15 @@ const projectData = await import("src/data/projectData/general-marker-template.j
 		<a-camera 
 			position="0 0 0" 
 			id="camera"
-			raycaster="objects: .cantap"
+			raycaster="objects: .clickable"
 			cursor="fuse: false; rayOrigin: mouse;"
 		></a-camera>
+
+		<a-entity 
+			position="0 0 0"
+		>
+			<a-sphere position="0 0 -2" radius="1" color="#EF2D5E"></a-sphere>
+		</a-entity>
 
 		<a-entity 
 			id="mind-ar-target"
@@ -167,9 +156,6 @@ const projectData = await import("src/data/projectData/general-marker-template.j
 						src="#displayVideo" 
 						width={assetWidth} 
 						height={assetHeight}
-						look-at="target: #camera; tilt: true"
-						xrextras-two-finger-rotate 
-						xrextras-pinch-scale
 					></a-video>
 				}
 
@@ -178,24 +164,18 @@ const projectData = await import("src/data/projectData/general-marker-template.j
 						src="#displayImage" 
 						width={assetWidth} 
 						height={assetHeight}
-						look-at="target: #camera; tilt: false"
-						xrextras-two-finger-rotate 
-						xrextras-pinch-scale
 					></a-image>
 				}
 
 				{experienceType == "alphaVideo" &&
 					<a-entity
 						id="alphaVideo"
-						custom-hold-drag="riseHeight: 0.915"
 						play-video="video: #displayVideo; autoplay: true"
 						material="shader: chromakey; src: #displayVideo; color: 0.1 0.9 0.2; side: double; depthTest: true;"
 						geometry="primitive: plane; height: 1; width: 1.78;"
-						xrextras-two-finger-rotate
-						xrextras-pinch-scale
-						
 						position="0 0 0"
 						scale="1 1 1"
+
 					></a-entity>
 				}
 				
