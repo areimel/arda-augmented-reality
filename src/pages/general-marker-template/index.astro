@@ -73,25 +73,7 @@ const projectData = await import("src/data/projectData/general-marker-template.j
 		});
 	</script>
 
-	<script is:inline>
-		const lookAtComponent = {
-			schema: {
-				target: {type: 'string'},
-				tilt: {default: false},
-			},
-			init() {
-				if (!this.data.target) console.error('no target provided to look-at')
-				this.target = document.querySelector(this.data.target)
-			},
-			tick() {
-				this.targetPos = this.target.object3D.position.clone()
-				if (!this.data.tilt) this.targetPos.setY(0)
-				this.el.object3D.lookAt(this.targetPos)
-			},
-		}
-		
-		export {lookAtComponent}
-	</script>
+	
 
 	<!-- Normal 'Page' Layer Elements -->
 	<ExtraUI infoLink={infoLink}/>
@@ -105,7 +87,7 @@ const projectData = await import("src/data/projectData/general-marker-template.j
 		vr-mode-ui="false" 
 		xr-mode-ui="enabled: false"
 		device-orientation-permission-ui="enabled: false"
-		xrextras-gesture-detector
+		real-world-meshing
 	>
 		<a-assets>
 			<img id="card" src="/images/grovery-vr-logo.png" />
@@ -146,6 +128,12 @@ const projectData = await import("src/data/projectData/general-marker-template.j
 		></a-camera>
 
 		<a-entity 
+			position="0 0 0"
+		>
+			<a-sphere position="0 0 -2" radius="1" color="#EF2D5E"></a-sphere>
+		</a-entity>
+
+		<a-entity 
 			id="mind-ar-target"
 			mindar-image-target="targetIndex: 0"
 		>
@@ -168,9 +156,6 @@ const projectData = await import("src/data/projectData/general-marker-template.j
 						src="#displayVideo" 
 						width={assetWidth} 
 						height={assetHeight}
-						look-at="target: #camera; tilt: true"
-						xrextras-pinch-scale
-						
 					></a-video>
 				}
 
@@ -179,9 +164,6 @@ const projectData = await import("src/data/projectData/general-marker-template.j
 						src="#displayImage" 
 						width={assetWidth} 
 						height={assetHeight}
-						look-at="target: #camera; tilt: false"
-						
-						xrextras-pinch-scale
 					></a-image>
 				}
 
