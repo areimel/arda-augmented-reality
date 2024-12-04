@@ -59,7 +59,7 @@ const projectData = await import("src/data/projectData/general-marker-template.j
 		document.addEventListener("DOMContentLoaded", function(e){
 			//Define marker & asset elements
 			const markerTarget = document.querySelector('#mind-ar-target');
-			const videoMedia = document.querySelector('#ar-video');
+			const videoMedia = document.querySelector('#displayVideo');
 
 			markerTarget.addEventListener("targetFound", event => {
 				console.log("target found");
@@ -108,7 +108,7 @@ const projectData = await import("src/data/projectData/general-marker-template.j
 
 			{experienceType == "alphaVideo" &&
 				<video
-					id="alpha-video"
+					id="displayVideo"
 					playsinline
 					crossorigin="anonymous"
 					loop="true"
