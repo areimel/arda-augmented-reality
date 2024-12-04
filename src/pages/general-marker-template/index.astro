@@ -90,8 +90,6 @@ const projectData = await import("src/data/projectData/general-marker-template.j
 			},
 		}
 		
-		
-
 		export {lookAtComponent}
 	</script>
 
@@ -162,17 +160,28 @@ const projectData = await import("src/data/projectData/general-marker-template.j
 				data-flat-rotation={FlatRotationSetting}
 				data-card-position={CardpositionSetting}
 				data-card-rotation={CardRotationSetting}
-
-				
-				xrextras-two-finger-rotate 
-				xrextras-pinch-scale
 			>
 				{experienceType == "video" &&
-					<a-video id="ar-video" src="#displayVideo" width={assetWidth} height={assetHeight}></a-video>
+					<a-video 
+						id="ar-video" 
+						src="#displayVideo" 
+						width={assetWidth} 
+						height={assetHeight}
+						look-at="target: #camera; tilt: true"
+						xrextras-two-finger-rotate 
+						xrextras-pinch-scale
+					></a-video>
 				}
 
 				{experienceType == "image" &&
-					<a-image src="#displayImage" width={assetWidth} height={assetHeight}></a-image>
+					<a-image 
+						src="#displayImage" 
+						width={assetWidth} 
+						height={assetHeight}
+						look-at="target: #camera; tilt: false"
+						xrextras-two-finger-rotate 
+						xrextras-pinch-scale
+					></a-image>
 				}
 
 				{experienceType == "alphaVideo" &&
@@ -184,7 +193,7 @@ const projectData = await import("src/data/projectData/general-marker-template.j
 						geometry="primitive: plane; height: 1; width: 1.78;"
 						xrextras-two-finger-rotate
 						xrextras-pinch-scale
-						look-at="target: #camera; tilt: false"
+						
 						position="0 0 0"
 						scale="1 1 1"
 					></a-entity>
