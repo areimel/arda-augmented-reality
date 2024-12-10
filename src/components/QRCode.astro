@@ -1,7 +1,7 @@
 ---
 
 //const currentUrl = window.location.href;
-const {link, id, textLink, corners} = Astro.props;
+const {link, id, textLink, size, corners} = Astro.props;
 ---
 <div class="qrcodeWrapper">
 	
@@ -9,6 +9,7 @@ const {link, id, textLink, corners} = Astro.props;
 		class="qrcodeElement" 
 		id={id ? id : "qrcode"}
 		data-link={link ? link : "test.com"}
+		data-size={size ? size : "medium"}
 	>
 		{corners &&
 			<div class="CornerBits">
@@ -35,7 +36,21 @@ const {link, id, textLink, corners} = Astro.props;
 		.qrcodeElement{
 			position: relative;
 			margin: 20px;
+			&[data-size="small"]{
+				width: 150px;
+			}
+			&[data-size="medium"]{
+				width: 250px;
+			}
+			&[data-size="large"]{
+				width: 500px;
+			}
 		}
+		img{
+			width: 100%;
+			height: auto;
+		}
+		
 	}
 	a{
 		font-size: 0.65rem;

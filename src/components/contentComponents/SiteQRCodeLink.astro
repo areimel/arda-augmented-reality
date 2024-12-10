@@ -17,6 +17,7 @@ const siteData = await import("src/data/siteData.json");
 			<QRCode 
 				id="default-qrcode"
 				link={siteData.siteURL}
+				size="medium"
 			/>
 			<a class="qrCodeSubLink" href={siteData.siteURL} target="_blank">{siteData.siteURL}</a>
 		</Fragment>

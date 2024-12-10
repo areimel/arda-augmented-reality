@@ -1,0 +1,72 @@
+---
+
+const {} = Astro.props;
+---
+
+<section id="definitions" class="text">
+	<h2>Definitions</h2>
+	<p>Augmented Reality is still a cutting-edge (or even <em>bleeding-edge</em>) technology, and many people are not familiar with the jargon used to describe it. Here are some definitions to help you understand the different parts of this project. </p>
+		
+	<p>We hope this clears up any confusion and helps get coders, designers, marketers, and other professionals on the same page. </p>
+
+	<ul class="definitionsList">
+		<li><strong>Augmented Reality</strong>: Technology mixing Virtual Reality with the real world.</li>
+		<ul>
+			<li>Also known as "AR" for short. May also be referred to as "mixed reality", or "XR" (a catch-all for AR and VR).</li>
+			<li>Augmented Reality can have 2 presentations: via your phone's camera, or via a VR headset. </li>
+			<li>Science fiction movies tend to depict AR being used in contact lenses or bionic eyes, but the world just isn't there yet.</li>
+			<li>This project is focused on phone-based AR, but is expected to also work on WebXR-capable headsets.</li>
+		</ul>
+		
+		<li><strong>QR Code</strong>: A quick and easy way to open the AR experience on your phone.</li>
+		<ul>
+			<li>QR codes are actually extremely simple - they are essentially just a large block of Braille text that your phone can read, but they use black squares instead of raised dots.</li>
+			<li>The AR experience is hosted on a normal web page, so the link can be shared on social media, in an email, or in a chat message - <u>just like any other web page</u>. The QR code is simply the most simple and direct way for someone to open the link on their phone out in the real world.</li>
+			<li>All projects on this site come with a set of pre-configured QR codes, each with different size and position settings for the 3D model.</li>
+		</ul>
+		
+		<li><strong>Marker</strong>: The custom image that serves as the "anchor point" in real world space for the AR experience.</li>
+		<ul>
+			<li>May also be referred to as a "marker image", an "anchor image", a "base image", a "target image", or a "fiducial marker" (<a href="https://en.wikipedia.org/wiki/Fiducial_marker" target="_blank">scientific term</a>).</li>
+			<li>The marker image is a real-world image that your camera uses to determine the size, position, and angle of the marker, and uses that to size and position the virtual elements in the real world space.</li>
+			<li></li>
+		</ul>
+
+		<li><strong>3D Model</strong>: </li>
+		<ul>
+			<li>May also be referred to as a "hologram", a "virtual hologram", an "augmented reality object", or several other terms that .</li>
+		</ul>
+
+	</ul>
+
+</section>
+
+<style lang="scss">
+	section{
+		border-bottom: var(--border-settings-main);
+	}
+
+	.definitionsList{
+		width: 100%;
+		max-width: 800px;
+		margin: auto;
+		margin-top: 2rem;
+		>li{
+			background-color: var(--accent-color);
+			color: var(--background-color);
+			padding: 0.1em 0.5em;
+			&::marker{
+				color: var(--accent-color)
+			}
+			strong{
+				text-decoration: underline;
+				font-size: 1.2em;
+			}
+		}
+		>ul{
+			margin-bottom: 1.5rem;
+			border-left: solid 2px var(--accent-color);
+			
+		}
+	}
+</style>
