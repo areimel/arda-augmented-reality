@@ -16,8 +16,10 @@ Important Links:
 - AR.js Links:
     - [AR.js - Github Repository](https://github.com/AR-js-org/AR.js)
     - [AR.js - Documentation](https://ar-js-org.github.io/AR.js-Docs/)
-- 8th Wall Links:   
+- 8th Wall Links:
     - [8th Wall - Green Screen Video Code Source](https://www.8thwall.com/playground/alpha-video-slam-aframe/code/)
+- A-Frame Components:
+    - [Look-At Component](https://www.npmjs.com/package/aframe-look-at-component)
 - Misc Tools:
     - [QRCode.js](https://github.com/davidshimjs/qrcodejs)
     - [Gif to MP4 Conversion](https://ezgif.com/gif-to-mp4) 
