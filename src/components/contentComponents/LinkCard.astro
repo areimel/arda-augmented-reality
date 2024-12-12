@@ -10,10 +10,8 @@ const {name, description, link} = Astro.props;
 	</p>
 	<div class="link">
 		<a href={link}>[Open AR Experience]</a>
-			<br/><br/>
-			<a href={`${link}/splash`}>[Web Splash Page]</a>
-			<br/><br/>
-			<a href={`${link}/project-info`}>[Project Info]</a>
+		<a href={`${link}/splash`}>[Web Splash Page]</a>
+		<a href={`${link}/info`}>[Project Info Page]</a>
 	</div>
 </div>
 
@@ -49,6 +47,8 @@ const {name, description, link} = Astro.props;
 				color: var(--white);
 				padding: 0.5em 1em;
 				text-decoration: none;
+				display: block;
+				margin-bottom: 1em;
 				&:hover{
 					text-decoration: underline;
 					text-decoration-style: dotted;
