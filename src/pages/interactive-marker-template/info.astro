@@ -1,0 +1,215 @@
+---
+/*========================================*/
+/*	PAGE: Home/Index
+		NOTES:	
+*/
+/*========================================*/
+
+//Essential Components
+import Layout from '@layouts/Layout.astro';
+
+import InfoPageDefinitions from '@components/contentComponents/InfoPageDefinitions.astro';
+import QRCode from '@components/QRCode.astro';
+
+const baseURL = "https://grovery-ar.netlify.app/grovery-holiday-ar";
+
+---
+
+<Layout 
+	title="Grovery Holiday AR"
+	heading="Grovery Holiday AR"
+	marker="/markers/grovery-holiday-marker.png"
+	qrcode="https://grovery-ar.netlify.app/grovery-holiday-ar?position=wall"
+>
+
+<section class="text">
+	<h2>Contents</h2>
+	<ul>
+		<li><a href="#definitions">Definitions</a>: Learn what the different parts of the project are called and how they work.</li>
+		<li><a href="#qrcodes">QR Codes</a>: The QR code images and link associated with the project.</li>
+		<li><a href="#marker">Marker Image</a>: The real-world image you want tied to the experience.</li>
+	</ul>
+</section>
+
+<section class="text">
+	<h2>Project Links</h2>
+	<ul>
+		<li>
+			<a class="" href="/general-marker-template">Augmented Reality Viewer</a>: The web page that hosts the AR code. This is the page that the project's users will open on their phone to view the experience.
+		</li>
+		<li><a class="" href="/general-marker-template/splash">Web Splash Page</a></li>
+	</ul>
+</section>
+
+<InfoPageDefinitions/>
+
+<section id="qrcodes" class="qr-grid">
+	<div class="qr-cell">
+		<div class="text-content">
+			<h2>Wall Preset</h2>
+			<ul>
+				<li>Context: The marker is displayed on a flat vertical surface, such as a wall, computer screen, or a television.</li>
+				<li>Behavior: The 3D model appears in front of the marker.</li>
+			</ul>
+		</div>
+		<div class="qr-wrapper">
+			<QRCode 
+				id="wall-qrcode"
+				link={`${baseURL}?position=wall`}
+				textLink={true}
+				corners={true}
+				size="large"
+			/>
+			
+		</div>
+	</div>
+
+	<div class="qr-cell">
+		<div class="text-content">
+			<h2>Flat Preset</h2>
+			<ul>
+				<li>Context: The marker is laying on a flat horizontal surface such as a desk or table. Easy to use with the provided printout page.</li>
+				<li>Behavior: The 3D model appears above the marker.</li>
+			</ul>
+			<a class="button-1" href="/grovery-holiday-ar?position=flat" target="_blank">Open in New Tab</a>
+		</div>
+		<div class="qr-wrapper">
+			<QRCode 
+				id="flat-qrcode"
+				link={`${baseURL}?position=flat`}
+				textLink={true}
+				corners={true}
+				size="large"
+			/>
+			
+		</div>
+	</div>
+
+	<!-- <div class="qr-cell">
+		<div class="text-content">
+			<h2>Card Preset</h2>
+			<ul>
+				<li>Context: similar to the flat position, but the 3D model is sized and positioned to account for a smaller marker image. Depending on the 3D model, this may end up being the same as the Flat View settings.</li>
+				<li>Behavior: The 3D model appears above the marker.</li>
+			</ul>
+		</div>
+		<div class="qr-wrapper">
+			<QRCode 
+				id="default-qrcode"
+				link={`${baseURL}?position=card`}
+				textLink={true}
+				corners={true}
+				size="large"
+			/>
+			
+		</div>
+	</div> -->
+</section>
+
+<section id="marker" class="markerSection">
+	<div class="cautionStripes">
+		<p>Marker Image - Point your camera at this image to view the asset.</p>
+	</div>
+
+	<img src="/markers/grovery-holiday-marker-v2.jpg"/>
+	
+	<div class="cautionStripes">
+		<p>This image acts as a <strong>real-world anchor point</strong> for the virtual hologram.</p>
+	</div>
+</section>
+
+
+
+</Layout>
+
+
+<style lang="scss">
+	section{
+		border-bottom: var(--border-settings-main);
+	}
+
+	.definitionsList{
+		width: 100%;
+		max-width: 800px;
+		margin: auto;
+		margin-top: 2rem;
+		>li{
+			background-color: var(--accent-color);
+			color: var(--background-color);
+			padding: 0.1em 0.5em;
+			&::marker{
+				color: var(--accent-color)
+			}
+			strong{
+				text-decoration: underline;
+				font-size: 1.2em;
+			}
+		}
+		>ul{
+			margin-bottom: 1.5rem;
+			border-left: solid 2px var(--accent-color);
+			
+		}
+	}
+
+	.markerSection{
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		flex-direction: column;
+		img{
+			width: 100%;
+			max-width: 85vh;
+			margin: 2rem 0;
+		}
+	}
+
+
+	.qr-grid {
+		display: flex;
+		flex-direction: column;
+		justify-content: flex-start;
+		align-items: flex-start;
+		padding: 2rem;
+	}
+
+	.qr-cell {
+		border: var(--border-settings-main);
+		background-color: var(--background-color);
+		width: 100%;
+		display: flex;
+		flex-direction: row;
+		justify-content: flex-start;
+		align-items: flex-start;
+		margin-bottom: 2rem;
+		
+		
+		.text-content {
+			padding: 1rem;
+			border-right: var(--border-settings-main);
+			align-self: stretch;
+			width: 50%;
+
+			h2 {
+				margin: 0 0 0.5rem 0;
+				font-size: 1.5rem;
+			}
+
+			p {
+				margin: 0;
+				font-size: 1rem;
+				line-height: 1.4;
+			}
+		}
+
+		.qr-wrapper {
+			padding: 2rem;
+			width: 50%;
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+			align-self: stretch;
+		}
+	}
+</style>

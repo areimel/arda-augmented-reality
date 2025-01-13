@@ -1,13 +1,13 @@
 {
     "siteURL": "https://interzone-ar.netlify.app",
-    "titleSuffix": "| Interzone Technology Group",
-    "companyName": "Interzone Technology Group",
-    "companyLogo": "/images/logo.png",
-    "companyLogoGlyph": "/images/logo-glyph.svg",
-    "projectName": "Interzone AR",
-    "fallbackDescription": "Augmented Reality Experiences",
+    "titleSuffix": "| Interzone Technology",
+    "companyName": "Interzone Technology",
+    "companyLogo": "/images/logo/interzone-logo-black.png",
+    "companyLogoGlyph": "/images/logo/interzone-logo-black.png",
+    "projectName": "Interzone Augmented Reality",
+    "fallbackDescription": "Augmented Reality experiences on your phone - no app download needed!",
     "siteMetadata": {
-        "author": "The Grovery",
+        "author": "Interzone Technology",
         "themeColor": "light"
     }
 }  

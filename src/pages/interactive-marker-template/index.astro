@@ -1,0 +1,186 @@
+---
+//Project Notes:
+//This is a general template for creating an AR experience that uses a marker image to trigger a video, image, or 3D object.
+
+/* =============================================== */
+
+//Components
+import ARLayout from '@layouts/AR-Layout.astro';
+import CustomUI from '@components/ARComponents/CustomUI.astro';
+import ExtraUI from '@components/ARComponents/ExtraUI.astro';
+
+//Project Data
+const projectData = await import("src/data/projectData/general-marker-template.json");
+
+/*===== Main Settings =====*/
+	let defaultRotation = projectData.modelSettings.defaultRotationSetting; // "flat" or "wall"
+	//const defaultScale = projectData.modelSettings.defaultScale;
+	const markerFile = projectData.markerFile;
+	//const markerImage = projectData.markerImage;
+	const experienceType = projectData.experienceType;
+	const assetFile = projectData.assetFile;
+	const assetHeight = projectData.assetHeight;
+	const assetWidth = projectData.assetWidth;
+	const assetScale = projectData.assetScale;
+	const infoLink = projectData.projectBaseUrl + "/project-info";
+	
+
+/*===== Position Configurations =====*/
+	let rotationSetting = "";
+	let positionSetting = "";
+	//Wall surface configuration - 
+	let WallRotationSetting = projectData.modelSettings.wallRotationSetting;	//don't change
+	let WallpositionSetting = projectData.modelSettings.wallPositionSetting;	//change as needed
+
+	//Flat surface configuration
+	let FlatRotationSetting = projectData.modelSettings.flatRotationSetting;	//don't change
+	let FlatpositionSetting = projectData.modelSettings.flatPositionSetting;	//probably don't change
+
+	//Card surface configuration
+	let CardRotationSetting = projectData.modelSettings.cardRotationSetting;	//don't change
+	let CardpositionSetting = projectData.modelSettings.cardPositionSetting;	//change as needed
+
+/*===== Start-Up Settings - Processing =====*/
+	if(defaultRotation == "flat"){
+		rotationSetting = projectData.modelSettings.flatRotationSetting;
+		positionSetting = projectData.modelSettings.flatPositionSetting;
+	}else{
+		rotationSetting = projectData.modelSettings.wallRotationSetting;
+		positionSetting = projectData.modelSettings.wallPositionSetting;
+	}
+
+---
+
+<ARLayout 
+	title={projectData.projectName}
+>
+	<!-- Interaction Events Script -->
+	<script is:inline>
+		document.addEventListener("DOMContentLoaded", function(e){
+			//Define marker & asset elements
+			const markerTarget = document.querySelector('#mind-ar-target');
+			const videoMedia = document.querySelector('#displayVideo');
+
+			markerTarget.addEventListener("targetFound", event => {
+				console.log("target found");
+				videoMedia.play();
+			});
+			// detect target lost
+			markerTarget.addEventListener("targetLost", event => {
+				console.log("target lost");
+				videoMedia.pause();
+			});
+		});
+	</script>
+
+	
+
+	<!-- Normal 'Page' Layer Elements -->
+	<ExtraUI infoLink={infoLink}/>
+	<CustomUI/>
+
+	<!-- Augmented Reality Layer -->
+	<a-scene 
+		mindar-image={`imageTargetSrc: ${markerFile}; uiScanning: #custom-scanning-overlay;`}
+		color-space="sRGB" 
+		renderer="colorManagement: true, physicallyCorrectLights" 
+		vr-mode-ui="false" 
+		xr-mode-ui="enabled: false"
+		device-orientation-permission-ui="enabled: false"
+		real-world-meshing
+	>
+		<a-assets>
+			<img id="card" src="/images/grovery-vr-logo.png" />
+
+			<!-- <a-asset-item 
+				id="displayModel" 
+				src={modelFile}
+			></a-asset-item> -->
+
+			{experienceType == "object" &&
+				<a-asset-item id="displayObject" src={assetFile}></a-asset-item>
+			}
+
+			{experienceType == "video" &&
+				<video id="displayVideo" autoplay loop="true" src={assetFile}></video>
+			}
+
+			{experienceType == "image" &&
+				<img id="displayImage" src={assetFile}/>
+			}
+
+			{experienceType == "alphaVideo" &&
+				<video
+					id="displayVideo"
+					playsinline
+					crossorigin="anonymous"
+					loop="true"
+					src={assetFile}
+				></video>
+			}
+		</a-assets>
+
+		<a-camera 
+			position="0 0 0" 
+			id="camera"
+			look-controls="enabled: false"
+			raycaster="objects: .clickable"
+			cursor="fuse: false; rayOrigin: mouse;"
+		></a-camera>
+
+		<a-entity 
+			id="mind-ar-target"
+			mindar-image-target="targetIndex: 0"
+		>
+			<a-entity
+				id="objectWrapper"
+				rotation={rotationSetting ? rotationSetting : "90 0 0"}
+				position={positionSetting ? positionSetting : "0 0 0.1"}
+				scale={assetScale ? `${assetScale} ${assetScale} ${assetScale}` : "1 1 1"}
+				data-rotation-setting="flat"
+				data-wall-position={WallpositionSetting}
+				data-wall-rotation={WallRotationSetting}
+				data-flat-position={FlatpositionSetting}
+				data-flat-rotation={FlatRotationSetting}
+				data-card-position={CardpositionSetting}
+				data-card-rotation={CardRotationSetting}
+			>
+				{experienceType == "video" &&
+					<a-video 
+						id="ar-video" 
+						src="#displayVideo" 
+						width={assetWidth} 
+						height={assetHeight}
+					></a-video>
+				}
+
+				{experienceType == "image" &&
+					<a-image 
+						src="#displayImage" 
+						width={assetWidth} 
+						height={assetHeight}
+					></a-image>
+				}
+
+				{experienceType == "alphaVideo" &&
+					<a-entity
+						id="alphaVideo"
+						play-video="video: #displayVideo; autoplay: true"
+						material="shader: chromakey; src: #displayVideo; color: 0.1 0.9 0.2; side: double; depthTest: true;"
+						geometry="primitive: plane; height: 1; width: 1.78;"
+						position="0 0 0"
+						scale="1 1 1"
+
+					></a-entity>
+				}
+				
+			</a-entity>
+		</a-entity>
+
+	</a-scene>
+
+</ARLayout>
+
+
+
+

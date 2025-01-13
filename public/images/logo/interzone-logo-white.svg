@@ -1,0 +1,21 @@
+<svg width="250" height="256" viewBox="0 0 250 256" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="interzone-logo-white">
+<g id="corner-top-right">
+<line id="Line 1" x1="242.5" y1="4" x2="242.5" y2="104" stroke="#FAFAFA" stroke-width="15"/>
+<line id="Line 2" x1="150" y1="11.5" x2="250" y2="11.5" stroke="#FAFAFA" stroke-width="15"/>
+</g>
+<g id="corner-top-right_2">
+<line id="Line 1_2" y1="-7.5" x2="100" y2="-7.5" transform="matrix(0 -1 -1 0 235 253)" stroke="#FAFAFA" stroke-width="15"/>
+<line id="Line 2_2" y1="-7.5" x2="100" y2="-7.5" transform="matrix(1 0 0 -1 150 238)" stroke="#FAFAFA" stroke-width="15"/>
+</g>
+<g id="corner-top-left">
+<line id="Line 1_3" y1="11.5" x2="100" y2="11.5" stroke="#FAFAFA" stroke-width="15"/>
+<line id="Line 2_3" x1="7.5" y1="104" x2="7.5" y2="4" stroke="#FAFAFA" stroke-width="15"/>
+</g>
+<g id="corner-top-left_2">
+<line id="Line 1_4" y1="-7.5" x2="100" y2="-7.5" transform="matrix(1 0 0 -1 0 238)" stroke="#FAFAFA" stroke-width="15"/>
+<line id="Line 2_4" y1="-7.5" x2="100" y2="-7.5" transform="matrix(0 1 1 0 15 153)" stroke="#FAFAFA" stroke-width="15"/>
+</g>
+<path id="i" d="M88.8391 86H117.039L133.039 110V181.6H169.239V196H80.8391V181.6H117.039V112L109.439 100.6H88.8391V86ZM115.039 59.8H135.039V39.8H115.039V59.8Z" fill="#FAFAFA"/>
+</g>
+</svg>
