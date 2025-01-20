@@ -80,10 +80,12 @@ const projectData = await import("src/data/projectData/interactive-marker-templa
 
 			profileButton.addEventListener('click', event => {
 				console.log('profile button clicked');
+				window.open('https://alecreimel.com', '_blank');
 			});
 
 			webButton.addEventListener('click', event => {
 				console.log('web button clicked');
+				window.open('https://planet-caravan-studios.netlify.app/', '_blank');
 			});
 		});
 	</script>
@@ -141,7 +143,7 @@ const projectData = await import("src/data/projectData/interactive-marker-templa
 			<a-entity
 				id="objectWrapper"
 				rotation={rotationSetting ? rotationSetting : "90 0 0"}
-				position={positionSetting ? positionSetting : "0 0 0.1"}
+				position={positionSetting ? positionSetting : "0 0 0.01"}
 				scale={assetScale ? `${assetScale} ${assetScale} ${assetScale}` : "1 1 1"}
 				data-rotation-setting="flat"
 				data-wall-position={WallpositionSetting}
