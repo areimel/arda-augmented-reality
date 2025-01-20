@@ -142,7 +142,7 @@ const projectData = await import("src/data/projectData/interactive-marker-templa
 			position="0 0 0" 
 			id="camera"
 			look-controls="enabled: false"
-			raycaster="objects: .clickable"
+			raycaster="far: 10000; objects: .clickable"
 			cursor="fuse: false; rayOrigin: mouse;"
 		></a-camera>
 
@@ -244,10 +244,14 @@ const projectData = await import("src/data/projectData/interactive-marker-templa
 							></a-image>
 						</a-entity> -->
 						
-						<a-circle color="#FFF" radius="0.1" position="-0.42 -0.5 0">
+						<a-circle 
+							id="profile-button" 
+							class="clickable" 
+							color="#FFF" 
+							radius="0.1" 
+							position="-0.42 -0.5 0"
+						>
 							<a-image 
-								id="profile-button" 
-								class="clickable" 
 								src="#icon-profile" 
 								position="0 0 0.1"
 								height="0.15" width="0.15"
@@ -256,10 +260,14 @@ const projectData = await import("src/data/projectData/interactive-marker-templa
 						</a-circle>
 						
 
-						<a-circle color="#FFF" radius="0.1" position="-0.14 -0.5 0">
+						<a-circle 
+							id="web-button" 
+							class="clickable" 
+							color="#FFF" 
+							radius="0.1" 
+							position="-0.14 -0.5 0"
+						>
 							<a-image 
-								id="web-button" 
-								class="clickable" 
 								src="#icon-web" 
 								alpha-test="0.5" 
 								position="0 0 0.1"
@@ -268,10 +276,14 @@ const projectData = await import("src/data/projectData/interactive-marker-templa
 							></a-image>
 						</a-circle>
 
-						<a-circle color="#FFF" radius="0.1" position="0.14 -0.5 0">
+						<a-circle 
+							id="email-button" 
+							class="clickable" 
+							color="#FFF" 
+							radius="0.1" 
+							position="0.14 -0.5 0"
+						>
 							<a-image 
-								id="email-button" 
-								class="clickable" 
 								src="#icon-email"  
 								position="0 0 0.1"
 								height="0.15" width="0.15"
@@ -279,11 +291,15 @@ const projectData = await import("src/data/projectData/interactive-marker-templa
 							></a-image>
 						</a-circle>
 
-						<a-circle color="#FFF" radius="0.1" position="0.42 -0.5 0">
+						<a-circle 
+							id="location-button"
+							class="clickable" 
+							color="#FFF" 
+							radius="0.1" 
+							position="0.42 -0.5 0"
+						>
 							<a-image 
-								id="location-button"
 								src="#icon-location"
-								class="clickable"
 								position="0 0 0.1"
 								height="0.15" width="0.15"
 								animation="property: scale; to: 1.2 1.2 1.2; dur: 1000; easing: easeInOutQuad; loop: true; dir: alternate"
