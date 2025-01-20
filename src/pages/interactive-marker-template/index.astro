@@ -10,7 +10,7 @@ import CustomUI from '@components/ARComponents/CustomUI.astro';
 import ExtraUI from '@components/ARComponents/ExtraUI.astro';
 
 //Project Data
-const projectData = await import("src/data/projectData/general-marker-template.json");
+const projectData = await import("src/data/projectData/interactive-marker-template.json");
 
 /*===== Main Settings =====*/
 	let defaultRotation = projectData.modelSettings.defaultRotationSetting; // "flat" or "wall"
@@ -106,14 +106,14 @@ const projectData = await import("src/data/projectData/general-marker-template.j
 	>
 		<!-- VR Scene Assets-->
 		<a-assets>
-			<img id="card" src="./images/splash-background-1.jpg" />
-			<img id="icon-web" src="./images/ui-icons/mdi--web.png" />
-			<img id="icon-location" src="./images/ui-icons/mdi--map.png" />
-			<img id="icon-profile" src="./images/ui-icons/gg--profile.png" />
-			<img id="icon-phone" src="./images/ui-icons/mdi--phone.png" />
-			<img id="icon-email" src="./images/ui-icons/mdi--email.png" />
-			<img id="icon-play" src="./images/ui-icons/mdi--play.png" />
-			<img id="icon-left" src="./images/ui-icons/mdi--arrow-left-bold.png" />
+			<img id="card" src="/images/splash-background-1.jpg" />
+			<img id="icon-web" src="/images/ui-icons/mdi--web.png" />
+			<img id="icon-location" src="/images/ui-icons/mdi--map.png" />
+			<img id="icon-profile" src="/images/ui-icons/gg--profile.png" />
+			<img id="icon-phone" src="/images/ui-icons/mdi--phone.png" />
+			<img id="icon-email" src="/images/ui-icons/mdi--email.png" />
+			<img id="icon-play" src="/images/ui-icons/mdi--play.png" />
+			<img id="icon-left" src="/images/ui-icons/mdi--arrow-left-bold.png" />
 			<img id="icon-right" src="./images/ui-icons/mdi--arrow-right-bold.png" />
 			
 			<!-- <img id="paintandquest-preview" src="./assets/card-example/portfolio/paintandquest-preview.png" />
