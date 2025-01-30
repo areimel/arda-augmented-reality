@@ -5,7 +5,7 @@
 /* =============================================== */
 
 //Components
-import ARLayout from '@layouts/AR-Layout.astro';
+import VRLayout from '@layouts/AFrameLayout.astro';
 import CustomUI from '@components/ARComponents/CustomUI.astro';
 import ExtraUI from '@components/ARComponents/ExtraUI.astro';
 import HoloBusinessCard from '@components/ARComponents/HoloBusinessCard/index.astro';
@@ -52,51 +52,26 @@ const projectData = await import("src/data/projectData/interactive-marker-templa
 
 ---
 
-<ARLayout 
+<VRLayout 
 	title={projectData.projectName}
 >
 	<!-- Interaction Events Script -->
 	<script is:inline>
 		document.addEventListener("DOMContentLoaded", function(e){
-			//Define marker & asset elements
-			const markerTarget = document.querySelector('#mind-ar-target');
-			
-			//const videoMedia = document.querySelector('#displayVideo');
-
-			markerTarget.addEventListener("targetFound", event => {
-				console.log("target found");
-				//videoMedia.play();
-			});
-			// detect target lost
-			markerTarget.addEventListener("targetLost", event => {
-				console.log("target lost");
-				//videoMedia.pause();
-			});
-
 			//detect click on buttons
-			const profileButton = document.querySelector('#profile-button');
-			const webButton = document.querySelector('#web-button');
-			const emailButton = document.querySelector('#email-button');
-			const locationButton = document.querySelector('#location-button');
+			let arLinks = document.querySelectorAll('.clickable[data-link]');
+			arLinks.forEach(element => {
+				
+				element.addEventListener('click', event => {
+					console.log('ar link clicked');
+					const link = element.getAttribute('data-link');
+					if(link.includes('mailto')){
+						window.open(link, '_blank');
+					}else{
+						window.open(link, '_blank');
+					}
+				});
 
-			profileButton.addEventListener('click', event => {
-				console.log('profile button clicked');
-				window.open('https://alecreimel.com', '_blank');
-			});
-
-			webButton.addEventListener('click', event => {
-				console.log('web button clicked');
-				window.open('https://planet-caravan-studios.netlify.app/', '_blank');
-			});
-
-			emailButton.addEventListener('click', event => {
-				console.log('profile button clicked');
-				window.open('https://alecreimel.com', '_blank');
-			});
-
-			locationButton.addEventListener('click', event => {
-				console.log('web button clicked');
-				window.open('https://planet-caravan-studios.netlify.app/', '_blank');
 			});
 		});
 	</script>
@@ -108,22 +83,26 @@ const projectData = await import("src/data/projectData/interactive-marker-templa
 	</style>
 
 	<!-- Normal 'Page' Layer Elements -->
-	<ExtraUI infoLink={infoLink}/>
-	<CustomUI/>
+<!-- 	<ExtraUI infoLink={infoLink}/>
+	<CustomUI/> -->
 
 	<!-- Augmented Reality Layer -->
 	<a-scene 
-		mindar-image={`imageTargetSrc: ${markerFile}; uiScanning: #custom-scanning-overlay;`}
-		color-space="sRGB" 
 		renderer="colorManagement: true, physicallyCorrectLights" 
-		vr-mode-ui="false" 
-		xr-mode-ui="enabled: false"
-		device-orientation-permission-ui="enabled: false"
-		real-world-meshing
+		background="color: #666" 
+		raycaster="far: 100; "
+		ui-controller
+		camera-position
+		environment
+		info-message="htmlSrc: #messageText"
+		loading-screen="dotsColor: red; backgroundColor: black"
+		raycaster="far: 10000; objects: .clickable"
+		
 	>
 		<!-- VR Scene Assets-->
 		<a-assets>
 			<img id="card" src="/images/splash-background-1.jpg" />
+			<img id="banner" src="/images/Banner-Logo.jpg" />
 			<img id="icon-web" src="/images/ui-icons/mdi--web.png" />
 			<img id="icon-location" src="/images/ui-icons/mdi--map.png" />
 			<img id="icon-profile" src="/images/ui-icons/gg--profile.png" />
@@ -131,7 +110,7 @@ const projectData = await import("src/data/projectData/interactive-marker-templa
 			<img id="icon-email" src="/images/ui-icons/mdi--email.png" />
 			<img id="icon-play" src="/images/ui-icons/mdi--play.png" />
 			<img id="icon-left" src="/images/ui-icons/mdi--arrow-left-bold.png" />
-			<img id="icon-right" src="./images/ui-icons/mdi--arrow-right-bold.png" />
+			<img id="icon-right" src="/images/ui-icons/mdi--arrow-right-bold.png" />
 			
 			<!-- <img id="paintandquest-preview" src="./assets/card-example/portfolio/paintandquest-preview.png" />
 			<video id="paintandquest-video-mp4" autoplay="false" loop="true" src="./assets/card-example/portfolio/paintandquest.mp4"></video>
@@ -142,44 +121,39 @@ const projectData = await import("src/data/projectData/interactive-marker-templa
 			<!-- <a-asset-item id="avatarModel" src="https://cdn.jsdelivr.net/gh/hiukim/mind-ar-js@1.2.2/examples/image-tracking/assets/card-example/softmind/scene.gltf"></a-asset-item> -->
 		</a-assets>
 
+		<a-entity light="type: ambient; color: #FFF"></a-entity>
+		<a-entity light="type: directional; color: #FFF; intensity: 1" position="-0.5 0.75 1"></a-entity>
+		<a-entity light="type: directional; color: #FFF; intensity: 1" position="0.5 0.75 1"></a-entity>
+
+
 
 		<a-camera 
-			position="0 0 0" 
+			position="0 -0.1 2"
 			id="camera"
-			look-controls="enabled: false"
+			look-controls="enabled: true"
 			raycaster="far: 10000; objects: .clickable"
 			cursor="fuse: false; rayOrigin: mouse;"
 		></a-camera>
 
 		<a-entity 
-			id="mind-ar-target"
-			mindar-image-target="targetIndex: 0"
+			rotation={rotationSetting ? rotationSetting : "90 0 0"}
+			position={positionSetting ? positionSetting : "0 0 0.01"}
 		>
-			<a-entity
-				id="objectWrapper"
-				rotation={rotationSetting ? rotationSetting : "90 0 0"}
-				position={positionSetting ? positionSetting : "0 0 0.01"}
-				scale={assetScale ? `${assetScale} ${assetScale} ${assetScale}` : "1 1 1"}
-				data-rotation-setting="flat"
-				data-wall-position={WallpositionSetting}
-				data-wall-rotation={WallRotationSetting}
-				data-flat-position={FlatpositionSetting}
-				data-flat-rotation={FlatRotationSetting}
-				data-card-position={CardpositionSetting}
-				data-card-rotation={CardRotationSetting}
-			>
-				<a-entity id="objectActual">
-					<HoloBusinessCard/>
-					
-
-				</a-entity>
-				
-			</a-entity>
+			<HoloBusinessCard/>
+			
 		</a-entity>
+
+		<!-- <a-entity
+			id="center_panel"
+			position="0 0 0"
+			geometry="primitive: plane; width:4; height:2;"
+			material="color: #000000"
+			text="width: 3; wrapCount: 80; lineHeight: 50; letterSpacing: 5; color: white; font: sourcecodepro; align: left; value: Main Panel | size: 4x2 | pos: 0 0 0;"
+		></a-entity> -->
 
 	</a-scene>
 
-</ARLayout>
+</VRLayout>
 
 
 

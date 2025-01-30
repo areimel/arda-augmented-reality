@@ -29,7 +29,7 @@ Important Links:
 ## Instructions
 
 How to add a new sub-project:
-1. Set up the project data by ading a new `.json` file to the `src/data/projectData` folder by copying the `general-marker-template.json` file or another template file.
+1. Set up the project data by adding a new `.json` file to the `src/data/projectData` folder by copying the `general-marker-template.json` file or another template file.
 2. Add the new project pages to the `src/pages` folder by cloning another similar project or template.
 3. Update the new pages to use your new json file.
 4. Add any customizations you need.

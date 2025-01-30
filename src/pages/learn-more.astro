@@ -1,0 +1,137 @@
+---
+/*========================================*/
+/*	PAGE: Home/Index
+		NOTES:	
+*/
+/*========================================*/
+
+//Essential Components
+	import Layout from '@layouts/Layout.astro';
+
+//Content Components
+import InfoPageDefinitions from '@components/contentComponents/InfoPageDefinitions.astro';
+
+
+//Site Data
+	const siteData = await import("src/data/siteData.json");
+---
+
+<Layout 
+	title={siteData.projectName}
+	heading={siteData.projectName}
+>
+	
+<section class="text">
+	<h2>Contents</h2>
+	<ul>
+		<li><a href="#definitions">Definitions</a>: Learn what the different parts of the project are called and how they work.</li>
+		<li><a href="#qrcodes">QR Codes</a>: The QR code images and link associated with the project.</li>
+		<li><a href="#marker">Marker Image</a>: The real-world image you want tied to the experience.</li>
+	</ul>
+</section>
+
+<section class="text">
+	<h2>Project Links</h2>
+	<ul>
+		<li>
+			<a class="" href="/general-marker-template">Augmented Reality Viewer</a>: The web page that hosts the AR code. This is the page that the project's users will open on their phone to view the experience.
+		</li>
+		<li><a class="" href="/general-marker-template/splash">Web Splash Page</a></li>
+	</ul>
+</section>
+
+<InfoPageDefinitions/>
+
+</Layout>
+
+
+<style lang="scss">
+	section{
+		border-bottom: var(--border-settings-main);
+	}
+
+	.definitionsList{
+		width: 100%;
+		max-width: 800px;
+		margin: auto;
+		margin-top: 2rem;
+		>li{
+			background-color: var(--accent-color);
+			color: var(--background-color);
+			padding: 0.1em 0.5em;
+			&::marker{
+				color: var(--accent-color)
+			}
+			strong{
+				text-decoration: underline;
+				font-size: 1.2em;
+			}
+		}
+		>ul{
+			margin-bottom: 1.5rem;
+			border-left: solid 2px var(--accent-color);
+			
+		}
+	}
+
+	.markerSection{
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		flex-direction: column;
+		img{
+			width: 100%;
+			max-width: 85vh;
+			margin: 2rem 0;
+		}
+	}
+
+
+	.qr-grid {
+		display: flex;
+		flex-direction: column;
+		justify-content: flex-start;
+		align-items: flex-start;
+		padding: 2rem;
+	}
+
+	.qr-cell {
+		border: var(--border-settings-main);
+		background-color: var(--background-color);
+		width: 100%;
+		display: flex;
+		flex-direction: row;
+		justify-content: flex-start;
+		align-items: flex-start;
+		margin-bottom: 2rem;
+		
+		
+		.text-content {
+			padding: 1rem;
+			border-right: var(--border-settings-main);
+			align-self: stretch;
+			width: 50%;
+
+			h2 {
+				margin: 0 0 0.5rem 0;
+				font-size: 1.5rem;
+			}
+
+			p {
+				margin: 0;
+				font-size: 1rem;
+				line-height: 1.4;
+			}
+		}
+
+		.qr-wrapper {
+			padding: 2rem;
+			width: 50%;
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+			align-self: stretch;
+		}
+	}
+</style>
