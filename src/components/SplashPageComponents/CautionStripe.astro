@@ -1,0 +1,15 @@
+---
+// Props
+const { text, variant = "default", icon = "⚠" } = Astro.props;
+
+// Build the class list based on variant
+const classes = `cautionStripes ${variant === "yellow" ? "yellow" : ""}`;
+---
+
+<div class={classes}>
+	<p class="flex flex-row justify-center items-center">
+		<span class="inline-block text-2xl mx-3">{icon}</span>
+		{text}
+		<span class="inline-block text-2xl mx-3">{icon}</span>
+	</p>
+</div>

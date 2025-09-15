@@ -1,0 +1,23 @@
+---
+// Components
+import CautionStripe from './CautionStripe.astro';
+
+// Props
+const { pdfs } = Astro.props;
+---
+
+{pdfs.available &&
+	<>
+		<CautionStripe text="Printable PDFs" />
+		<div class="text-base leading-relaxed py-4 px-2 pr-6 border-b-custom border-border-color">
+			<p class="mb-0">These PDFs can be printed out and used to present the 3D hologram in a physical space. They come with a QR code link and brief instructions.</p>
+			<br/>
+			<div class="flex flex-row justify-center items-center">
+				<a href={pdfs.wall} target="_blank" class="no-underline bg-accent-color text-background-color py-2 px-4 m-2">Wall Preset PDF</a>
+				<a href={pdfs.flat} target="_blank" class="no-underline bg-accent-color text-background-color py-2 px-4 m-2">Flat Preset PDF</a>
+			</div>
+			<br/>
+			<p class="mb-0"><strong>NOTE:</strong> There are 2 versions of the printout. They are optimized for different viewing orientations. The <strong>wall preset</strong> is designed to be used like a poster or flyer and displayed on a wall. The <strong>flat preset</strong> is designed to be placed flat on a surface, like a table or desk. Please ensure you use the correct printout for your intended presentation. </p>
+		</div>
+	</>
+}

@@ -1,0 +1,15 @@
+---
+// Props
+const { heading, description } = Astro.props;
+
+// Default values
+const defaultHeading = "3d Object Preview";
+const defaultDescription = "Augmented Reality experience for viewing virtual 3D objects in the real world, similar to a hologram.";
+---
+
+<h1 class="text-5xl mb-0 mt-0 py-6 px-2 leading-tight text-center border-b-custom border-border-color text-black" style="text-wrap: balance;">
+	{heading ? heading : defaultHeading}
+</h1>
+<div class="text-base leading-relaxed py-4 px-2 pr-6 border-b-custom border-border-color">
+	<p class="mb-0">{description ? description : defaultDescription}</p>
+</div>

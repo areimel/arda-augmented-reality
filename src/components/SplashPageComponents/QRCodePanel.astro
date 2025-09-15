@@ -1,0 +1,49 @@
+---
+// Components
+import QRCode from '@components/QRCode.astro';
+
+// Props
+const { qrcode } = Astro.props;
+---
+
+<div class="qr-code-panel m-8 flex flex-col justify-center items-center">
+	<QRCode
+		link={qrcode}
+		id="splash-qrcode"
+		textLink={true}
+		corners={true}
+	/>
+</div>
+
+<style>
+/* QR Code link styling that can't be replicated with Tailwind */
+.qr-code-panel a[href*="http"]::before {
+	content: "[";
+	font-size: 1.5em;
+	text-decoration: none;
+}
+.qr-code-panel a[href*="http"]::after {
+	content: "]";
+	font-size: 1.5em;
+}
+
+/* QRCodeWrapper img max-width */
+.qr-code-panel img {
+	max-width: 300px;
+	height: auto;
+}
+
+/* QRCodeWrapper link styling */
+.qr-code-panel a[href*="http"] {
+	font-size: 0.8rem;
+	margin-top: 1rem;
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	text-decoration: none;
+	background-color: var(--accent-color);
+	color: var(--background-color);
+	padding: 0.5rem 1rem;
+}
+</style>

@@ -3,8 +3,12 @@
 	import "@styles/main.css"
 
 //Components
-	import QRCode from '@components/QRCode.astro';
 	import HeadGlobal from "@components/HeadGlobal.astro";
+	import SplashHeader from '@components/SplashPageComponents/SplashHeader.astro';
+	import InstructionsPanel from '@components/SplashPageComponents/InstructionsPanel.astro';
+	import QRCodePanel from '@components/SplashPageComponents/QRCodePanel.astro';
+	import PDFDownloadPanel from '@components/SplashPageComponents/PDFDownloadPanel.astro';
+	import MarkerImagePanel from '@components/SplashPageComponents/MarkerImagePanel.astro';
 
 //Props
 	const { title, description, heading, qrcode, marker, background, pdfs } = Astro.props;
@@ -30,57 +34,12 @@
 			<section class="flex-1 flex flex-col justify-center items-center p-8 ">
 				
 				<div class="text-left max-w-full border-custom border-border-color bg-background-color">
-					
-					<h1 class="text-5xl mb-0 mt-0 py-6 px-2 leading-tight text-center border-b-custom border-border-color text-black" style="text-wrap: balance;">{heading ? heading : "3d Object Preview"}</h1>
-					<div class="text-base leading-relaxed py-4 px-2 pr-6 border-b-custom border-border-color">
-						<p class="mb-0">{description ? description : "Augmented Reality experience for viewing virtual 3D objects in the real world, similar to a hologram."}</p>
-					</div>
-					<div class="cautionStripes text-3xl text-center text-black">
-						<p class="flex flex-row justify-center items-center ">
-							<span class="inline-block text-2xl mx-3">⚠</span> 
-							Instructions
-							<span class="inline-block text-2xl mx-3">⚠</span>
-						</p>
-					</div>
 
-					<div class="text-base leading-relaxed py-4 px-2 pr-6 border-b-custom border-border-color bg-accent-color text-background-color">
-						<ol class="instructions">
-							<li>Scan the QR code below with your phone to open the web viewer.</li>
-							<li>The page will ask if it can access your camera - allow this (first time only).</li>
-							<li>Once the viewer loads, point your camera at the marker image.</li>
-							<li>The 3D hologram will appear floating in front of the marker image.</li>
-						</ol>
-					</div>
+					<SplashHeader heading={heading} description={description} />
+					<InstructionsPanel />
 					
-					<div class="m-8 flex flex-col justify-center items-center">
-						<QRCode 
-							link={qrcode} 
-							id="splash-qrcode" 
-							textLink={true}
-							corners={true}
-						/>
-						<!-- <a href={qrcode} target="_blank">{qrcode}</a> -->
-					</div>
-					{pdfs.available &&
-						<div class="cautionStripes text-3xl text-center">
-							<p class="flex flex-row justify-center items-center">
-								<span class="inline-block text-2xl mx-3">⚠</span> 
-								Printable PDFs
-								<span class="inline-block text-2xl mx-3">⚠</span>
-							</p>
-					</div>
-					<div class="text-base leading-relaxed py-4 px-2 pr-6 border-b-custom border-border-color">
-						<p class="mb-0">These PDFs can be printed out and used to present the 3D hologram in a physical space. They come with a QR code link and brief instructions.</p>
-						<br/>
-						<div class="flex flex-row justify-center items-center">
-							<a href={pdfs.wall} target="_blank" class="no-underline bg-accent-color text-background-color py-2 px-4 m-2">Wall Preset PDF</a>
-							<a href={pdfs.flat} target="_blank" class="no-underline bg-accent-color text-background-color py-2 px-4 m-2">Flat Preset PDF</a>
-						</div>
-						<br/>
-						<p class="mb-0"><strong>NOTE:</strong> There are 2 versions of the printout. They are optimized for different viewing orientations. The <strong>wall preset</strong> is designed to be used like a poster or flyer and displayed on a wall. The <strong>flat preset</strong> is designed to be placed flat on a surface, like a table or desk. Please ensure you use the correct printout for your intended presentation. </p> 
-						
-					</div>
-					}
+					<QRCodePanel qrcode={qrcode} />
+					<PDFDownloadPanel pdfs={pdfs} />
 
 				</div>
 
@@ -89,22 +48,7 @@
 			<!-- ============================ -->
 			<!-- Right Section | Marker Image -->
 			<!-- ============================ -->
-			<section class="flex-1 flex flex-col justify-center items-center p-8 bg-custom-white">
-				
-				<div class="w-full h-full flex flex-col justify-center items-center">
-					<!-- Large image will be placed here -->
-					<div class="cautionStripes">
-						<p>Marker Image - Point your camera at this image to view the asset.</p>
-					</div>
-
-					<img src={marker ? marker : "/markers/complex-marker-v1.jpg"} class="w-4/5 h-auto my-4 mx-auto"/>						
-
-					<div class="cautionStripes">
-						<p>This image acts as a <strong>real-world anchor point</strong> for the virtual hologram.</p>
-					</div>
-				</div>
-
-			</section>
+			<MarkerImagePanel marker={marker} />
 			
 		</main>
 		
@@ -115,35 +59,3 @@
 	</body>
 </html>
 
-<style>
-	/* QR Code link styling that can't be replicated with Tailwind */
-	.m-8 a[href*="http"]::before {
-		content: "[";
-		font-size: 1.5em;
-		text-decoration: none;
-	}
-	.m-8 a[href*="http"]::after {
-		content: "]";
-		font-size: 1.5em;
-	}
-	
-	/* QRCodeWrapper img max-width */
-	.m-8 img {
-		max-width: 300px;
-		height: auto;
-	}
-	
-	/* QRCodeWrapper link styling */
-	.m-8 a[href*="http"] {
-		font-size: 0.8rem;
-		margin-top: 1rem;
-		display: flex;
-		flex-direction: row;
-		justify-content: center;
-		align-items: center;
-		text-decoration: none;
-		background-color: var(--accent-color);
-		color: var(--background-color);
-		padding: 0.5rem 1rem;
-	}
-</style>
