@@ -3,7 +3,13 @@
     "allow": [
       "WebFetch(domain:aframe.io)",
       "WebFetch(domain:hiukim.github.io)",
-      "WebFetch(domain:docs.astro.build)"
+      "WebFetch(domain:docs.astro.build)",
+      "Bash(mv:*)",
+      "Bash(npm install:*)",
+      "Bash(pnpm add:*)",
+      "Bash(astro check:*)",
+      "Bash(npm run build:*)",
+      "Bash(pnpm run:*)"
     ],
     "deny": [],
     "ask": []

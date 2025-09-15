@@ -8,7 +8,7 @@
 		rgb(var(--accent-light)) 30%,
 		white 60%
 	);*/
-	//color pallete
+	/* color pallete */
 		--black: #000000;
 		--white: #FFFFFF;
 
@@ -19,20 +19,20 @@
 		--teal: #00F0FF;
 
 		--trans-black: rgba(0, 0, 0, 0.5);
-	//functional colors
+	/* functional colors */
 		--background-color: var(--white);
 		--text-color: var(--black);
 		--accent-color: var(--black);
 		--accent-color-light: var(--white);
 	
-	//border settings
+	/* border settings */
 		--border-width: 2px;
 		--border-width-2: 8px;
 		--border-color: var(--black);
 		--border-settings-main: solid var(--border-width) var(--border-color);
 		--shadow-1: 0.35rem 0.35rem 0px var(--border-color);
 
-	//layout and spacing
+	/* layout and spacing */
 		--container-width: 1400px;		
 		--padding-1: 2.5rem;
 		--padding-2: 5rem;
@@ -40,15 +40,15 @@
 		--element-width-1: 500px;
 		--element-width-2: 800px;
 
-	//AR-UI
-		//aim for 1vw, with minimum of 5px and maximum of 10px
-		//use this to keep AR UI elements consistent across devices
+	/* AR-UI */
+		/* aim for 1vw, with minimum of 5px and maximum of 10px */
+		/* use this to keep AR UI elements consistent across devices */
 		--ar-ui-scale: clamp(14px, 2.5vw, 18px);
 		--ar-ui-size-1: calc(var(--ar-ui-scale) * 1);
 		--ar-ui-size-2: calc(var(--ar-ui-scale) * 2.5);
 }
 
-/*dark mode*/
+/* dark mode */
 [data-theme="dark"] {
 	--border-color: #DAD9D6;
 	--background-color: #28282B;
@@ -57,10 +57,12 @@
 	--accent-color-light: #08080B;
 }
 
-@mixin card-style {
-	border: var(--border-settings-main);
-	width: 100%;
-	max-width: 800px;
-	margin-bottom: 1rem;
-	box-shadow: var(--shadow-1);
-}
+/* TODO: Convert to Tailwind utility classes:
+   .card-style {
+     border: var(--border-settings-main);
+     width: 100%;
+     max-width: 800px;
+     margin-bottom: 1rem;
+     box-shadow: var(--shadow-1);
+   }
+*/

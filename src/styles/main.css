@@ -1,8 +1,12 @@
 
-@import url("variables.scss");
+@import url("variables.css");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 
-/*dark mode*/
+/* dark mode */
 [data-theme="dark"] {
 	--border-color: #DAD9D6;
 	--background-color: #28282B;
@@ -17,7 +21,7 @@
 	font-style: normal;
 }
 
-//box-size reset
+/* box-size reset */
 *,*:before,*:after{
 	box-sizing: border-box;
 }
@@ -36,7 +40,7 @@
 		h1, h2, h3, h4, h5, h6{
 			font-family: "Kode Mono", monospace;
 			font-size: 1.5rem;
-			//margin-top: 0;
+			/* margin-top: 0; */
 			margin-bottom:0.5em;
 		}
 		p{
@@ -68,7 +72,7 @@
 /*======================*/
 /*===== Typography =====*/
 /*======================*/
-	/*===== Sizes =====*/
+	/* ===== Sizes ===== */
 	.text-size-0{
 		font-size: 0.5rem;
 	}

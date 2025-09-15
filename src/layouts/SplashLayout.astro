@@ -1,6 +1,6 @@
 ---
 //Styles
-	import "@styles/main.scss"
+	import "@styles/main.css"
 
 //Components
 	import QRCode from '@components/QRCode.astro';
@@ -15,35 +15,35 @@
 ---
 
 <!doctype html>
-<html lang="en" data-theme="light">
+<html lang="en" data-theme="light" class="p-0 m-0">
 	<head>
 		<HeadGlobal title={title} description={description}/>
 		
 	</head>
-	<body>
+	<body class="p-0 m-0">
 		
-		<main class="fullscreen-layout" style={background ? `background-image: url(${background}); background-size: cover; background-position: center;` : ""}>
+		<main class="flex flex-row justify-start items-start m-0 p-0 max-xl:flex-col" style={background ? `background-image: url(${background}); background-size: cover; background-position: center;` : ""}>
 			
 			<!-- ============================= -->
 			<!-- Left Section | Text & QR Code -->
 			<!-- ============================= -->
-			<section class="left-section">
+			<section class="flex-1 flex flex-col justify-center items-center p-8 ">
 				
-				<div class="text-content">
+				<div class="text-left max-w-full border-custom border-border-color bg-background-color">
 					
-					<h1>{heading ? heading : "3d Object Preview"}</h1>
-					<div class="bodyText">
-						<p>{description ? description : "Augmented Reality experience for viewing virtual 3D objects in the real world, similar to a hologram."}</p>
+					<h1 class="text-5xl mb-0 mt-0 py-6 px-2 leading-tight text-center border-b-custom border-border-color text-black" style="text-wrap: balance;">{heading ? heading : "3d Object Preview"}</h1>
+					<div class="text-base leading-relaxed py-4 px-2 pr-6 border-b-custom border-border-color">
+						<p class="mb-0">{description ? description : "Augmented Reality experience for viewing virtual 3D objects in the real world, similar to a hologram."}</p>
 					</div>
-					<div class="subheading cautionStripes">
-						<p>
-							<span>⚠</span> 
+					<div class="cautionStripes text-3xl text-center text-black">
+						<p class="flex flex-row justify-center items-center ">
+							<span class="inline-block text-2xl mx-3">⚠</span> 
 							Instructions
-							<span>⚠</span>
+							<span class="inline-block text-2xl mx-3">⚠</span>
 						</p>
 					</div>
 
-					<div class="bodyText invert">
+					<div class="text-base leading-relaxed py-4 px-2 pr-6 border-b-custom border-border-color bg-accent-color text-background-color">
 						<ol class="instructions">
 							<li>Scan the QR code below with your phone to open the web viewer.</li>
 							<li>The page will ask if it can access your camera - allow this (first time only).</li>
@@ -52,7 +52,7 @@
 						</ol>
 					</div>
 					
-					<div class="QRCodeWrapper">
+					<div class="m-8 flex flex-col justify-center items-center">
 						<QRCode 
 							link={qrcode} 
 							id="splash-qrcode" 
@@ -62,22 +62,22 @@
 						<!-- <a href={qrcode} target="_blank">{qrcode}</a> -->
 					</div>
 					{pdfs.available &&
-						<div class="subheading cautionStripes">
-							<p>
-								<span>⚠</span> 
+						<div class="cautionStripes text-3xl text-center">
+							<p class="flex flex-row justify-center items-center">
+								<span class="inline-block text-2xl mx-3">⚠</span> 
 								Printable PDFs
-								<span>⚠</span>
+								<span class="inline-block text-2xl mx-3">⚠</span>
 							</p>
 					</div>
-					<div class="bodyText">
-						<p>These PDFs can be printed out and used to present the 3D hologram in a physical space. They come with a QR code link and brief instructions.</p>
+					<div class="text-base leading-relaxed py-4 px-2 pr-6 border-b-custom border-border-color">
+						<p class="mb-0">These PDFs can be printed out and used to present the 3D hologram in a physical space. They come with a QR code link and brief instructions.</p>
 						<br/>
-						<div class="pdfLinks">
-							<a href={pdfs.wall} target="_blank">Wall Preset PDF</a>
-							<a href={pdfs.flat} target="_blank">Flat Preset PDF</a>
+						<div class="flex flex-row justify-center items-center">
+							<a href={pdfs.wall} target="_blank" class="no-underline bg-accent-color text-background-color py-2 px-4 m-2">Wall Preset PDF</a>
+							<a href={pdfs.flat} target="_blank" class="no-underline bg-accent-color text-background-color py-2 px-4 m-2">Flat Preset PDF</a>
 						</div>
 						<br/>
-						<p><strong>NOTE:</strong> There are 2 versions of the printout. They are optimized for different viewing orientations. The <strong>wall preset</strong> is designed to be used like a poster or flyer and displayed on a wall. The <strong>flat preset</strong> is designed to be placed flat on a surface, like a table or desk. Please ensure you use the correct printout for your intended presentation. </p> 
+						<p class="mb-0"><strong>NOTE:</strong> There are 2 versions of the printout. They are optimized for different viewing orientations. The <strong>wall preset</strong> is designed to be used like a poster or flyer and displayed on a wall. The <strong>flat preset</strong> is designed to be placed flat on a surface, like a table or desk. Please ensure you use the correct printout for your intended presentation. </p> 
 						
 					</div>
 					}
@@ -89,15 +89,15 @@
 			<!-- ============================ -->
 			<!-- Right Section | Marker Image -->
 			<!-- ============================ -->
-			<section class="right-section">
+			<section class="flex-1 flex flex-col justify-center items-center p-8 bg-custom-white">
 				
-				<div class="image-container">
+				<div class="w-full h-full flex flex-col justify-center items-center">
 					<!-- Large image will be placed here -->
 					<div class="cautionStripes">
 						<p>Marker Image - Point your camera at this image to view the asset.</p>
 					</div>
 
-					<img src={marker ? marker : "/markers/complex-marker-v1.jpg"}/>						
+					<img src={marker ? marker : "/markers/complex-marker-v1.jpg"} class="w-4/5 h-auto my-4 mx-auto"/>						
 
 					<div class="cautionStripes">
 						<p>This image acts as a <strong>real-world anchor point</strong> for the virtual hologram.</p>
@@ -115,195 +115,35 @@
 	</body>
 </html>
 
-<style lang="scss">
-/*===== Global =====*/
-	html, body{
-		//overflow: hidden;
-		padding: 0;
-		margin: 0;
+<style>
+	/* QR Code link styling that can't be replicated with Tailwind */
+	.m-8 a[href*="http"]::before {
+		content: "[";
+		font-size: 1.5em;
+		text-decoration: none;
 	}
-
-	main.fullscreen-layout {
+	.m-8 a[href*="http"]::after {
+		content: "]";
+		font-size: 1.5em;
+	}
+	
+	/* QRCodeWrapper img max-width */
+	.m-8 img {
+		max-width: 300px;
+		height: auto;
+	}
+	
+	/* QRCodeWrapper link styling */
+	.m-8 a[href*="http"] {
+		font-size: 0.8rem;
+		margin-top: 1rem;
 		display: flex;
 		flex-direction: row;
-		justify-content: flex-start;
-		align-items: flex-start;
-		//height: 100vh;
-		//width: 100vw;
-		margin: 0;
-		padding: 0;
-		//overflow: hidden;
-		@media (max-width: 1200px) {
-			flex-direction: column;
-		}
-	}
-
-	.left-section,
-	.right-section {
-		flex: 1;
-		display: flex;
-		flex-direction: column;
 		justify-content: center;
 		align-items: center;
-		padding: 2rem;
-
-		
-	}
-
-	.left-section {
-		background-color: var(--primary-color);
-		color: var(--text-color-light);
-	}
-
-	.right-section {
-		background-color: var(--secondary-color);
-	}
-
-/*===== Inner Content =====*/
-	.text-content {
-		text-align: left;
-		max-width: 100%;
-		border: var(--border-settings-main);
-		background-color: var(--background-color);
-		h1 {
-			font-size: 3rem;
-			margin-bottom: 0;
-			margin-top: 0;
-			padding: 1.5rem 0.5rem;
-			line-height: 1.2;
-			text-align: center;
-			text-wrap: balance;
-			border-bottom: var(--border-settings-main);
-		}
-		.subheading{
-			font-size: 1.75rem;
-			text-align: center;
-			p{
-				display: flex;
-				flex-direction: row;
-				justify-content: center;
-				align-items: center;
-			}
-			span{
-				display: inline-block;
-				font-size: 2em;
-				margin: 0 0.75em;
-			}
-		}
-		.bodyText {
-			font-size: 1rem;
-			line-height: 1.6;
-			padding: 1rem 0.5rem;
-			padding-right: 1.5rem;
-			border-bottom: var(--border-settings-main);
-			//background-color: var(--accent-color);
-			//color: var(--background-color);
-			//padding: 1rem;
-			//border-radius: 0.5rem;
-			&.invert{
-				background-color: var(--accent-color);
-				color: var(--background-color);
-			}
-			.pdfLinks{
-				display: flex;
-				flex-direction: row;
-				justify-content: center;
-				align-items: center;
-			}
-			p{
-				margin-bottom: 0;
-			}
-			a{
-				text-decoration: none;
-				background-color: var(--accent-color);
-				color: var(--background-color);
-				padding: 0.5rem 1rem;
-				margin: 0.5rem;
-			}
-		}
-	}
-
-	.QRCodeWrapper{
-		margin: 2rem;
-		display: flex;
-		flex-direction: column;
-		justify-content: center;
-		align-items: center;
-
-		img{
-			max-width: 300px;
-			height: auto;
-		}
-		a{
-			font-size: 0.8rem;
-			margin-top: 1rem;
-			display: flex;
-			flex-direction: row;
-			justify-content: center;
-			align-items: center;
-			text-decoration: none;
-			background-color: var(--accent-color);
-			color: var(--background-color);
-			padding: 0.5rem 1rem;
-			&::before{
-				content: "[";
-				font-size: 1.5em;
-				text-decoration: none;
-			}
-			&::after{
-				content: "]";
-				font-size: 1.5em;
-			}
-		}
-	}
-
-	.image-container {
-		width: 100%;
-		height: 100%;
-		display: flex;
-		flex-direction: column;
-		justify-content: center;
-		align-items: center;
-
-		img{
-			width: 80%;
-			height: auto;
-			margin: 1rem auto;
-		}
-		.stripesWrapper{
-			width: 100%;
-			background-image: linear-gradient(45deg, 
-					#28282b 25%, 
-					#faf9f6 25%, 
-					#faf9f6 50%, 
-					#28282b 50%, 
-					#28282b 75%, 
-					#faf9f6 75%, 
-					#faf9f6 100%);
-			background-size: 56.57px 56.57px;
-			border: solid 5px var(--black);
-			padding: 0.5rem;
-			p{
-				background-color: var(--accent-color);
-				color: var(--background-color);
-				padding: 0.5rem 1rem;
-				width: 100%;
-				text-align: center;
-				text-wrap: balance;
-				margin: 0;
-			}
-		}
-	}
-
-	.footerSection {
-		position: fixed;
-		bottom: 0;
-		left: 0;
-		right: 0;
-		background-color: var(--footer-bg-color);
-		color: var(--footer-text-color);
-		text-align: center;
-		padding: 1rem;
-		font-size: 0.9rem;
+		text-decoration: none;
+		background-color: var(--accent-color);
+		color: var(--background-color);
+		padding: 0.5rem 1rem;
 	}
 </style>
