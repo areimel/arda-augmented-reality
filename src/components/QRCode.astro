@@ -1,14 +1,17 @@
 ---
+import { adaptProjectURL } from '@/utils/environmentUtils';
 
-//const currentUrl = window.location.href;
 const {link, id, textLink, size, corners} = Astro.props;
+
+// Adapt the URL for the current environment (localhost, staging, or live)
+const adaptedLink = link ? adaptProjectURL(link) : "test.com";
 ---
 <div class="qrcodeWrapper">
 	
-	<div 
-		class="qrcodeElement" 
+	<div
+		class="qrcodeElement"
 		id={id ? id : "qrcode"}
-		data-link={link ? link : "test.com"}
+		data-link={adaptedLink}
 		data-size={size ? size : "medium"}
 	>
 		{corners &&
@@ -20,8 +23,8 @@ const {link, id, textLink, size, corners} = Astro.props;
 			</div>
 		}
 	</div>
-	{textLink && 
-		<a href={link ? link : "test.com"} target="_blank">{link ? link : "test.com"}</a>
+	{textLink &&
+		<a href={adaptedLink} target="_blank">{adaptedLink}</a>
 	}
 </div>
 

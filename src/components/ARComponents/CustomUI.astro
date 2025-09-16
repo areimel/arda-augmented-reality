@@ -1,7 +1,32 @@
 ---
 
-const { bigText, smallText, flashingText } = Astro.props;
+const { bigText, smallText, flashingText, infoLink, showControls = true, showLinks = true } = Astro.props;
 ---
+{showLinks && (
+	<div class="links">
+		<a href={infoLink}>Project Info</a>
+		<a href="/learn-more">Learn More</a>
+	</div>
+)}
+
+{showControls && (
+	<div class="controls">
+		<div
+			class="controlButton"
+			data-control-button="wall"
+		>
+			Switch View: Wall
+		</div>
+
+		<div
+			class="controlButton"
+			data-control-button="flat"
+		>
+			Switch View: Flat
+		</div>
+	</div>
+)}
+
 <!-- <div class="mindar-ui-overlay mindar-ui-compatibility">
 	<div class="content">
 		<h1>Failed to launch :(</h1>
@@ -230,6 +255,59 @@ const { bigText, smallText, flashingText } = Astro.props;
 					100% { opacity: 1; }
 				}
 			}
+		}
+	}
+
+	.controls{
+		position: fixed;
+		z-index: 500000;
+		bottom: 5px;
+		left: 50%;
+		transform:translate(-50%, 0%);
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		width: 100%;
+		max-width: 500px;
+		margin: auto;
+
+		.controlButton{
+			margin: 0 10px;
+			border: solid 2px #FFF;
+			padding: 0.25em 0.5em;
+			color: #FFF;
+			font-size: var(--ar-font-size-1);
+			text-align: center;
+			display: none; // Hide buttons by default
+		}
+
+		// Show the appropriate button based on the current rotation setting
+		&[data-current-rotation="wall"] .controlButton[data-control-button="flat"],
+		&[data-current-rotation="flat"] .controlButton[data-control-button="wall"] {
+			display: block;
+		}
+	}
+
+	.links{
+		position: fixed;
+		z-index: 500000;
+		top: 5px;
+		left: 50%;
+		transform:translate(-50%, 0%);
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		width: 100%;
+		max-width: 500px;
+		margin: auto;
+
+		a{
+			margin: 0 10px;
+			border: solid 2px #FFF;
+			padding: 0.25em 0.5em;
+			color: #FFF;
+			font-size: var(--ar-font-size-1);
+			text-align: center;
 		}
 	}
 </style>
