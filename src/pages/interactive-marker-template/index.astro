@@ -7,7 +7,6 @@
 //Components
 import ARLayout from '@layouts/AR-Layout.astro';
 import CustomUI from '@components/ARComponents/CustomUI.astro';
-import ExtraUI from '@components/ARComponents/ExtraUI.astro';
 
 //Project Data
 const projectData = await import("src/data/projectData/interactive-marker-template.json");
@@ -107,8 +106,7 @@ const projectData = await import("src/data/projectData/interactive-marker-templa
 	</style>
 
 	<!-- Normal 'Page' Layer Elements -->
-	<ExtraUI infoLink={infoLink}/>
-	<CustomUI/>
+	<CustomUI infoLink={infoLink}/>
 
 	<!-- Augmented Reality Layer -->
 	<a-scene 
