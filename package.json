@@ -3,8 +3,8 @@
   "type": "module",
   "version": "0.0.1",
   "scripts": {
-    "dev": "astro dev",
-    "start": "astro dev",
+    "dev": "astro dev --host",
+    "start": "astro dev --host",
     "build": "astro check && astro build NODE_OPTIONS=--max_old_space_size=8192",
     "preview": "astro preview",
     "astro": "astro"
