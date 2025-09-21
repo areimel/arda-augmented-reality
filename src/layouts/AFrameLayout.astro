@@ -29,7 +29,20 @@
 		<!-- ===== Javascript Plugins ===== -->
 		<!-- ===== ================== ===== -->
 		<script is:inline src="/thirdPartyPlugins/easytimer.min.js"></script>
-		<script is:inline src="/scripts/a-frame-functions.js"></script>
+
+		<script>
+		  // Import A-Frame utilities and timer functions
+		  import { initializeAFrameFunctions } from '../utils/aframeFunctions';
+		  import { initializeTimers } from '../utils/timers';
+		  import { initializeWakeLock } from '../utils/wakeLock';
+
+		  // Initialize when DOM is ready
+		  document.addEventListener('DOMContentLoaded', () => {
+		    initializeAFrameFunctions();
+		    initializeTimers();
+		    initializeWakeLock();
+		  });
+		</script>
 
 	</body>
 </html>

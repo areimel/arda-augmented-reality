@@ -22,4 +22,13 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js" integrity="sha512-CNgIRecGo7nphbeZ04Sc13ka07paqdeTu0WR1IM4kNcpmBAUSHSQX0FslNhTDadL4O5SAGapGt4FodqL8My0mA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 <!-- ===== Internal Javascript ===== -->
-<script is:inline src="/scripts/qrcode.js"></script>
+
+<script>
+  // Import QR code utilities
+  import { initializeQRCodes } from '../utils/qrCode';
+
+  // Initialize when DOM is ready
+  document.addEventListener('DOMContentLoaded', () => {
+    initializeQRCodes();
+  });
+</script>

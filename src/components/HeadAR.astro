@@ -36,8 +36,20 @@
 <script is:inline src="/scripts/xrextras.js"></script>
 
 <!-- ===== Internal Javascript - Custom Functions ===== -->
-<script is:inline src="/scripts/qrcode.js"></script>
-<script is:inline src="/scripts/wake-lock.js"></script>
-<script is:inline src="/scripts/ar-functions.js"></script>
-<script is:inline src="/scripts/aframe-look-at.js"></script>
+
+<script>
+  // Import utility functions
+  import { initializeQRCodes } from '../utils/qrCode';
+  import { initializeWakeLock } from '../utils/wakeLock';
+  import { initializeArFunctions } from '../utils/arFunctions';
+  import { initializeLookAtComponent } from '../utils/aframeLookAt';
+
+  // Initialize when DOM is ready
+  document.addEventListener('DOMContentLoaded', () => {
+    initializeQRCodes();
+    initializeWakeLock();
+    initializeArFunctions();
+    initializeLookAtComponent();
+  });
+</script>
 
