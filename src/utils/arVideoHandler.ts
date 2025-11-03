@@ -72,16 +72,16 @@ export function initializeArVideoHandler(): void {
   });
 
   // AR System Event Listeners
-  sceneEl.addEventListener("arReady", (event) => {
+  sceneEl.addEventListener("arReady", (_event) => {
     console.log("MindAR is ready");
   });
 
-  sceneEl.addEventListener("arError", (event) => {
+  sceneEl.addEventListener("arError", (_event) => {
     console.log("MindAR failed to start");
   });
 
   // Target Detection Event Listeners with Video Control
-  exampleTarget?.addEventListener("targetFound", event => {
+  exampleTarget?.addEventListener("targetFound", _event => {
     console.log("target found");
     const video = document.querySelector("#ar-video") as ARVideo | null;
     video?.play().catch(error => {
@@ -89,14 +89,14 @@ export function initializeArVideoHandler(): void {
     });
   });
 
-  exampleTarget?.addEventListener("targetLost", event => {
+  exampleTarget?.addEventListener("targetLost", _event => {
     console.log("target lost");
     const video = document.querySelector("#ar-video") as ARVideo | null;
     video?.pause();
   });
 
   // Interaction Event Listeners
-  examplePlane?.addEventListener("click", event => {
+  examplePlane?.addEventListener("click", _event => {
     console.log("plane click");
   });
 }

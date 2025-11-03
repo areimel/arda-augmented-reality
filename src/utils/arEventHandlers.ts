@@ -65,25 +65,25 @@ export function initializeArEventHandlers(): void {
   });
 
   // AR System Event Listeners
-  sceneEl.addEventListener("arReady", (event) => {
+  sceneEl.addEventListener("arReady", (_event) => {
     console.log("MindAR is ready");
   });
 
-  sceneEl.addEventListener("arError", (event) => {
+  sceneEl.addEventListener("arError", (_event) => {
     console.log("MindAR failed to start");
   });
 
   // Target Detection Event Listeners
-  exampleTarget?.addEventListener("targetFound", event => {
+  exampleTarget?.addEventListener("targetFound", _event => {
     console.log("target found");
   });
 
-  exampleTarget?.addEventListener("targetLost", event => {
+  exampleTarget?.addEventListener("targetLost", _event => {
     console.log("target lost");
   });
 
   // Interaction Event Listeners
-  examplePlane?.addEventListener("click", event => {
+  examplePlane?.addEventListener("click", _event => {
     console.log("plane click");
   });
 }

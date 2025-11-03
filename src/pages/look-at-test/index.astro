@@ -55,17 +55,17 @@ const projectData = await import("src/data/projectData/general-marker-template.j
 >
 	<!-- Interaction Events Script -->
 	<script is:inline>
-		document.addEventListener("DOMContentLoaded", function(e){
+		document.addEventListener("DOMContentLoaded", function(_e){
 			//Define marker & asset elements
 			const markerTarget = document.querySelector('#mind-ar-target');
 			const videoMedia = document.querySelector('#displayVideo');
 
-			markerTarget.addEventListener("targetFound", event => {
+			markerTarget.addEventListener("targetFound", _event => {
 				console.log("target found");
 				videoMedia.play();
 			});
 			// detect target lost
-			markerTarget.addEventListener("targetLost", event => {
+			markerTarget.addEventListener("targetLost", _event => {
 				console.log("target lost");
 				videoMedia.pause();
 			});

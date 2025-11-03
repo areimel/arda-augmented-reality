@@ -16,10 +16,6 @@ const projectData = await import("src/data/projectData/interactive-marker-templa
 	//const defaultScale = projectData.modelSettings.defaultScale;
 	const markerFile = projectData.markerFile;
 	//const markerImage = projectData.markerImage;
-	const experienceType = projectData.experienceType;
-	const assetFile = projectData.assetFile;
-	const assetHeight = projectData.assetHeight;
-	const assetWidth = projectData.assetWidth;
 	const assetScale = projectData.assetScale;
 	const infoLink = projectData.projectBaseUrl + "/project-info";
 	
@@ -55,18 +51,18 @@ const projectData = await import("src/data/projectData/interactive-marker-templa
 >
 	<!-- Interaction Events Script -->
 	<script is:inline>
-		document.addEventListener("DOMContentLoaded", function(e){
+		document.addEventListener("DOMContentLoaded", function(_e){
 			//Define marker & asset elements
 			const markerTarget = document.querySelector('#mind-ar-target');
 			
 			//const videoMedia = document.querySelector('#displayVideo');
 
-			markerTarget.addEventListener("targetFound", event => {
+			markerTarget.addEventListener("targetFound", _event => {
 				console.log("target found");
 				//videoMedia.play();
 			});
 			// detect target lost
-			markerTarget.addEventListener("targetLost", event => {
+			markerTarget.addEventListener("targetLost", _event => {
 				console.log("target lost");
 				//videoMedia.pause();
 			});
@@ -77,22 +73,22 @@ const projectData = await import("src/data/projectData/interactive-marker-templa
 			const emailButton = document.querySelector('#email-button');
 			const locationButton = document.querySelector('#location-button');
 
-			profileButton.addEventListener('click', event => {
+			profileButton.addEventListener('click', _event => {
 				console.log('profile button clicked');
 				window.open('https://alecreimel.com', '_blank');
 			});
 
-			webButton.addEventListener('click', event => {
+			webButton.addEventListener('click', _event => {
 				console.log('web button clicked');
 				window.open('https://planet-caravan-studios.netlify.app/', '_blank');
 			});
 
-			emailButton.addEventListener('click', event => {
+			emailButton.addEventListener('click', _event => {
 				console.log('profile button clicked');
 				window.open('https://alecreimel.com', '_blank');
 			});
 
-			locationButton.addEventListener('click', event => {
+			locationButton.addEventListener('click', _event => {
 				console.log('web button clicked');
 				window.open('https://planet-caravan-studios.netlify.app/', '_blank');
 			});
