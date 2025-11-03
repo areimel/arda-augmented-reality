@@ -5,8 +5,9 @@
   "scripts": {
     "dev": "astro dev --host",
     "start": "astro dev",
-    "build": "astro check && astro build NODE_OPTIONS=--max_old_space_size=8192",
+    "build": "astro build NODE_OPTIONS=--max_old_space_size=8192",
     "preview": "astro preview",
+    "check": "astro check",
     "astro": "astro"
   },
   "dependencies": {

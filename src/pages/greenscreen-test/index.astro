@@ -12,9 +12,7 @@ const projectData = await import("src/data/projectData/video-test.json");
 
 /*===== Main Settings =====*/
 	let defaultRotation = projectData.modelSettings.defaultRotationSetting; // "flat" or "wall"
-	const defaultScale = projectData.modelSettings.defaultScale;
 	const markerFile = projectData.markerFile;
-	const markerImage = projectData.markerImage;
 	const modelFile = projectData.modelFile;
 	const infoLink = projectData.projectBaseUrl + "/project-info";
 
@@ -50,17 +48,17 @@ const projectData = await import("src/data/projectData/video-test.json");
 >
 
 <script is:inline>
-	document.addEventListener("DOMContentLoaded", function(e){
+	document.addEventListener("DOMContentLoaded", function(_e){
 		//runs code after DOM load
 		const videoTarget = document.querySelector('#mind-ar-target');
 		const videoMedia = document.querySelector('#alpha-video');
 
-		videoTarget.addEventListener("targetFound", event => {
+		videoTarget.addEventListener("targetFound", _event => {
 			console.log("target found");
 			videoMedia.play();
 		});
 		// detect target lost
-		videoTarget.addEventListener("targetLost", event => {
+		videoTarget.addEventListener("targetLost", _event => {
 			console.log("target lost");
 			videoMedia.pause();
 		});

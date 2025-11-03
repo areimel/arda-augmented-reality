@@ -8,9 +8,7 @@ const projectData = await import("src/data/projectData/deliverator.json");
 
 /*===== Main Settings =====*/
 	let defaultRotation = projectData.modelSettings.defaultRotationSetting; // "flat" or "wall"
-	const defaultScale = projectData.modelSettings.defaultScale;
 	const markerFile = projectData.markerFile;
-	const markerImage = projectData.markerImage;
 	const modelFile = projectData.modelFile;
 	const displayFile = projectData.displayFile;
 	const infoLink = projectData.projectBaseUrl + "/project-info";
@@ -88,7 +86,8 @@ const projectData = await import("src/data/projectData/deliverator.json");
 			data-card-position={CardpositionSetting}
 			data-card-rotation={CardRotationSetting}
 		>
-			<a-video id="ar-video" src={displayFile} width="0.637" height="0.253"></a-video>
+			<!-- <a-video id="ar-video" src={displayFile} width="0.637" height="0.253"></a-video> -->
+			<a-video id="ar-video" src={displayFile} width="0.9555" height="0.3795"></a-video>
 			
 		</a-entity>
 	</a-entity>

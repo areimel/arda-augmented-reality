@@ -53,7 +53,15 @@
 		<!-- ===== ================== ===== -->
 		<!-- ===== Javascript Plugins ===== -->
 		<!-- ===== ================== ===== -->
-		<script is:inline src="/scripts/wake-lock.js"></script>
+		<script>
+		  // Import wake lock utility
+		  import { initializeWakeLock } from '../utils/wakeLock';
+
+		  // Initialize when DOM is ready
+		  document.addEventListener('DOMContentLoaded', () => {
+		    initializeWakeLock();
+		  });
+		</script>
 
 	</body>
 </html>

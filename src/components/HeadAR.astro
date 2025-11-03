@@ -19,7 +19,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Kode+Mono&family=Montserrat:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet">
 
 <!-- ===== Javascript Plugins ===== -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js" integrity="sha512-CNgIRecGo7nphbeZ04Sc13ka07paqdeTu0WR1IM4kNcpmBAUSHSQX0FslNhTDadL4O5SAGapGt4FodqL8My0mA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script is:inline src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js" integrity="sha512-CNgIRecGo7nphbeZ04Sc13ka07paqdeTu0WR1IM4kNcpmBAUSHSQX0FslNhTDadL4O5SAGapGt4FodqL8My0mA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <!-- A-Frame -->
 <script is:inline src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
 <!-- MindAR - Primary AR add-on for A-Frame -->
@@ -36,8 +36,20 @@
 <script is:inline src="/scripts/xrextras.js"></script>
 
 <!-- ===== Internal Javascript - Custom Functions ===== -->
-<script is:inline src="/scripts/qrcode.js"></script>
-<script is:inline src="/scripts/wake-lock.js"></script>
-<script is:inline src="/scripts/ar-functions.js"></script>
-<script is:inline src="/scripts/aframe-look-at.js"></script>
+
+<script>
+  // Import utility functions
+  import { initializeQRCodes } from '../utils/qrCode';
+  import { initializeWakeLock } from '../utils/wakeLock';
+  import { initializeArFunctions } from '../utils/arFunctions';
+  import { initializeLookAtComponent } from '../utils/aframeLookAt';
+
+  // Initialize when DOM is ready
+  document.addEventListener('DOMContentLoaded', () => {
+    initializeQRCodes();
+    initializeWakeLock();
+    initializeArFunctions();
+    initializeLookAtComponent();
+  });
+</script>
 

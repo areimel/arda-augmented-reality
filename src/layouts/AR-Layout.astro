@@ -15,7 +15,18 @@
 <html lang="en" data-theme="light">
 	<head>
 		<HeadAR title={title} description={description}/>
-		<!-- {type == "video" && <script src="/scripts/ar-video-handler.js"></script>} -->
+
+		{type === "video" && (
+			<script>
+			  // Import AR video handler for video type experiences
+			  import { initializeArVideoHandler } from '../utils/arVideoHandler';
+
+			  // Initialize when DOM is ready
+			  document.addEventListener('DOMContentLoaded', () => {
+			    initializeArVideoHandler();
+			  });
+			</script>
+		)}
 
 	</head>
 	<body>
