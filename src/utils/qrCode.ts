@@ -147,8 +147,3 @@ export function generateQRCode(
 export function QRCodesSet(): void {
   initializeQRCodes();
 }
-
-// Auto-initialize when DOM is loaded (for backward compatibility)
-if (typeof document !== 'undefined') {
-  document.addEventListener("DOMContentLoaded", initializeQRCodes);
-}
