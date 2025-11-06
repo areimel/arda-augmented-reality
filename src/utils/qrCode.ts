@@ -1,41 +1,22 @@
 // QR Code generation utilities
 // Handles dynamic QR code creation for elements with data attributes
-
-// Global QRCode interface (from external library)
-declare global {
-  interface Window {
-    QRCode: QRCodeConstructor;
-  }
-}
-
-export interface QRCodeConstructor {
-  new (element: HTMLElement, options: QRCodeOptions): QRCodeInstance;
-  CorrectLevel: {
-    L: number;
-    M: number;
-    Q: number;
-    H: number;
-  };
-}
-
-export interface QRCodeOptions {
-  text: string;
-  width: number;
-  height: number;
-  colorDark: string;
-  colorLight: string;
-  correctLevel: number;
-}
-
-export interface QRCodeInstance {
-  // QR code instance methods (if needed)
-}
+import QRCode from 'qrcode';
 
 export interface QRCodeElement extends HTMLElement {
   getAttribute(name: string): string | null;
 }
 
 export type QRCodeSize = 'small' | 'medium' | 'large';
+
+export interface QRCodeRenderOptions {
+  width?: number;
+  margin?: number;
+  color?: {
+    dark?: string;
+    light?: string;
+  };
+  errorCorrectionLevel?: 'L' | 'M' | 'Q' | 'H';
+}
 
 /**
  * Get pixel size based on size designation
@@ -56,25 +37,33 @@ export function getQRCodePixelSize(size: QRCodeSize | string | null): number {
 /**
  * Create a single QR code for a given element
  */
-export function createQRCode(element: QRCodeElement, link: string, size: QRCodeSize | string | null): QRCodeInstance | null {
-  if (typeof window === 'undefined' || !window.QRCode) {
-    console.error('QRCode library not available');
-    return null;
-  }
-
+export async function createQRCode(
+  element: QRCodeElement,
+  link: string,
+  size: QRCodeSize | string | null
+): Promise<HTMLCanvasElement | null> {
   const pxSize = getQRCodePixelSize(size);
 
   try {
-    const qrcode = new window.QRCode(element, {
-      text: link,
+    // Create canvas element
+    const canvas = document.createElement('canvas');
+
+    // Generate QR code on canvas
+    await QRCode.toCanvas(canvas, link, {
       width: pxSize,
-      height: pxSize,
-      colorDark: "#000000",
-      colorLight: "#ffffff",
-      correctLevel: window.QRCode.CorrectLevel.H
+      margin: 1,
+      color: {
+        dark: '#000000',
+        light: '#ffffff'
+      },
+      errorCorrectionLevel: 'H'
     });
 
-    return qrcode;
+    // Clear existing content and append canvas
+    element.innerHTML = '';
+    element.appendChild(canvas);
+
+    return canvas;
   } catch (error) {
     console.error('Failed to create QR code:', error);
     return null;
@@ -96,18 +85,20 @@ export function initializeQRCodes(): void {
       return;
     }
 
-    createQRCode(element, link, size);
+    createQRCode(element, link, size).catch(error => {
+      console.error('Failed to initialize QR code:', error);
+    });
   });
 }
 
 /**
  * Create a QR code programmatically
  */
-export function generateQRCode(
+export async function generateQRCode(
   container: HTMLElement | string,
   text: string,
-  options?: Partial<QRCodeOptions>
-): QRCodeInstance | null {
+  options?: QRCodeRenderOptions
+): Promise<HTMLCanvasElement | null> {
   const element = typeof container === 'string'
     ? document.querySelector(container) as HTMLElement
     : container;
@@ -117,24 +108,26 @@ export function generateQRCode(
     return null;
   }
 
-  if (typeof window === 'undefined' || !window.QRCode) {
-    console.error('QRCode library not available');
-    return null;
-  }
-
-  const defaultOptions: QRCodeOptions = {
-    text,
+  const defaultOptions: QRCodeRenderOptions = {
     width: 250,
-    height: 250,
-    colorDark: "#000000",
-    colorLight: "#ffffff",
-    correctLevel: window.QRCode.CorrectLevel.H
+    margin: 1,
+    color: {
+      dark: '#000000',
+      light: '#ffffff'
+    },
+    errorCorrectionLevel: 'H'
   };
 
   const finalOptions = { ...defaultOptions, ...options };
 
   try {
-    return new window.QRCode(element, finalOptions);
+    const canvas = document.createElement('canvas');
+    await QRCode.toCanvas(canvas, text, finalOptions);
+
+    element.innerHTML = '';
+    element.appendChild(canvas);
+
+    return canvas;
   } catch (error) {
     console.error('Failed to generate QR code:', error);
     return null;
