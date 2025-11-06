@@ -19,18 +19,19 @@
 <link href="https://fonts.googleapis.com/css2?family=Kode+Mono&family=Montserrat:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet">
 
 <!-- ===== Javascript Plugins ===== -->
-<script is:inline src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js" integrity="sha512-CNgIRecGo7nphbeZ04Sc13ka07paqdeTu0WR1IM4kNcpmBAUSHSQX0FslNhTDadL4O5SAGapGt4FodqL8My0mA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<!-- A-Frame -->
-<script is:inline src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
-<!-- MindAR - Primary AR add-on for A-Frame -->
-<script is:inline src="https://cdn.jsdelivr.net/npm/mind-ar@1.2.5/dist/mindar-image-aframe.prod.js"></script>
-<!-- Chromakey/Green Screen support -->
-<script is:inline src="https://unpkg.com/aframe-chromakey-material@1.1.4/dist/aframe-chromakey-material.min.js"></script>
-<!-- GIF support -->
-<script is:inline src="https://rawgit.com/mayognaise/aframe-gif-shader/master/dist/aframe-gif-shader.min.js"></script>
-<script is:inline src="https://rawgit.com/mayognaise/aframe-gif-component/master/dist/aframe-gif-component.min.js"></script>
-
-<!-- NOTE / TO DO: download and serve extra scripts locally -->
+<!-- All scripts served locally from public/thirdPartyPlugins for improved performance and reliability -->
+<!-- QRCode.js v1.0.0 - Originally from: https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js -->
+<script is:inline src="/thirdPartyPlugins/qrcode-1.0.0.min.js"></script>
+<!-- A-Frame v1.5.0 - Originally from: https://aframe.io/releases/1.5.0/aframe.min.js -->
+<script is:inline src="/thirdPartyPlugins/aframe-1.5.0.min.js"></script>
+<!-- MindAR v1.2.5 - Primary AR add-on for A-Frame - Originally from: https://cdn.jsdelivr.net/npm/mind-ar@1.2.5/dist/mindar-image-aframe.prod.js -->
+<script is:inline src="/thirdPartyPlugins/mindar-image-aframe-1.2.5.prod.js"></script>
+<!-- Chromakey/Green Screen support v1.1.4 - Originally from: https://unpkg.com/aframe-chromakey-material@1.1.4/dist/aframe-chromakey-material.min.js -->
+<script is:inline src="/thirdPartyPlugins/aframe-chromakey-material-1.1.4.min.js"></script>
+<!-- GIF support - Originally from: https://github.com/mayognaise/aframe-gif-shader -->
+<script is:inline src="/thirdPartyPlugins/aframe-gif-shader.min.js"></script>
+<!-- GIF component - Originally from: https://github.com/mayognaise/aframe-gif-component -->
+<script is:inline src="/thirdPartyPlugins/aframe-gif-component.min.js"></script>
 
 <!-- ===== Internal Javascript - Third Party ===== -->
 <script is:inline src="/scripts/xrextras.js"></script>

@@ -1,10 +1,10 @@
 {
     "siteURL": "https://arda-ar.netlify.app",
-    "titleSuffix": "| Interzone Technology",
-    "companyName": "ARDA",
+    "titleSuffix": "| ARDA Augmented Reality",
+    "companyName": "ARDA - Advanced Research & Development Agency",
     "companyLogo": "/images/logo/interzone-logo-black.png",
     "companyLogoGlyph": "/images/logo/interzone-logo-black.png",
-    "projectName": "ARDA",
+    "projectName": "ARDA Augmented Reality",
     "fallbackDescription": "Augmented Reality experiences on your phone - no app download needed!",
     "siteMetadata": {
         "author": "ARDA",
