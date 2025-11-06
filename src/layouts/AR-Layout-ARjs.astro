@@ -17,8 +17,10 @@
 		<meta name="viewport" content="width=device-width" />
 
     	<!-- import aframe and then ar.js with image tracking / location based features -->
-		<script src="https://cdn.jsdelivr.net/gh/aframevr/aframe@1c2407b26c61958baa93967b5412487cd94b290b/dist/aframe-master.min.js"></script>
-		<script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar-nft.js"></script>
+		<!-- A-Frame master build (commit 1c2407b26c61958baa93967b5412487cd94b290b) - Originally from: https://cdn.jsdelivr.net/gh/aframevr/aframe@1c2407b26c61958baa93967b5412487cd94b290b/dist/aframe-master.min.js -->
+		<script is:inline src="/a-frame-scripts/aframe-master.min.js"></script>
+		<!-- AR.js v3.4.7 NFT Tracking - Originally from: https://raw.githubusercontent.com/AR-js-org/AR.js/3.4.7/aframe/build/aframe-ar-nft.js -->
+		<script is:inline src="/thirdPartyPlugins/aframe-ar-nft-3.4.7.js"></script>
 
 		<!-- style for the loader -->
 		<style>

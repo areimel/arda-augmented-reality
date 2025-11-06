@@ -15,7 +15,8 @@
       "Bash(npm run check:*)",
       "Bash(npm run astro:*)",
       "Bash(dir \"C:\\Users\\Alec\\Dev\\ARDA-projects\\arda-augmented-reality\\public\\thirdPartyPlugins\")",
-      "Bash(curl:*)"
+      "Bash(curl:*)",
+      "WebFetch(domain:github.com)"
     ],
     "deny": [],
     "ask": []
