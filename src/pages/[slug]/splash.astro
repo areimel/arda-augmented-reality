@@ -1,0 +1,49 @@
+---
+/*========================================*/
+/*	PAGE: Web Splash Page
+		NOTES:	This is a template-driven page and it will have minimal inner content, just props and variables.
+*/
+/*========================================*/
+
+//Essential Components
+import Layout from '@layouts/SplashLayout.astro';
+
+//Content Components
+	//import MasterComponent from '@components/MasterComponent.astro';
+
+//Dynamic route generation - auto-discover all project data files
+export async function getStaticPaths() {
+	// Use Vite's import.meta.glob to find all project JSON files
+	const projectFiles = import.meta.glob('../../data/projectData/*.json', { eager: true });
+
+	const paths = [];
+	for (const [path, module] of Object.entries(projectFiles)) {
+		// Skip template files
+		if (path.includes('template')) continue;
+
+		// Extract slug from filename (e.g., "../../data/projectData/deliverator.json" -> "deliverator")
+		const slug = path.match(/\/([^/]+)\.json$/)[1];
+
+		paths.push({
+			params: { slug },
+			props: { projectData: module }
+		});
+	}
+	return paths;
+}
+
+//Project Data - now comes from props instead of direct import
+const projectData = Astro.props.projectData;
+
+---
+
+<Layout
+	title={projectData.projectName}
+	heading={projectData.projectName}
+	description={projectData.projectDescription}
+	marker={projectData.markerImage}
+	qrcode={projectData.projectBaseUrl + "?position=wall"}
+	background={projectData.splashPage.backgroundImage}
+	pdfs={projectData.pdfs}
+>
+</Layout>

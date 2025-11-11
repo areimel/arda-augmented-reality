@@ -1,0 +1,118 @@
+---
+//Components
+import ARLayout from '@layouts/AR-Layout.astro';
+import CustomUI from '@components/ARComponents/CustomUI.astro';
+
+//Dynamic route generation - auto-discover all project data files
+export async function getStaticPaths() {
+	// Use Vite's import.meta.glob to find all project JSON files
+	const projectFiles = import.meta.glob('../../data/projectData/*.json', { eager: true });
+
+	const paths = [];
+	for (const [path, module] of Object.entries(projectFiles)) {
+		// Skip template files
+		if (path.includes('template')) continue;
+
+		// Extract slug from filename (e.g., "../../data/projectData/deliverator.json" -> "deliverator")
+		const slug = path.match(/\/([^/]+)\.json$/)[1];
+
+		paths.push({
+			params: { slug },
+			props: { projectData: module }
+		});
+	}
+	return paths;
+}
+
+//Project Data - now comes from props instead of direct import
+const projectData = Astro.props.projectData;
+
+/*===== Main Settings =====*/
+	let defaultRotation = projectData.modelSettings.defaultRotationSetting; // "flat" or "wall"
+	const markerFile = projectData.markerFile;
+	const modelFile = projectData.modelFile;
+	const displayFile = projectData.displayFile;
+	const infoLink = projectData.projectBaseUrl + "/project-info";
+
+/*===== Position Configurations =====*/
+	let rotationSetting = "";
+	let positionSetting = "";
+	//Wall surface configuration -
+	let WallRotationSetting = projectData.modelSettings.wallRotationSetting;		//don't change
+	let WallpositionSetting = projectData.modelSettings.wallPositionSetting;	//change as needed
+
+	//Flat surface configuration
+	let FlatRotationSetting = projectData.modelSettings.flatRotationSetting;		//don't change
+	let FlatpositionSetting = projectData.modelSettings.flatPositionSetting;	//probably don't change
+
+	//Card surface configuration
+	let CardRotationSetting = projectData.modelSettings.cardRotationSetting;		//don't change
+	let CardpositionSetting = projectData.modelSettings.cardPositionSetting;	//change as needed
+
+/*===== Starting Rotation Settings =====*/
+	if(defaultRotation == "flat"){
+		rotationSetting = projectData.modelSettings.flatRotationSetting;
+		positionSetting = projectData.modelSettings.flatPositionSetting;
+	}else{
+		rotationSetting = projectData.modelSettings.wallRotationSetting;
+		positionSetting = projectData.modelSettings.wallPositionSetting;
+	}
+
+---
+
+<ARLayout
+	title={projectData.projectName}
+>
+
+<CustomUI infoLink={infoLink}/>
+
+<a-scene
+	mindar-image={`imageTargetSrc: ${markerFile}; uiScanning: #custom-scanning-overlay;`}
+	color-space="sRGB"
+	renderer="colorManagement: true, physicallyCorrectLights"
+	vr-mode-ui="false"
+	xr-mode-ui="enabled: false"
+	device-orientation-permission-ui="enabled: false"
+>
+	<a-assets>
+		<img id="card" src="/images/grovery-vr-logo.png" />
+
+		<a-asset-item
+			id="displayModel"
+			src={modelFile}
+		></a-asset-item>
+	</a-assets>
+
+	<a-camera
+		position="0 0 0"
+		look-controls="enabled: false"
+	></a-camera>
+
+	<a-entity
+		id="mind-ar-target"
+		mindar-image-target="targetIndex: 0"
+	>
+		<a-entity
+			id="objectWrapper"
+			rotation={rotationSetting ? rotationSetting : "90 0 0"}
+			position={positionSetting ? positionSetting : "0 0 0.1"}
+			data-rotation-setting="flat"
+
+			data-wall-position={WallpositionSetting}
+			data-wall-rotation={WallRotationSetting}
+
+			data-flat-position={FlatpositionSetting}
+			data-flat-rotation={FlatRotationSetting}
+
+			data-card-position={CardpositionSetting}
+			data-card-rotation={CardRotationSetting}
+		>
+			<!-- <a-video id="ar-video" src={displayFile} width="0.637" height="0.253"></a-video> -->
+			<a-video id="ar-video" src={displayFile} width="0.9555" height="0.3795"></a-video>
+
+		</a-entity>
+	</a-entity>
+
+</a-scene>
+
+</ARLayout>
