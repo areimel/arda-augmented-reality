@@ -33,5 +33,17 @@
         "available": true,
         "wall": "/pdf/deliverator-AssetPrintout-Wall.pdf",
         "flat": "/pdf/deliverator-AssetPrintout-Flat.pdf"
-    }
+    },
+    "assets": [
+        {
+            "type": "img",
+            "id": "card",
+            "src": "/images/grovery-vr-logo.png"
+        },
+        {
+            "type": "a-asset-item",
+            "id": "displayModel",
+            "src": "/images/deliverator.gif"
+        }
+    ]
 }

@@ -4,6 +4,7 @@ import ARLayout from '@layouts/AR-Layout.astro';
 import CustomUI from '@components/ARComponents/CustomUI.astro';
 import ObjectWrapper from '@components/ARComponents/ObjectWrapper.astro';
 import ArScene from '@components/ARComponents/ArScene.astro';
+import ArAssets from '@components/ARComponents/ArAssets.astro';
 
 //Dynamic route generation - auto-discover all project data files
 export async function getStaticPaths() {
@@ -44,14 +45,7 @@ const infoLink = projectData.projectBaseUrl + "/project-info";
 <CustomUI infoLink={infoLink}/>
 
 <ArScene markerFile={markerFile}>
-	<a-assets>
-		<img id="card" src="/images/grovery-vr-logo.png" />
-
-		<a-asset-item
-			id="displayModel"
-			src={modelFile}
-		></a-asset-item>
-	</a-assets>
+	<ArAssets assetData={projectData.assets} />
 
 	<a-camera
 		position="0 0 0"

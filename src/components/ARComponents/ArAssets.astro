@@ -1,0 +1,35 @@
+---
+/*========================================*/
+/*	COMPONENT: ArAssets
+		NOTES:	Wrapper for A-Frame assets configuration.
+				Dynamically generates asset elements based on array data from project JSON.
+				Supports img, video, and a-asset-item element types with flexible attributes.
+*/
+/*========================================*/
+
+// Extract assetData prop (array of asset definitions)
+const { assetData = [] } = Astro.props;
+
+---
+
+<a-assets>
+	{assetData.map((asset) => {
+		if (asset.type === 'img') {
+			return <img id={asset.id} src={asset.src} />;
+		} else if (asset.type === 'video') {
+			const attrs = asset.attributes || {};
+			return (
+				<video
+					id={asset.id}
+					src={asset.src}
+					playsinline={attrs.playsinline}
+					crossorigin={attrs.crossorigin}
+					loop={attrs.loop}
+					autoplay={attrs.autoplay}
+				></video>
+			);
+		} else if (asset.type === 'a-asset-item') {
+			return <a-asset-item id={asset.id} src={asset.src}></a-asset-item>;
+		}
+	})}
+</a-assets>
