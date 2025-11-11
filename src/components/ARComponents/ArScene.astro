@@ -1,0 +1,24 @@
+---
+/*========================================*/
+/*	COMPONENT: ArScene
+		NOTES:	Wrapper for A-Frame scene configuration with Mind-AR image tracking.
+				Handles all standard AR scene attributes and accepts dynamic marker file.
+				Uses Astro slots to accept any child content (assets, camera, entities, etc.)
+*/
+/*========================================*/
+
+// Extract markerFile prop (required for Mind-AR image tracking)
+const { markerFile } = Astro.props;
+
+---
+
+<a-scene
+	mindar-image={`imageTargetSrc: ${markerFile}; uiScanning: #custom-scanning-overlay;`}
+	color-space="sRGB"
+	renderer="colorManagement: true, physicallyCorrectLights"
+	vr-mode-ui="false"
+	xr-mode-ui="enabled: false"
+	device-orientation-permission-ui="enabled: false"
+>
+	<slot />
+</a-scene>

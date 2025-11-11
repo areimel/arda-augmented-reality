@@ -1,0 +1,81 @@
+---
+/*========================================*/
+/*	COMPONENT: ObjectWrapper
+		NOTES:	Wrapper entity for AR objects that handles position/rotation
+				configurations for wall, flat, and card orientations.
+				Uses Astro slots to accept any child content (videos, 3D models, images, etc.)
+*/
+/*========================================*/
+
+// Extract objectData prop with default fallbacks
+const { objectData = {} } = Astro.props;
+
+// Default fallback values for all settings
+const defaults = {
+	defaultRotationSetting: "wall",
+	defaultPosition: "0 0 0.1",
+	defaultScale: "1 1 1",
+	wallRotationSetting: "0 0 0",
+	wallPositionSetting: "0 0 0.1",
+	wallScaleSetting: "1 1 1",
+	flatRotationSetting: "90 0 0",
+	flatPositionSetting: "0 0 0.1",
+	flatScaleSetting: "1 1 1",
+	cardRotationSetting: "90 0 0",
+	cardPositionSetting: "0 0 0.1",
+	cardScaleSetting: "1 1 1"
+};
+
+// Merge provided objectData with defaults
+const settings = { ...defaults, ...objectData };
+
+/*===== Position Configurations =====*/
+let rotationSetting = "";
+let positionSetting = "";
+
+// Wall surface configuration
+let WallRotationSetting = settings.wallRotationSetting;
+let WallpositionSetting = settings.wallPositionSetting;
+let WallscaleSetting = settings.wallScaleSetting;
+
+// Flat surface configuration
+let FlatRotationSetting = settings.flatRotationSetting;
+let FlatpositionSetting = settings.flatPositionSetting;
+let FlatscaleSetting = settings.flatScaleSetting;
+
+// Card surface configuration
+let CardRotationSetting = settings.cardRotationSetting;
+let CardpositionSetting = settings.cardPositionSetting;
+let CardscaleSetting = settings.cardScaleSetting;
+
+/*===== Starting Rotation Settings =====*/
+if(settings.defaultRotationSetting == "flat"){
+	rotationSetting = settings.flatRotationSetting;
+	positionSetting = settings.flatPositionSetting;
+}else{
+	rotationSetting = settings.wallRotationSetting;
+	positionSetting = settings.wallPositionSetting;
+}
+
+---
+
+<a-entity
+	id="objectWrapper"
+	rotation={rotationSetting ? rotationSetting : "90 0 0"}
+	position={positionSetting ? positionSetting : "0 0 0.1"}
+	data-rotation-setting={settings.defaultRotationSetting}
+
+	data-wall-position={WallpositionSetting}
+	data-wall-rotation={WallRotationSetting}
+	data-wall-scale={WallscaleSetting}
+
+	data-flat-position={FlatpositionSetting}
+	data-flat-rotation={FlatRotationSetting}
+	data-flat-scale={FlatscaleSetting}
+
+	data-card-position={CardpositionSetting}
+	data-card-rotation={CardRotationSetting}
+	data-card-scale={CardscaleSetting}
+>
+	<slot />
+</a-entity>
