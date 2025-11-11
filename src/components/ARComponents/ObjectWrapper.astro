@@ -2,7 +2,7 @@
 /*========================================*/
 /*	COMPONENT: ObjectWrapper
 		NOTES:	Wrapper entity for AR objects that handles position/rotation
-				configurations for wall, flat, and card orientations.
+				configurations for wall and flat orientations using presets.
 				Uses Astro slots to accept any child content (videos, 3D models, images, etc.)
 */
 /*========================================*/
@@ -10,72 +10,60 @@
 // Extract objectData prop with default fallbacks
 const { objectData = {} } = Astro.props;
 
-// Default fallback values for all settings
-const defaults = {
-	defaultRotationSetting: "wall",
-	defaultPosition: "0 0 0.1",
-	defaultScale: "1 1 1",
-	wallRotationSetting: "0 0 0",
-	wallPositionSetting: "0 0 0.1",
-	wallScaleSetting: "1 1 1",
-	flatRotationSetting: "90 0 0",
-	flatPositionSetting: "0 0 0.1",
-	flatScaleSetting: "1 1 1",
-	cardRotationSetting: "90 0 0",
-	cardPositionSetting: "0 0 0.1",
-	cardScaleSetting: "1 1 1"
+/*===== PRESETS =====*/
+const POSITION_PRESETS = {
+	wall: {
+		rotation: "0 0 0",
+		position: "0 0 0.1"
+	},
+	flat: {
+		rotation: "90 0 0",
+		position: "0 0 0.1"
+	}
 };
 
-// Merge provided objectData with defaults
-const settings = { ...defaults, ...objectData };
+const SCALE_PRESETS = {
+	default: "1 1 1",
+	large: "2 2 2"
+};
 
-/*===== Position Configurations =====*/
-let rotationSetting = "";
-let positionSetting = "";
+/*===== Extract Settings from objectData =====*/
+const position = objectData.position || "wall"; // "wall" | "flat"
+const scale = objectData.scale || "default"; // "default" | "large"
+const videoWidth = objectData.videoWidth || "1";
+const videoHeight = objectData.videoHeight || "1";
 
-// Wall surface configuration
-let WallRotationSetting = settings.wallRotationSetting;
-let WallpositionSetting = settings.wallPositionSetting;
-let WallscaleSetting = settings.wallScaleSetting;
+/*===== Apply Presets =====*/
+const wallRotation = POSITION_PRESETS.wall.rotation;
+const wallPosition = POSITION_PRESETS.wall.position;
+const wallScale = SCALE_PRESETS[scale];
 
-// Flat surface configuration
-let FlatRotationSetting = settings.flatRotationSetting;
-let FlatpositionSetting = settings.flatPositionSetting;
-let FlatscaleSetting = settings.flatScaleSetting;
+const flatRotation = POSITION_PRESETS.flat.rotation;
+const flatPosition = POSITION_PRESETS.flat.position;
+const flatScale = SCALE_PRESETS[scale];
 
-// Card surface configuration
-let CardRotationSetting = settings.cardRotationSetting;
-let CardpositionSetting = settings.cardPositionSetting;
-let CardscaleSetting = settings.cardScaleSetting;
-
-/*===== Starting Rotation Settings =====*/
-if(settings.defaultRotationSetting == "flat"){
-	rotationSetting = settings.flatRotationSetting;
-	positionSetting = settings.flatPositionSetting;
-}else{
-	rotationSetting = settings.wallRotationSetting;
-	positionSetting = settings.wallPositionSetting;
-}
+// Set initial rotation and position based on selected preset
+const initialRotation = POSITION_PRESETS[position].rotation;
+const initialPosition = POSITION_PRESETS[position].position;
 
 ---
 
 <a-entity
 	id="objectWrapper"
-	rotation={rotationSetting ? rotationSetting : "90 0 0"}
-	position={positionSetting ? positionSetting : "0 0 0.1"}
-	data-rotation-setting={settings.defaultRotationSetting}
+	rotation={initialRotation}
+	position={initialPosition}
+	data-rotation-setting={position}
 
-	data-wall-position={WallpositionSetting}
-	data-wall-rotation={WallRotationSetting}
-	data-wall-scale={WallscaleSetting}
+	data-wall-position={wallPosition}
+	data-wall-rotation={wallRotation}
+	data-wall-scale={wallScale}
 
-	data-flat-position={FlatpositionSetting}
-	data-flat-rotation={FlatRotationSetting}
-	data-flat-scale={FlatscaleSetting}
+	data-flat-position={flatPosition}
+	data-flat-rotation={flatRotation}
+	data-flat-scale={flatScale}
 
-	data-card-position={CardpositionSetting}
-	data-card-rotation={CardRotationSetting}
-	data-card-scale={CardscaleSetting}
+	data-video-width={videoWidth}
+	data-video-height={videoHeight}
 >
 	<slot />
 </a-entity>

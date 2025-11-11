@@ -10,19 +10,9 @@
         "smallText": "Point your camera at the marker image to view the 3D object.",
         "flashingText": "[Marker Not In View]"
     },
-    "modelSettings":{
-        "defaultScale": "7 7 7",
-        "defaultRotationSetting": "wall",
-        "defaultPosition": "0 0 0.1",
-        "wallRotationSetting": "0 0 0",
-        "wallPositionSetting": "0 0 0.1",
-        "wallScaleSetting": "7 7 7",
-        "flatRotationSetting": "90 0 0",
-        "flatPositionSetting": "0 0 0.1",
-        "flatScaleSetting": "7 7 7",
-        "cardRotationSetting": "90 0 0",
-        "cardPositionSetting": "0 0 0.1",
-        "cardScaleSetting": "10 10 10"
+    "modelSettings": {
+        "position": "wall",
+        "scale": "large"
     },
     "splashPage":{
         "backgroundImage": "/images/christmas-bg.jpg"        

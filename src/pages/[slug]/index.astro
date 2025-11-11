@@ -36,6 +36,10 @@ const modelFile = projectData.modelFile;
 const displayFile = projectData.displayFile;
 const infoLink = projectData.projectBaseUrl + "/project-info";
 
+/*===== Video Settings =====*/
+const videoWidth = projectData.modelSettings?.videoWidth || "1";
+const videoHeight = projectData.modelSettings?.videoHeight || "1";
+
 ---
 
 <ARLayout
@@ -57,8 +61,7 @@ const infoLink = projectData.projectBaseUrl + "/project-info";
 		mindar-image-target="targetIndex: 0"
 	>
 		<ObjectWrapper objectData={projectData.modelSettings}>
-			<!-- <a-video id="ar-video" src={displayFile} width="0.637" height="0.253"></a-video> -->
-			<a-video id="ar-video" src={displayFile} width="0.9555" height="0.3795"></a-video>
+			<a-video id="ar-video" src={displayFile} width={videoWidth} height={videoHeight}></a-video>
 		</ObjectWrapper>
 	</a-entity>
 

@@ -17,7 +17,8 @@
       "Bash(dir \"C:\\Users\\Alec\\Dev\\ARDA-projects\\arda-augmented-reality\\public\\thirdPartyPlugins\")",
       "Bash(curl:*)",
       "WebFetch(domain:github.com)",
-      "Bash(cat:*)"
+      "Bash(cat:*)",
+      "Bash(npx astro check)"
     ],
     "deny": [],
     "ask": []
