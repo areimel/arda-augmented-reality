@@ -1,0 +1,39 @@
+---
+import LinkCard from './LinkCard.astro';
+
+// Auto-discover all project JSON files
+const projectFiles = import.meta.glob('../../data/projectData/*.json', { eager: true });
+
+// Process project files into an array with slug and data
+const projects = Object.entries(projectFiles).map(([filepath, module]) => {
+  // Extract filename from path (e.g., '../../data/projectData/deliverator.json' -> 'deliverator')
+  const filename = filepath.split('/').pop()?.replace('.json', '') || '';
+
+  // Get project data
+  const projectData = (module as any).default;
+
+  return {
+    slug: filename,
+    name: projectData.projectName || filename,
+    description: projectData.projectDescription || 'No description available',
+    experienceType: projectData.experienceType || 'Unknown',
+    markerImage: projectData.markerImage || null,
+    link: `/${filename}`
+  };
+});
+
+// Sort projects alphabetically by name
+projects.sort((a, b) => a.name.localeCompare(b.name));
+---
+
+<div class="flex flex-wrap justify-center gap-4">
+  {projects.map((project) => (
+    <LinkCard
+      name={project.name}
+      description={project.description}
+      link={project.link}
+      experienceType={project.experienceType}
+      markerImage={project.markerImage}
+    />
+  ))}
+</div>
