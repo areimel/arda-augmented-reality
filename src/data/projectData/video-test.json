@@ -1,8 +1,8 @@
 {
     "projectName": "Video Test",
     "projectDescription": "v1 Basic Video Test.",
-    "markerFile": "/markers/grovery-holiday-marker-v2.mind",
-    "markerImage": "/markers/grovery-holiday-marker-v2.jpg",
+    "markerFile": "/markers/Generic-Marker.mind",
+    "markerImage": "/markers/Generic-Marker.png",
     "displayFile": "/videos/alpha-webm-test.webm",
     "uiPreset": "default",
     "modelSettings": {

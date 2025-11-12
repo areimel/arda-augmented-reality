@@ -5,6 +5,7 @@ import CustomUI from '@components/ARComponents/CustomUI.astro';
 import ObjectWrapper from '@components/ARComponents/ObjectWrapper.astro';
 import ArScene from '@components/ARComponents/ArScene.astro';
 import ArAssets from '@components/ARComponents/ArAssets.astro';
+import Camera from '@components/ARComponents/Camera.astro';
 
 //Dynamic route generation - auto-discover all project data files
 export async function getStaticPaths() {
@@ -50,10 +51,7 @@ const videoHeight = projectData.modelSettings?.videoHeight || "1";
 <ArScene markerFile={markerFile}>
 	<ArAssets assetData={projectData.assets} />
 
-	<a-camera
-		position="0 0 0"
-		look-controls="enabled: false"
-	></a-camera>
+	<Camera />
 
 	<a-entity
 		id="mind-ar-target"
