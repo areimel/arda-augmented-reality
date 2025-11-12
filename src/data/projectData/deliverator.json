@@ -4,14 +4,9 @@
     "projectBaseUrl": "https://interzone-ar.netlify.app/deliverator",
     "markerFile": "/markers/deliverator-marker.mind",
     "markerImage": "/markers/deliverator-marker.jpg",
-    "modelFile": "/images/deliverator.gif",
     "experienceType": "video",
     "displayFile": "/videos/deliverator.mp4",
-    "customUI": {
-        "bigText": "Scan the Marker",
-        "smallText": "Point your camera at the marker image to view the 3D object.",
-        "flashingText": "[Marker Not In View]"
-    },
+    "uiPreset": "default",
     "modelSettings": {
         "position": "wall",
         "scale": "default",

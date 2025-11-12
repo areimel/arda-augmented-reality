@@ -32,7 +32,6 @@ const projectData = Astro.props.projectData;
 
 /*===== Main Settings =====*/
 const markerFile = projectData.markerFile;
-const modelFile = projectData.modelFile;
 const displayFile = projectData.displayFile;
 const infoLink = projectData.projectBaseUrl + "/project-info";
 
@@ -46,7 +45,7 @@ const videoHeight = projectData.modelSettings?.videoHeight || "1";
 	title={projectData.projectName}
 >
 
-<CustomUI infoLink={infoLink}/>
+<CustomUI uiPreset={projectData.uiPreset} infoLink={infoLink}/>
 
 <ArScene markerFile={markerFile}>
 	<ArAssets assetData={projectData.assets} />
