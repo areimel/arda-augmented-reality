@@ -1,7 +1,6 @@
 {
     "projectName": "Interactive Marker Template",
     "projectDescription": "Interactive/clickable 3D assets",
-    "projectBaseUrl": "https://interzone-ar.netlify.app/interactive-marker-template",
     "markerFile": "/markers/Generic-Marker.mind",
     "markerImage": "/markers/Generic-Marker.png",
     "experienceType": "video",

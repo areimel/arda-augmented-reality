@@ -42,7 +42,7 @@ const projectData = Astro.props.projectData;
 	heading={projectData.projectName}
 	description={projectData.projectDescription}
 	marker={projectData.markerImage}
-	qrcode={projectData.projectBaseUrl + "?position=wall"}
+	qrcode={`${Astro.url.origin}/${Astro.params.slug}?position=wall`}
 	background={projectData.splashPage.backgroundImage}
 	pdfs={projectData.pdfs}
 >

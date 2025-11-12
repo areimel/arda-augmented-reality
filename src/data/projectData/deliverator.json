@@ -1,7 +1,6 @@
 {
     "projectName": "Deliverator Gif",
     "projectDescription": "v1 Basic Video Test.",
-    "projectBaseUrl": "https://interzone-ar.netlify.app/deliverator",
     "markerFile": "/markers/deliverator-marker.mind",
     "markerImage": "/markers/deliverator-marker.jpg",
     "experienceType": "video",
@@ -22,11 +21,6 @@
         "flat": "/pdf/deliverator-AssetPrintout-Flat.pdf"
     },
     "assets": [
-        {
-            "type": "img",
-            "id": "card",
-            "src": "/images/grovery-vr-logo.png"
-        },
         {
             "type": "a-asset-item",
             "id": "displayModel",

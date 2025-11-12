@@ -33,7 +33,7 @@ export async function getStaticPaths() {
 
 //Project Data - now comes from props instead of direct import
 const projectData = Astro.props.projectData;
-const baseURL = projectData.projectBaseUrl;
+const baseURL = `${Astro.url.origin}/${Astro.params.slug}`;
 
 ---
 

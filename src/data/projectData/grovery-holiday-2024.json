@@ -1,7 +1,6 @@
 {
     "projectName": "The Grovery Holiday Card 2024",
     "projectDescription": "Augmented Reality experience for viewing a virtual 3D 'hologram' that is attached to a holiday card.",
-    "projectBaseUrl": "https://grovery-ar.netlify.app/grovery-holiday-ar",
     "markerFile": "/markers/grovery-holiday-marker-v2.mind",
     "markerImage": "/markers/grovery-holiday-marker-v2.jpg",
     "displayFile": "/3d-objects/snowglobe_gltf/scene.gltf",

@@ -1,7 +1,6 @@
 {
     "projectName": "Video Test",
     "projectDescription": "v1 Basic Video Test.",
-    "projectBaseUrl": "https://grovery-ar.netlify.app/video-test",
     "markerFile": "/markers/grovery-holiday-marker-v2.mind",
     "markerImage": "/markers/grovery-holiday-marker-v2.jpg",
     "displayFile": "/videos/alpha-webm-test.webm",

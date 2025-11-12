@@ -1,7 +1,6 @@
 {
     "projectName": "General Marker Template",
     "projectDescription": "Marker-based Augmented Reality Experience template. Contains the most up-to-date code for working with this project. Includes green-screen video support.",
-    "projectBaseUrl": "https://interzone-ar.netlify.app/general-marker-template",
     "markerFile": "/markers/Generic-Marker.mind",
     "markerImage": "/markers/Generic-Marker.png",
     "experienceType": "video",
