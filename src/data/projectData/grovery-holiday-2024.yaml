@@ -1,0 +1,55 @@
+# ============================================================================
+# ARDA AR Project Configuration: The Grovery Holiday Card 2024
+# ============================================================================
+# This file configures an AR experience for the ARDA platform.
+# For more information, see the ProjectData interface in src/types/projectData.ts
+
+# ----------------------------------------------------------------------------
+# Project Metadata
+# ----------------------------------------------------------------------------
+projectName: The Grovery Holiday Card 2024
+projectDescription: Augmented Reality experience for viewing a virtual 3D 'hologram' that is attached to a holiday card.
+
+# ----------------------------------------------------------------------------
+# AR Marker Configuration
+# ----------------------------------------------------------------------------
+# Marker files are compiled using Mind-AR: https://hiukim.github.io/mind-ar-js-doc/tools/compile/
+markerFile: /project-files/grovery-holiday-2024/markers/grovery-holiday-marker-v2.mind    # Compiled .mind file for AR tracking
+markerImage: /project-files/grovery-holiday-2024/markers/grovery-holiday-marker-v2.jpg     # Original marker image for reference/printing
+
+# ----------------------------------------------------------------------------
+# Experience Configuration
+# ----------------------------------------------------------------------------
+# Path to the 3D model file (GLTF format)
+displayFile: /project-files/grovery-holiday-2024/3d-objects/snowglobe_gltf/scene.gltf
+
+# UI preset determines the messaging and behavior
+# Options: 'default', 'product', 'artwork'
+uiPreset: default
+
+# ----------------------------------------------------------------------------
+# Model/Object Settings
+# ----------------------------------------------------------------------------
+modelSettings:
+  # Position orientation: 'wall' (vertical), 'flat' (horizontal), or 'card'
+  position: wall
+
+  # Scale preset: 'default' or 'large'
+  # Using 'large' for this 3D snowglobe model to make it prominent
+  scale: large
+
+# ----------------------------------------------------------------------------
+# Splash Page Configuration
+# ----------------------------------------------------------------------------
+splashPage:
+  # Background image for the splash screen
+  backgroundImage: /project-files/grovery-holiday-2024/images/christmas-bg.jpg
+
+# ----------------------------------------------------------------------------
+# PDF Download Configuration
+# ----------------------------------------------------------------------------
+# Printable marker PDFs for different orientations
+pdfs:
+  available: true
+  wall: /project-files/grovery-holiday-2024/pdf/grovery-holiday-card-2024-AssetPrintout-Wall.pdf
+  flat: /project-files/grovery-holiday-2024/pdf/grovery-holiday-card-2024-AssetPrintout-Flat.pdf

@@ -18,7 +18,13 @@
       "Bash(curl:*)",
       "WebFetch(domain:github.com)",
       "Bash(cat:*)",
-      "Bash(npx astro check)"
+      "Bash(npx astro check)",
+      "Bash(if [ -d \"C:\\Users\\Alec\\Dev\\ARDA-projects\\arda-augmented-reality\\public\\project-files\\templates\" ])",
+      "Bash(then echo \"Directory exists\")",
+      "Bash(else echo \"Directory does not exist\")",
+      "Bash(fi)",
+      "Bash(tree:*)",
+      "Bash(nul)"
     ],
     "deny": [],
     "ask": []

@@ -1,0 +1,55 @@
+# ============================================================================
+# ARDA AR Project Configuration: Video Test
+# ============================================================================
+# This file configures an AR experience for the ARDA platform.
+# For more information, see the ProjectData interface in src/types/projectData.ts
+
+# ----------------------------------------------------------------------------
+# Project Metadata
+# ----------------------------------------------------------------------------
+projectName: Video Test
+projectDescription: v1 Basic Video Test.
+
+# ----------------------------------------------------------------------------
+# AR Marker Configuration
+# ----------------------------------------------------------------------------
+# Using the generic marker for testing purposes
+markerFile: /project-files/video-test/markers/Generic-Marker.mind    # Compiled .mind file for AR tracking
+markerImage: /project-files/video-test/markers/Generic-Marker.png    # Original marker image for reference/printing
+
+# ----------------------------------------------------------------------------
+# Experience Configuration
+# ----------------------------------------------------------------------------
+# Path to the video file (supports WebM with alpha channel)
+displayFile: /project-files/video-test/videos/alpha-webm-test.webm
+
+# UI preset determines the messaging and behavior
+# Options: 'default', 'product', 'artwork'
+uiPreset: default
+
+# ----------------------------------------------------------------------------
+# Model/Object Settings
+# ----------------------------------------------------------------------------
+modelSettings:
+  # Position orientation: 'wall' (vertical), 'flat' (horizontal), or 'card'
+  position: wall
+
+  # Scale preset: 'default' or 'large'
+  # Using 'large' for better visibility during testing
+  scale: large
+
+# ----------------------------------------------------------------------------
+# Splash Page Configuration
+# ----------------------------------------------------------------------------
+splashPage:
+  # Background image for the splash screen
+  backgroundImage: /project-files/video-test/images/christmas-bg.jpg
+
+# ----------------------------------------------------------------------------
+# PDF Download Configuration
+# ----------------------------------------------------------------------------
+# Note: Using holiday card PDFs as placeholder for testing
+pdfs:
+  available: true
+  wall: /project-files/video-test/pdf/grovery-holiday-card-2024-AssetPrintout-Wall.pdf
+  flat: /project-files/video-test/pdf/grovery-holiday-card-2024-AssetPrintout-Flat.pdf

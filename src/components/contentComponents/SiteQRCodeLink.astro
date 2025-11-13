@@ -5,7 +5,7 @@ import { adaptURLForEnvironment } from '@/utils/environmentUtils';
 const {} = Astro.props;
 
 //Site Data
-const siteData = await import("src/data/siteData.json");
+const siteData = await import("src/data/siteData.yaml");
 
 // Adapt the site URL for the current environment
 const adaptedSiteURL = adaptURLForEnvironment(siteData.siteURL);

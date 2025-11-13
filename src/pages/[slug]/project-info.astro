@@ -12,16 +12,16 @@ import QRCode from '@components/QRCode.astro';
 
 //Dynamic route generation - auto-discover all project data files
 export async function getStaticPaths() {
-	// Use Vite's import.meta.glob to find all project JSON files
-	const projectFiles = import.meta.glob('../../data/projectData/*.json', { eager: true });
+	// Use Vite's import.meta.glob to find all project YAML files
+	const projectFiles = import.meta.glob('../../data/projectData/*.yaml', { eager: true });
 
 	const paths = [];
 	for (const [path, module] of Object.entries(projectFiles)) {
 		// Skip template files
 		if (path.includes('template')) continue;
 
-		// Extract slug from filename (e.g., "../../data/projectData/deliverator.json" -> "deliverator")
-		const slug = path.match(/\/([^/]+)\.json$/)[1];
+		// Extract slug from filename (e.g., "../../data/projectData/deliverator.yaml" -> "deliverator")
+		const slug = path.match(/\/([^/]+)\.yaml$/)[1];
 
 		paths.push({
 			params: { slug },

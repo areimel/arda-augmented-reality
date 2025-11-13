@@ -1,0 +1,90 @@
+# ============================================================================
+# ARDA AR Project Configuration: Interactive Marker Template
+# ============================================================================
+# This is a TEMPLATE file for creating interactive AR projects with clickable 3D assets.
+# Copy this file and customize it for your project needs.
+# For more information, see the ProjectData interface in src/types/projectData.ts
+# ============================================================================
+
+# ----------------------------------------------------------------------------
+# Project Metadata
+# ----------------------------------------------------------------------------
+projectName: Interactive Marker Template
+projectDescription: Interactive/clickable 3D assets
+
+# ----------------------------------------------------------------------------
+# AR Marker Configuration
+# ----------------------------------------------------------------------------
+# Marker files are compiled using Mind-AR: https://hiukim.github.io/mind-ar-js-doc/tools/compile/
+# Create a project folder under /public/project-files/your-project-name/markers/
+markerFile: /project-files/templates/markers/Generic-Marker.mind    # Compiled .mind file for AR tracking
+markerImage: /project-files/templates/markers/Generic-Marker.png    # Original marker image for reference/printing
+
+# ----------------------------------------------------------------------------
+# Experience Configuration
+# ----------------------------------------------------------------------------
+# Type of AR content: 'video', 'image', or '3d-object'
+experienceType: video
+
+# Path to the main content file
+# Place your content in /public/project-files/your-project-name/videos/ (or images/, 3d-objects/)
+displayFile: /project-files/templates/videos/your-video.mp4
+
+# Legacy asset dimensions (optional)
+assetWidth: "1.6"
+assetHeight: "0.9"
+assetScale: "1"
+
+# UI preset determines the messaging and behavior
+# Options: 'default', 'product', 'artwork'
+uiPreset: default
+
+# ----------------------------------------------------------------------------
+# Model/Object Settings
+# ----------------------------------------------------------------------------
+modelSettings:
+  # Position orientation: 'wall' (vertical), 'flat' (horizontal), or 'card'
+  position: wall
+
+  # Scale preset: 'default' or 'large'
+  scale: default
+
+# ----------------------------------------------------------------------------
+# Splash Page Configuration
+# ----------------------------------------------------------------------------
+splashPage:
+  # Responsive background images for different screen sizes
+  # Place images in /public/project-files/your-project-name/images/
+  backgroundImage:
+    active: true
+    desktop: /project-files/templates/images/splash-desktop.jpg
+    mobile: /project-files/templates/images/splash-mobile.jpg
+
+# ----------------------------------------------------------------------------
+# PDF Download Configuration
+# ----------------------------------------------------------------------------
+pdfs:
+  available: true
+  wall: /project-files/templates/pdf/your-project-AssetPrintout-Wall.pdf
+  flat: /project-files/templates/pdf/your-project-AssetPrintout-Flat.pdf
+
+# ----------------------------------------------------------------------------
+# Interactive Features (Implementation Notes)
+# ----------------------------------------------------------------------------
+# To add interactivity:
+# 1. Add raycaster to camera (already configured in Camera.astro)
+# 2. Add cursor component for visual feedback
+# 3. Add event listeners to 3D objects:
+#    - click/mousedown for selection
+#    - mouseenter/mouseleave for hover effects
+# 4. Use A-Frame animation components for transitions
+#
+# Example A-Frame interactive component:
+#   <a-entity
+#     class="clickable"
+#     material="color: blue"
+#     geometry="primitive: box"
+#     event-set__enter="_event: mouseenter; material.color: red"
+#     event-set__leave="_event: mouseleave; material.color: blue"
+#     event-set__click="_event: click; scale: 1.5 1.5 1.5">
+#   </a-entity>

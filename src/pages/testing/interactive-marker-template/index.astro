@@ -9,7 +9,7 @@ import ARLayout from '@layouts/AR-Layout.astro';
 import CustomUI from '@components/ARComponents/CustomUI.astro';
 
 //Project Data
-const projectData = await import("src/data/projectData/interactive-marker-template.json");
+const projectData = await import("src/data/projectData/interactive-marker-template.yaml");
 
 /*===== Main Settings =====*/
 	let defaultRotation = projectData.modelSettings.defaultRotationSetting; // "flat" or "wall"

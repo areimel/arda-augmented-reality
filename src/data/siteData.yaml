@@ -1,0 +1,46 @@
+# ============================================================================
+# ARDA AR Site Configuration
+# ============================================================================
+# Global site settings and metadata for the ARDA Augmented Reality platform.
+# These settings are used across all pages and components.
+# For more information, see the SiteData interface in src/types/projectData.ts
+# ============================================================================
+
+# ----------------------------------------------------------------------------
+# Site URLs and Identifiers
+# ----------------------------------------------------------------------------
+# Base URL for the deployed site (used for canonical URLs, social sharing, etc.)
+siteURL: https://arda-ar.netlify.app
+
+# Project/site name (used in titles and navigation)
+projectName: ARDA Augmented Reality
+
+# Suffix appended to all page titles
+# Example: "Project Name | ARDA Augmented Reality"
+titleSuffix: "| ARDA Augmented Reality"
+
+# Default description for meta tags (used when page doesn't have specific description)
+fallbackDescription: Augmented Reality experiences on your phone - no app download needed!
+
+# ----------------------------------------------------------------------------
+# Company/Organization Branding
+# ----------------------------------------------------------------------------
+# Full company name
+companyName: ARDA - Advanced Research & Development Agency
+
+# Path to main company logo (used in headers, footers, etc.)
+companyLogo: /images/logo/interzone-logo-black.png
+
+# Path to company logo glyph/icon (used for favicons, small displays)
+companyLogoGlyph: /images/logo/interzone-logo-black.png
+
+# ----------------------------------------------------------------------------
+# Site Metadata
+# ----------------------------------------------------------------------------
+siteMetadata:
+  # Author name for meta tags
+  author: ARDA
+
+  # Theme color preference for browser UI
+  # Options: 'light', 'dark', or specific hex color
+  themeColor: light
