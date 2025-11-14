@@ -6,6 +6,7 @@ import ObjectWrapper from '@components/ARComponents/ObjectWrapper.astro';
 import ArScene from '@components/ARComponents/ArScene.astro';
 import ArAssets from '@components/ARComponents/ArAssets.astro';
 import Camera from '@components/ARComponents/Camera.astro';
+import ArObject from '@components/ARComponents/ArObject.astro';
 
 //Dynamic route generation - auto-discover all project data files
 export async function getStaticPaths() {
@@ -58,7 +59,17 @@ const videoHeight = projectData.modelSettings?.videoHeight || "1";
 		mindar-image-target="targetIndex: 0"
 	>
 		<ObjectWrapper objectData={projectData.modelSettings}>
-			<a-video id="ar-video" src={displayFile} width={videoWidth} height={videoHeight}></a-video>
+			<ArObject
+				displayFile={displayFile}
+				experienceType={projectData.experienceType}
+				width={videoWidth}
+				height={videoHeight}
+				isGreenscreen={projectData.modelSettings?.isGreenscreen}
+				chromakeyColor={projectData.modelSettings?.chromakeyColor}
+				modelScale={projectData.modelSettings?.modelScale}
+				modelRotation={projectData.modelSettings?.modelRotation}
+				modelPosition={projectData.modelSettings?.modelPosition}
+			/>
 		</ObjectWrapper>
 	</a-entity>
 

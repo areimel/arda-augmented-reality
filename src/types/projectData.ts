@@ -61,6 +61,16 @@ export interface ModelSettings {
   videoWidth?: string;
   /** Custom video height (for video experiences) */
   videoHeight?: string;
+  /** Enable greenscreen/chromakey effect for videos */
+  isGreenscreen?: boolean;
+  /** RGB color for chromakey (default: "0.1 0.9 0.2" for green) */
+  chromakeyColor?: string;
+  /** Custom scale for 3D models (e.g., "0.004 0.004 0.004") */
+  modelScale?: string;
+  /** Custom rotation for 3D models (e.g., "0 0 0") */
+  modelRotation?: string;
+  /** Custom position for 3D models (e.g., "0 -0.25 0") */
+  modelPosition?: string;
 }
 
 /**

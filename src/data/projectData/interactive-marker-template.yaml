@@ -49,6 +49,24 @@ modelSettings:
   # Scale preset: 'default' or 'large'
   scale: default
 
+  # VIDEO SETTINGS (for experienceType: video)
+  # Custom video dimensions (optional - overrides defaults)
+  # videoWidth: "1.6"
+  # videoHeight: "0.9"
+
+  # Greenscreen/Chromakey video support (optional)
+  # Enable chromakey effect to make green backgrounds transparent
+  # isGreenscreen: true
+  # chromakeyColor: "0.1 0.9 0.2"  # RGB values for chroma color (default: green)
+
+  # 3D MODEL SETTINGS (for experienceType: 3d-object)
+  # Custom scale for 3D models (optional)
+  # modelScale: "0.004 0.004 0.004"  # Scale X Y Z
+  # Custom rotation for 3D models (optional)
+  # modelRotation: "0 0 0"  # Rotation X Y Z in degrees
+  # Custom position for 3D models (optional)
+  # modelPosition: "0 -0.25 0"  # Position X Y Z
+
 # ----------------------------------------------------------------------------
 # Splash Page Configuration
 # ----------------------------------------------------------------------------
