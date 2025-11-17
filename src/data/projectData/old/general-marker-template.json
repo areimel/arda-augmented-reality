@@ -1,0 +1,28 @@
+{
+    "projectName": "General Marker Template",
+    "projectDescription": "Marker-based Augmented Reality Experience template. Contains the most up-to-date code for working with this project. Includes green-screen video support.",
+    "markerFile": "/markers/Generic-Marker.mind",
+    "markerImage": "/markers/Generic-Marker.png",
+    "experienceType": "video",
+    "displayFile": "/videos/deliverator.mp4",
+    "assetWidth": "1.6",
+    "assetHeight": "0.9",
+    "assetScale": "1",
+    "uiPreset": "default",
+    "modelSettings": {
+        "position": "wall",
+        "scale": "default"
+    },
+    "splashPage":{
+        "backgroundImage":{
+            "active": true,
+            "desktop": "/images/grovery-holiday-splash.jpg",
+            "mobile": "/images/grovery-holiday-splash-mobile.jpg"
+        }       
+    },
+    "pdfs":{
+        "available": true,
+        "wall": "/pdf/deliverator-AssetPrintout-Wall.pdf",
+        "flat": "/pdf/deliverator-AssetPrintout-Flat.pdf"
+    }
+}

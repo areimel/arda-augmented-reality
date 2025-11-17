@@ -1,0 +1,23 @@
+---
+//Layouts
+	import Layout from "../Layout.astro";
+
+//Components
+	import HeadARARjs from "@components/head/HeadAR-ARjs.astro";
+
+//Props
+	const { title, description } = Astro.props;
+
+---
+
+<Layout>
+	<HeadARARjs slot="head" title={title} description={description}/>
+
+	<!-- ===== =========================== ===== -->
+	<!-- ===== Slot - Inner Content Insert ===== -->
+	<!-- ===== =========================== ===== -->
+	<slot />
+
+</Layout>
+
+<style is:global></style>

@@ -1,0 +1,136 @@
+---
+/**
+ * ArObject Component
+ * Renders AR assets based on experience type (video, image, 3d-object)
+ * Supports greenscreen/chromakey videos, standard videos, images, and GLTF models
+ */
+
+import type { ExperienceType } from '../../types/projectData';
+
+interface Props {
+  displayFile: string;
+  experienceType?: ExperienceType;
+  width?: string;
+  height?: string;
+  isGreenscreen?: boolean;
+  chromakeyColor?: string;
+  assetId?: string;
+  modelScale?: string;
+  modelRotation?: string;
+  modelPosition?: string;
+  clickable?: boolean;
+  [key: string]: any; // Allow additional A-Frame attributes
+}
+
+const {
+  displayFile,
+  experienceType = 'video',
+  width = '1',
+  height = '0.552',
+  isGreenscreen = false,
+  chromakeyColor = '0.1 0.9 0.2',
+  assetId,
+  modelScale = '0.004 0.004 0.004',
+  modelRotation = '0 0 0',
+  modelPosition = '0 -0.25 0',
+  clickable = false,
+  ...additionalProps
+} = Astro.props;
+
+// Determine the source - use assetId reference if provided, otherwise direct path
+const assetSource = assetId ? `#${assetId}` : displayFile;
+
+// Generate unique ID for this asset
+const uniqueId = `ar-asset-${Math.random().toString(36).substr(2, 9)}`;
+
+// For greenscreen videos, we need a video element ID
+const videoAssetId = assetId || `video-${uniqueId}`;
+
+// Spread additional props as HTML attributes
+const additionalAttrs = Object.entries(additionalProps)
+  .filter(([key]) => !['class:list'].includes(key)) // Filter out Astro-specific props
+  .map(([key, value]) => `${key}="${value}"`)
+  .join(' ');
+---
+
+{/* Standard Video */}
+{experienceType === 'video' && !isGreenscreen && (
+  <a-video
+    id={uniqueId}
+    src={assetSource}
+    width={width}
+    height={height}
+    webkit-playsinline
+    playsinline
+    class:list={[clickable && 'clickable']}
+    {...additionalAttrs}
+  ></a-video>
+)}
+
+{/* Greenscreen/Chromakey Video */}
+{experienceType === 'video' && isGreenscreen && (
+  <a-entity
+    id={uniqueId}
+    play-video={`video: #${videoAssetId}; autoplay: true`}
+    material={`shader: chromakey; src: #${videoAssetId}; color: ${chromakeyColor}; side: double; depthTest: true;`}
+    geometry={`primitive: plane; height: ${height}; width: ${width};`}
+    position="0 0 0"
+    scale="1 1 1"
+    class:list={[clickable && 'clickable']}
+    {...additionalAttrs}
+  ></a-entity>
+)}
+
+{/* Image */}
+{experienceType === 'image' && (
+  <a-image
+    id={uniqueId}
+    src={assetSource}
+    width={width}
+    height={height}
+    alpha-test="0.5"
+    position="0 0 0"
+    class:list={[clickable && 'clickable']}
+    {...additionalAttrs}
+  ></a-image>
+)}
+
+{/* 3D Object (GLTF) */}
+{experienceType === '3d-object' && (
+  <a-gltf-model
+    id={uniqueId}
+    src={assetSource}
+    rotation={modelRotation}
+    position={modelPosition}
+    scale={modelScale}
+    class:list={[clickable && 'clickable']}
+    {...additionalAttrs}
+  ></a-gltf-model>
+)}
+
+{/* Video Play/Pause Event Handlers */}
+{experienceType === 'video' && (
+  <script define:vars={{ uniqueId, videoAssetId, isGreenscreen }}>
+    document.addEventListener("DOMContentLoaded", function() {
+      const arTarget = document.querySelector('#mind-ar-target');
+
+      // For greenscreen videos, target the video asset element
+      // For standard videos, target the a-video element
+      const videoElement = isGreenscreen
+        ? document.querySelector(`#${videoAssetId}`)
+        : document.querySelector(`#${uniqueId}`);
+
+      if (arTarget && videoElement) {
+        arTarget.addEventListener("targetFound", () => {
+          console.log("AR target found - playing video");
+          videoElement.play();
+        });
+
+        arTarget.addEventListener("targetLost", () => {
+          console.log("AR target lost - pausing video");
+          videoElement.pause();
+        });
+      }
+    });
+  </script>
+)}

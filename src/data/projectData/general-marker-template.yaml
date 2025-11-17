@@ -1,0 +1,131 @@
+# ============================================================================
+# ARDA AR Project Configuration: General Marker Template
+# ============================================================================
+# This is a TEMPLATE file for creating new AR projects.
+# Copy this file and customize it for your project needs.
+# For more information, see the ProjectData interface in src/types/projectData.ts
+# ============================================================================
+
+# ----------------------------------------------------------------------------
+# Project Metadata
+# ----------------------------------------------------------------------------
+# Display name and description shown in the UI
+projectName: General Marker Template
+projectDescription: Marker-based Augmented Reality Experience template. Contains the most up-to-date code for working with this project. Includes green-screen video support.
+
+# ----------------------------------------------------------------------------
+# AR Marker Configuration
+# ----------------------------------------------------------------------------
+# Marker files are compiled using Mind-AR: https://hiukim.github.io/mind-ar-js-doc/tools/compile/
+# 1. Upload your target image to the compiler
+# 2. Download the generated .mind file
+# 3. Create a project folder under /public/project-files/your-project-name/markers/
+# 4. Place both files in that markers folder
+markerFile: /project-files/templates/markers/Generic-Marker.mind    # Compiled .mind file for AR tracking
+markerImage: /project-files/templates/markers/Generic-Marker.png    # Original marker image for reference/printing
+
+# ----------------------------------------------------------------------------
+# Experience Configuration
+# ----------------------------------------------------------------------------
+# Type of AR content: 'video', 'image', or '3d-object'
+experienceType: video
+
+# Path to the main content file (video, image, or 3D model)
+# Supports:
+#   - Videos: MP4, WebM (with alpha channel for transparency)
+#   - Images: JPG, PNG, GIF
+#   - 3D Models: GLTF/GLB format
+# Place your content in /public/project-files/your-project-name/videos/ (or images/, 3d-objects/)
+displayFile: /project-files/templates/videos/your-video.mp4
+
+# Legacy asset dimensions (optional - use modelSettings.videoWidth/videoHeight instead)
+# These are maintained for backward compatibility
+assetWidth: "1.6"
+assetHeight: "0.9"
+assetScale: "1"
+
+# UI preset determines the messaging and behavior
+# Options: 'default', 'product', 'artwork'
+uiPreset: default
+
+# ----------------------------------------------------------------------------
+# Model/Object Settings
+# ----------------------------------------------------------------------------
+modelSettings:
+  # Position orientation: 'wall' (vertical), 'flat' (horizontal), or 'card'
+  # - wall: Best for posters, wall art, or vertical displays (0° rotation)
+  # - flat: Best for table surfaces or horizontal displays (90° rotation)
+  # - card: Best for business cards or small handheld formats
+  position: wall
+
+  # Scale preset: 'default' or 'large'
+  # - default: Standard size, good for most content
+  # - large: Increased size for prominent display
+  scale: default
+
+  # VIDEO SETTINGS (for experienceType: video)
+  # Custom video dimensions (optional - overrides defaults)
+  # videoWidth: "1.6"
+  # videoHeight: "0.9"
+
+  # Greenscreen/Chromakey video support (optional)
+  # Enable chromakey effect to make green backgrounds transparent
+  # isGreenscreen: true
+  # chromakeyColor: "0.1 0.9 0.2"  # RGB values for chroma color (default: green)
+
+  # 3D MODEL SETTINGS (for experienceType: 3d-object)
+  # Custom scale for 3D models (optional)
+  # modelScale: "0.004 0.004 0.004"  # Scale X Y Z
+  # Custom rotation for 3D models (optional)
+  # modelRotation: "0 0 0"  # Rotation X Y Z in degrees
+  # Custom position for 3D models (optional)
+  # modelPosition: "0 -0.25 0"  # Position X Y Z
+
+# ----------------------------------------------------------------------------
+# Splash Page Configuration
+# ----------------------------------------------------------------------------
+splashPage:
+  # Background image options:
+  # 1. Simple path: "/project-files/your-project-name/images/background.jpg"
+  # 2. Responsive images (desktop/mobile):
+  #    active: true
+  #    desktop: /project-files/your-project-name/images/bg-desktop.jpg
+  #    mobile: /project-files/your-project-name/images/bg-mobile.jpg
+  # 3. No background: null
+  # Place images in /public/project-files/your-project-name/images/
+  backgroundImage:
+    active: true
+    desktop: /project-files/templates/images/splash-desktop.jpg
+    mobile: /project-files/templates/images/splash-mobile.jpg
+
+# ----------------------------------------------------------------------------
+# PDF Download Configuration
+# ----------------------------------------------------------------------------
+# Printable marker PDFs for different orientations
+# Generate PDFs with the marker image and positioning instructions
+# Place PDFs in /public/project-files/your-project-name/pdf/
+pdfs:
+  available: true
+  wall: /project-files/templates/pdf/your-project-AssetPrintout-Wall.pdf
+  flat: /project-files/templates/pdf/your-project-AssetPrintout-Flat.pdf
+
+# ----------------------------------------------------------------------------
+# Additional A-Frame Assets (Optional)
+# ----------------------------------------------------------------------------
+# Extra assets that need to be preloaded for the AR scene
+# Uncomment and customize as needed:
+# assets:
+#   - type: video
+#     id: myVideo
+#     src: /project-files/your-project-name/videos/my-video.mp4
+#     attributes:
+#       playsinline: true
+#       crossorigin: anonymous
+#       loop: true
+#       autoplay: false
+#   - type: img
+#     id: myTexture
+#     src: /project-files/your-project-name/images/texture.jpg
+#   - type: a-asset-item
+#     id: my3DModel
+#     src: /project-files/your-project-name/3d-objects/model.gltf

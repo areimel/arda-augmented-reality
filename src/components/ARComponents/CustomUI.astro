@@ -1,6 +1,43 @@
 ---
+/*===== UI TEXT PRESETS =====*/
+const UI_PRESETS = {
+	default: {
+		bigText: "Scan the Marker",
+		smallText: "Point your camera at the marker image to view the 3D object.",
+		flashingText: "[Marker Not In View]",
+		showControls: true,
+		showLinks: true
+	},
+	product: {
+		bigText: "Find Your Product",
+		smallText: "Point your camera at the product marker to see it in AR.",
+		flashingText: "[Product Not Found]",
+		showControls: true,
+		showLinks: true
+	},
+	artwork: {
+		bigText: "Scan the Artwork",
+		smallText: "Point your camera at the marker to view artist information.",
+		flashingText: "[Artwork Not Detected]",
+		showControls: false,
+		showLinks: true
+	}
+};
 
-const { bigText, smallText, flashingText, infoLink, showControls = true, showLinks = true } = Astro.props;
+/*===== Extract props and apply preset =====*/
+const { uiPreset = "default", infoLink, ...overrides } = Astro.props;
+
+// Get preset values or fallback to default
+const preset = UI_PRESETS[uiPreset] || UI_PRESETS.default;
+
+// Merge preset with any individual prop overrides
+const {
+	bigText = preset.bigText,
+	smallText = preset.smallText,
+	flashingText = preset.flashingText,
+	showControls = preset.showControls,
+	showLinks = preset.showLinks
+} = { ...preset, ...overrides };
 ---
 {showLinks && (
 	<div class="links">

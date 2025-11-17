@@ -1,0 +1,20 @@
+{
+    "projectName": "Video Test",
+    "projectDescription": "v1 Basic Video Test.",
+    "markerFile": "/markers/Generic-Marker.mind",
+    "markerImage": "/markers/Generic-Marker.png",
+    "displayFile": "/videos/alpha-webm-test.webm",
+    "uiPreset": "default",
+    "modelSettings": {
+        "position": "wall",
+        "scale": "large"
+    },
+    "splashPage":{
+        "backgroundImage": "/images/christmas-bg.jpg"        
+    },
+    "pdfs":{
+        "available": true,
+        "wall": "/pdf/grovery-holiday-card-2024-AssetPrintout-Wall.pdf",
+        "flat": "/pdf/grovery-holiday-card-2024-AssetPrintout-Flat.pdf"
+    }
+}

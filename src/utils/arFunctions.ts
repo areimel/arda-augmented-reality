@@ -1,5 +1,5 @@
 // AR Position Control Functions
-// Handles 3D object positioning for wall, flat, and card orientations
+// Handles 3D object positioning for wall and flat orientations
 
 export interface ObjectWrapperElement extends HTMLElement {
   setAttribute: (name: string, value: string) => void;
@@ -10,10 +10,10 @@ export interface ControlsContainer extends HTMLElement {
   setAttribute: (name: string, value: string) => void;
 }
 
-export type ViewType = 'wall' | 'flat' | 'card';
+export type ViewType = 'wall' | 'flat';
 
 /**
- * Set up position controls for 3D objects based on wall/flat/card orientations
+ * Set up position controls for 3D objects based on wall/flat orientations
  */
 export function positionSet(): void {
   // DOM elements
@@ -34,9 +34,6 @@ export function positionSet(): void {
   // Flat settings
   const flatRotationSetting = objectWrapper.getAttribute("data-flat-rotation");
   const flatPositionSetting = objectWrapper.getAttribute("data-flat-position");
-  // Card settings
-  const cardRotationSetting = objectWrapper.getAttribute("data-card-rotation");
-  const cardPositionSetting = objectWrapper.getAttribute("data-card-position");
 
   /**
    * Updates .objectWrapper element based on element's data-attribute settings
@@ -49,10 +46,6 @@ export function positionSet(): void {
     } else if (viewType === "flat") {
       if (flatRotationSetting) objectWrapper.setAttribute("rotation", flatRotationSetting);
       if (flatPositionSetting) objectWrapper.setAttribute("position", flatPositionSetting);
-      updateButtonVisibility(viewType);
-    } else if (viewType === "card") {
-      if (cardRotationSetting) objectWrapper.setAttribute("rotation", cardRotationSetting);
-      if (cardPositionSetting) objectWrapper.setAttribute("position", cardPositionSetting);
       updateButtonVisibility(viewType);
     } else {
       console.log("No view type found");

@@ -1,0 +1,43 @@
+---
+//Props
+	const { title, description } = Astro.props;
+
+//Site Data
+	const siteData = await import("src/data/siteData.yaml");
+---
+
+<meta charset="UTF-8" />
+<title>{title} {siteData.titleSuffix}</title>
+<meta name="description" content={description ? description : siteData.fallbackDescription} />
+<meta name="viewport" content="width=device-width" />
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<meta name="generator" content={Astro.generator} />
+
+<!-- ===== Fonts ===== -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Kode+Mono&family=Montserrat:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<!-- ===== A-Frame Libraries ===== -->
+<!-- A-Frame master build (commit 1c2407b26c61958baa93967b5412487cd94b290b) -->
+<script is:inline src="/a-frame-scripts/aframe-master.min.js"></script>
+<!-- A-Frame Event Set Component v5.0.0 - Originally from: https://unpkg.com/aframe-event-set-component@5.0.0/dist/aframe-event-set-component.min.js -->
+<script is:inline src="/thirdPartyPlugins/aframe-event-set-component-5.0.0.min.js"></script>
+
+<!-- ===== Timer Library ===== -->
+<script is:inline src="/thirdPartyPlugins/easytimer.min.js"></script>
+
+<!-- ===== A-Frame Utilities ===== -->
+<script>
+  // Import A-Frame utilities and timer functions
+  import { initializeAFrameFunctions } from '../utils/aframeFunctions';
+  import { initializeTimers } from '../utils/timers';
+  import { initializeWakeLock } from '../utils/wakeLock';
+
+  // Initialize when DOM is ready
+  document.addEventListener('DOMContentLoaded', () => {
+    initializeAFrameFunctions();
+    initializeTimers();
+    initializeWakeLock();
+  });
+</script>

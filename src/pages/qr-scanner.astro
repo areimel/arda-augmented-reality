@@ -6,7 +6,7 @@
 /*========================================*/
 
 //Essential Components
-import Layout from '@layouts/Layout.astro';
+import Layout from '@layouts/ContentLayout.astro';
 
 //Content Components
 //import MasterComponent from '@components/MasterComponent.astro';
@@ -15,7 +15,7 @@ import FooterNotice from '@components/contentComponents/FooterNotice.astro';
 //import DisplayBits from '@components/DisplayBits.astro';
 
 //Site Data
-const siteData = await import("src/data/siteData.json");
+const siteData = await import("src/data/siteData.yaml");
 ---
 
 <Layout 

@@ -1,0 +1,72 @@
+# ============================================================================
+# ARDA AR Project Configuration: Deliverator Gif
+# ============================================================================
+# This file configures an AR experience for the ARDA platform.
+# For more information, see the ProjectData interface in src/types/projectData.ts
+
+# ----------------------------------------------------------------------------
+# Project Metadata
+# ----------------------------------------------------------------------------
+# Display name and description shown in the UI
+projectName: Deliverator Gif
+projectDescription: v1 Basic Video Test.
+
+# ----------------------------------------------------------------------------
+# AR Marker Configuration
+# ----------------------------------------------------------------------------
+# Marker files are compiled using Mind-AR: https://hiukim.github.io/mind-ar-js-doc/tools/compile/
+markerFile: /project-files/deliverator/markers/deliverator-marker.mind    # Compiled .mind file for AR tracking
+markerImage: /project-files/deliverator/markers/deliverator-marker.jpg     # Original marker image for reference/printing
+
+# ----------------------------------------------------------------------------
+# Experience Configuration
+# ----------------------------------------------------------------------------
+# Type of AR content: 'video', 'image', or '3d-object'
+experienceType: video
+
+# Path to the main content file (video, image, or 3D model)
+displayFile: /project-files/deliverator/videos/deliverator.mp4
+
+# UI preset determines the messaging and behavior
+# Options: 'default', 'product', 'artwork'
+uiPreset: default
+
+# ----------------------------------------------------------------------------
+# Model/Object Settings
+# ----------------------------------------------------------------------------
+modelSettings:
+  # Position orientation: 'wall' (vertical), 'flat' (horizontal), or 'card'
+  position: wall
+
+  # Scale preset: 'default' or 'large'
+  scale: default
+
+  # Video dimensions (aspect ratio: width/height)
+  # These values control the size of the video plane in AR space
+  videoWidth: "0.9555"
+  videoHeight: "0.3795"
+
+# ----------------------------------------------------------------------------
+# Splash Page Configuration
+# ----------------------------------------------------------------------------
+splashPage:
+  # Background image for the splash screen (or null for default)
+  backgroundImage: null
+
+# ----------------------------------------------------------------------------
+# PDF Download Configuration
+# ----------------------------------------------------------------------------
+# Printable marker PDFs for different orientations
+pdfs:
+  available: true
+  wall: /project-files/deliverator/pdf/deliverator-AssetPrintout-Wall.pdf
+  flat: /project-files/deliverator/pdf/deliverator-AssetPrintout-Flat.pdf
+
+# ----------------------------------------------------------------------------
+# Additional A-Frame Assets (Optional)
+# ----------------------------------------------------------------------------
+# Extra assets that need to be preloaded for the AR scene
+assets:
+  - type: a-asset-item
+    id: displayModel
+    src: /project-files/deliverator/images/deliverator.gif

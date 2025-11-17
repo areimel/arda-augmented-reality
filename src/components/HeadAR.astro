@@ -3,7 +3,7 @@
 	const { title, description } = Astro.props;
 
 //Site Data
-	const siteData = await import("src/data/siteData.json");
+	const siteData = await import("src/data/siteData.yaml");
 ---
 
 <meta charset="UTF-8" />
@@ -39,16 +39,16 @@
 <script>
   // Import utility functions
   import { initializeQRCodes } from '../utils/qrCode';
-  import { initializeWakeLock } from '../utils/wakeLock';
+  // import { initializeWakeLock } from '../utils/wakeLock';
   import { initializeArFunctions } from '../utils/arFunctions';
-  import { initializeLookAtComponent } from '../utils/aframeLookAt';
+  // import { initializeLookAtComponent } from '../utils/aframeLookAt';
 
   // Initialize when DOM is ready
   document.addEventListener('DOMContentLoaded', () => {
     initializeQRCodes();
-    initializeWakeLock();
+    // initializeWakeLock();
     initializeArFunctions();
-    initializeLookAtComponent();
+    // initializeLookAtComponent();
   });
 </script>
 

@@ -1,0 +1,20 @@
+{
+    "projectName": "The Grovery Holiday Card 2024",
+    "projectDescription": "Augmented Reality experience for viewing a virtual 3D 'hologram' that is attached to a holiday card.",
+    "markerFile": "/markers/grovery-holiday-marker-v2.mind",
+    "markerImage": "/markers/grovery-holiday-marker-v2.jpg",
+    "displayFile": "/3d-objects/snowglobe_gltf/scene.gltf",
+    "uiPreset": "default",
+    "modelSettings": {
+        "position": "wall",
+        "scale": "large"
+    },
+    "splashPage":{
+        "backgroundImage": "/images/christmas-bg.jpg"        
+    },
+    "pdfs":{
+        "available": true,
+        "wall": "/pdf/grovery-holiday-card-2024-AssetPrintout-Wall.pdf",
+        "flat": "/pdf/grovery-holiday-card-2024-AssetPrintout-Flat.pdf"
+    }
+}

@@ -6,18 +6,18 @@
 /*========================================*/
 
 //Essential Components
-	import Layout from '@layouts/Layout.astro';
+	import Layout from '@layouts/ContentLayout.astro';
 
 //Content Components
 	//import MasterComponent from '@components/MasterComponent.astro';
-	import LinkCard from '@components/contentComponents/LinkCard.astro';
+	import SubProjectGrid from '@components/contentComponents/SubProjectGrid.astro';
 	// SplitLayout from '@components/contentLayouts/SplitLayout.astro';
 	import FooterNotice from '@components/contentComponents/FooterNotice.astro';
 	import SiteQRCodeLink from '@components/contentComponents/SiteQRCodeLink.astro';
 	//import DisplayBits from '@components/DisplayBits.astro';
 
 //Site Data
-	const siteData = await import("src/data/siteData.json");
+	const siteData = await import("src/data/siteData.yaml");
 ---
 
 <Layout 
@@ -27,37 +27,10 @@
 	
 	<section>
 		<h2 class="text-size-3">Links</h2>
-		<div class="card-grid">
-			<LinkCard
-				name="General Marker Template"
-				description="Marker-based Augmented Reality Experience template. Contains the most up-to-date code for working with this project. Includes green-screen video support."
-				link="/general-marker-template"
-			/>	
-			<LinkCard
-				name="Interactive Marker Template"
-				description="Interactive/clickable 3D assets"
-				link="/interactive-marker-template"
-			/>	
-			<LinkCard
-				name="Deliverator Gif Card"
-				description="Augmented Reality Gif"
-				link="/deliverator"
-			/>	
-		</div>
-		
+		<SubProjectGrid />
 	</section>
 
 	<SiteQRCodeLink/>
 	<FooterNotice/>
 
 </Layout>
-
-
-<style>
-	.card-grid{
-		display: flex;
-		flex-wrap: wrap;
-		justify-content: center;
-		gap: 1rem;
-	}
-</style>

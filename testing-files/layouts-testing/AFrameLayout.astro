@@ -1,0 +1,23 @@
+---
+//Layouts
+	import Layout from "../Layout.astro";
+
+//Components
+	import HeadAFrame from "@components/head/HeadAFrame.astro";
+
+//Props
+	const { title, description } = Astro.props;
+
+---
+
+<Layout>
+	<HeadAFrame slot="head" title={title} description={description}/>
+
+	<!-- ===== =========================== ===== -->
+	<!-- ===== Slot - Inner Content Insert ===== -->
+	<!-- ===== =========================== ===== -->
+	<slot />
+
+</Layout>
+
+<style is:global></style>

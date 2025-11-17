@@ -1,0 +1,103 @@
+---
+//Components
+import ARLayout from '@layouts/AR-Layout.astro';
+import CustomUI from '@components/ARComponents/CustomUI.astro';
+import ObjectWrapper from '@components/ARComponents/ObjectWrapper.astro';
+import ArScene from '@components/ARComponents/ArScene.astro';
+import ArAssets from '@components/ARComponents/ArAssets.astro';
+import Camera from '@components/ARComponents/Camera.astro';
+import ArObject from '@components/ARComponents/ArObject.astro';
+
+//Dynamic route generation - auto-discover all project data files
+export async function getStaticPaths() {
+	// Use Vite's import.meta.glob to find all project YAML files
+	const projectFiles = import.meta.glob('../../data/projectData/*.yaml', { eager: true });
+
+	const paths = [];
+	for (const [path, module] of Object.entries(projectFiles)) {
+		// Skip template files
+		if (path.includes('template')) continue;
+
+		// Extract slug from filename (e.g., "../../data/projectData/deliverator.yaml" -> "deliverator")
+		const slug = path.match(/\/([^/]+)\.yaml$/)[1];
+
+		paths.push({
+			params: { slug },
+			props: { projectData: module }
+		});
+	}
+	return paths;
+}
+
+//Project Data - now comes from props instead of direct import
+const projectData = Astro.props.projectData;
+
+/*===== Main Settings =====*/
+const markerFile = projectData.markerFile;
+const displayFile = projectData.displayFile;
+const infoLink = "./project-info";
+
+/*===== Video Settings =====*/
+const videoWidth = projectData.modelSettings?.videoWidth || "1";
+const videoHeight = projectData.modelSettings?.videoHeight || "1";
+
+/*===== Auto-generate video asset for video experiences =====*/
+let assetData = projectData.assets || [];
+let videoAssetId = null;
+
+if (projectData.experienceType === 'video') {
+	videoAssetId = 'display-video';
+
+	// Create video asset entry
+	const videoAsset = {
+		type: 'video',
+		id: videoAssetId,
+		src: displayFile,
+		attributes: {
+			playsinline: true,
+			crossorigin: 'anonymous',
+			loop: true,
+			autoplay: false
+		}
+	};
+
+	// Add video asset to the beginning of assets array
+	assetData = [videoAsset, ...assetData];
+}
+
+---
+
+<ARLayout
+	title={projectData.projectName}
+>
+
+<CustomUI uiPreset={projectData.uiPreset} infoLink={infoLink}/>
+
+<ArScene markerFile={markerFile}>
+	<ArAssets assetData={assetData} />
+
+	<Camera />
+
+	<a-entity
+		id="mind-ar-target"
+		mindar-image-target="targetIndex: 0"
+	>
+		<ObjectWrapper objectData={projectData.modelSettings}>
+			<ArObject
+				displayFile={displayFile}
+				experienceType={projectData.experienceType}
+				assetId={videoAssetId}
+				width={videoWidth}
+				height={videoHeight}
+				isGreenscreen={projectData.modelSettings?.isGreenscreen}
+				chromakeyColor={projectData.modelSettings?.chromakeyColor}
+				modelScale={projectData.modelSettings?.modelScale}
+				modelRotation={projectData.modelSettings?.modelRotation}
+				modelPosition={projectData.modelSettings?.modelPosition}
+			/>
+		</ObjectWrapper>
+	</a-entity>
+
+</ArScene>
+
+</ARLayout>

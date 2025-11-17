@@ -1,0 +1,30 @@
+{
+    "projectName": "Deliverator Gif",
+    "projectDescription": "v1 Basic Video Test.",
+    "markerFile": "/markers/deliverator-marker.mind",
+    "markerImage": "/markers/deliverator-marker.jpg",
+    "experienceType": "video",
+    "displayFile": "/videos/deliverator.mp4",
+    "uiPreset": "default",
+    "modelSettings": {
+        "position": "wall",
+        "scale": "default",
+        "videoWidth": "0.9555",
+        "videoHeight": "0.3795"
+    },
+    "splashPage":{
+        "backgroundImage": "NULL"        
+    },
+    "pdfs":{
+        "available": true,
+        "wall": "/pdf/deliverator-AssetPrintout-Wall.pdf",
+        "flat": "/pdf/deliverator-AssetPrintout-Flat.pdf"
+    },
+    "assets": [
+        {
+            "type": "a-asset-item",
+            "id": "displayModel",
+            "src": "/images/deliverator.gif"
+        }
+    ]
+}

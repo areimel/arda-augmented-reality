@@ -25,7 +25,7 @@ This is an Augmented Reality (AR) project built with **Astro** as the main frame
 
 ### Project Structure Pattern
 Each AR experience follows a consistent structure:
-- **Project Data**: JSON configuration files in `src/data/projectData/` define all experience parameters
+- **Project Data**: YAML configuration files in `src/data/projectData/` define all experience parameters with inline documentation
 - **Pages**: Each project has its own folder in `src/pages/` with `index.astro`, `splash.astro`, and `project-info.astro`
 - **Markers**: Compiled marker files (`.mind` format) and images stored in `public/markers/`
 - **Assets**: 3D objects, videos, and images in appropriate `public/` subdirectories
@@ -37,12 +37,13 @@ Each AR experience follows a consistent structure:
 - **Camera.astro**: A-Frame camera configuration with raycaster support
 
 ### AR Experience Configuration
-Projects are configured via JSON files with these key sections:
+Projects are configured via YAML files with these key sections:
 - `experienceType`: "video", "image", or "3d-object"
 - `markerFile`: Path to compiled `.mind` marker file
 - `modelSettings`: Position/rotation configurations for wall/flat/card orientations
-- `customUI`: Text and messaging for different AR states
+- `uiPreset`: UI preset for messaging ("default", "product", "artwork")
 - `splashPage`: Background images and branding
+- All YAML files include inline comments for field explanations
 
 ### Marker System
 - Markers must be compiled using Mind-AR's online tool: https://hiukim.github.io/mind-ar-js-doc/tools/compile/
@@ -61,16 +62,18 @@ The `ar-functions.js` file provides a position control system allowing users to 
 - **Images**: Standard web formats for textures and UI elements
 
 ### Adding New Projects
-1. Copy `general-marker-template.json` to create new project configuration
-2. Clone template pages in `src/pages/` 
-3. Update JSON paths and content
-4. Add markers and assets to appropriate `public/` directories
-5. Test with `npm run dev`
+1. Copy `general-marker-template.yaml` to create new project configuration (includes inline documentation)
+2. Edit the YAML file with your project's settings - comments explain each field
+3. Add markers and assets to appropriate `public/` directories
+4. Test with `npm run dev` - the page will auto-generate at `/{filename}`
+5. TypeScript interfaces in `src/types/projectData.ts` provide type safety
 
 ## Important Development Notes
 
 - All AR scripts are loaded inline via HeadAR.astro component
-- Project data is imported as JSON modules in Astro pages
+- Project data is imported as YAML modules in Astro pages with full TypeScript support
+- YAML files include inline comments for developer guidance and field documentation
 - The system supports green screen video compositing for advanced effects
 - Marker tracking events (targetFound/targetLost) control media playback
 - Build process includes TypeScript checking and uses increased memory allocation for large builds
+- TypeScript interfaces in `src/types/projectData.ts` ensure type safety across the project

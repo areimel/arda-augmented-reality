@@ -1,0 +1,69 @@
+---
+/*========================================*/
+/*	COMPONENT: ObjectWrapper
+		NOTES:	Wrapper entity for AR objects that handles position/rotation
+				configurations for wall and flat orientations using presets.
+				Uses Astro slots to accept any child content (videos, 3D models, images, etc.)
+*/
+/*========================================*/
+
+// Extract objectData prop with default fallbacks
+const { objectData = {} } = Astro.props;
+
+/*===== PRESETS =====*/
+const POSITION_PRESETS = {
+	wall: {
+		rotation: "0 0 0",
+		position: "0 0 0.1"
+	},
+	flat: {
+		rotation: "90 0 0",
+		position: "0 0 0.1"
+	}
+};
+
+const SCALE_PRESETS = {
+	default: "1 1 1",
+	large: "2 2 2"
+};
+
+/*===== Extract Settings from objectData =====*/
+const position = objectData.position || "wall"; // "wall" | "flat"
+const scale = objectData.scale || "default"; // "default" | "large"
+const videoWidth = objectData.videoWidth || "1";
+const videoHeight = objectData.videoHeight || "1";
+
+/*===== Apply Presets =====*/
+const wallRotation = POSITION_PRESETS.wall.rotation;
+const wallPosition = POSITION_PRESETS.wall.position;
+const wallScale = SCALE_PRESETS[scale];
+
+const flatRotation = POSITION_PRESETS.flat.rotation;
+const flatPosition = POSITION_PRESETS.flat.position;
+const flatScale = SCALE_PRESETS[scale];
+
+// Set initial rotation and position based on selected preset
+const initialRotation = POSITION_PRESETS[position].rotation;
+const initialPosition = POSITION_PRESETS[position].position;
+
+---
+
+<a-entity
+	id="objectWrapper"
+	rotation={initialRotation}
+	position={initialPosition}
+	data-rotation-setting={position}
+
+	data-wall-position={wallPosition}
+	data-wall-rotation={wallRotation}
+	data-wall-scale={wallScale}
+
+	data-flat-position={flatPosition}
+	data-flat-rotation={flatRotation}
+	data-flat-scale={flatScale}
+
+	data-video-width={videoWidth}
+	data-video-height={videoHeight}
+>
+	<slot />
+</a-entity>

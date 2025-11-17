@@ -1,5 +1,6 @@
 import { defineConfig } from 'astro/config';
 import tailwind from '@astrojs/tailwind';
+import yaml from '@rollup/plugin-yaml';
 import os from 'os';
 
 // Get network IP address for development
@@ -29,6 +30,7 @@ export default defineConfig({
     port: 4321
   },
   vite: {
+    plugins: [yaml()],
     define: {
       __BASE_URLS__: JSON.stringify({
         localhost: networkURL,

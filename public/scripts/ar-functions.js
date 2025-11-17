@@ -13,9 +13,6 @@ function positionSet(){
 	//Flat settings
 	let flatRotationSetting = objectWrapper?.getAttribute("data-flat-rotation");
 	let flatPositionSetting = objectWrapper?.getAttribute("data-flat-position");
-	//Card settings
-	let cardRotationSetting = objectWrapper?.getAttribute("data-card-rotation");
-	let cardPositionSetting = objectWrapper?.getAttribute("data-card-position");
 
 	//Updates .objectWrapper element based on element's data-attribute settings
 	function updateObjectWrapperSettings(viewType){
@@ -26,10 +23,6 @@ function positionSet(){
 		} else if(viewType == "flat"){
 			objectWrapper?.setAttribute("rotation", flatRotationSetting);
 			objectWrapper?.setAttribute("position", flatPositionSetting);
-			updateButtonVisibility(viewType);
-		} else if(viewType == "card"){
-			objectWrapper?.setAttribute("rotation", cardRotationSetting);
-			objectWrapper?.setAttribute("position", cardPositionSetting);
 			updateButtonVisibility(viewType);
 		} else{
 			console.log("No view type found");

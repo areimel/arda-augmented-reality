@@ -1,6 +1,6 @@
 ---
-//Styles
-	import "@styles/main.css"
+//Layouts
+	import Layout from "./Layout.astro";
 
 //Components
 	import HeadGlobal from "@components/HeadGlobal.astro";
@@ -15,44 +15,50 @@
 
 ---
 
-<!doctype html>
-<html lang="en" data-theme="light" class="p-0 m-0">
-	<head>
-		<HeadGlobal title={title} description={description}/>
-		
-	</head>
-	<body class="p-0 m-0">
-		
-		<main class="flex flex-row justify-start items-start m-0 p-0 max-xl:flex-col" style={background ? `background-image: url(${background}); background-size: cover; background-position: center;` : ""}>
-			
-			<!-- ============================= -->
-			<!-- Left Section | Text & QR Code -->
-			<!-- ============================= -->
-			<section class="flex-1 flex flex-col justify-center items-center p-8 ">
-				
-				<div class="text-left max-w-full border-custom border-border-color bg-background-color">
+<Layout>
+	<HeadGlobal slot="head" title={title} description={description}/>
 
-					<SplashHeader heading={heading} description={description} />
-					<InstructionsPanel />
-					
-					<QRCodePanel qrcode={qrcode} />
-					<PDFDownloadPanel pdfs={pdfs} />
+	<main class="flex flex-row justify-start items-start m-0 p-0 max-xl:flex-col splashMain" style={background ? `background-image: url(${background}); background-size: cover; background-position: center;` : ""}>
 
-				</div>
+		<!-- ============================= -->
+		<!-- Left Section | Text & QR Code -->
+		<!-- ============================= -->
+		<section class="flex-1 flex flex-col justify-center items-center p-8 ">
 
-			</section>
-			
-			<!-- ============================ -->
-			<!-- Right Section | Marker Image -->
-			<!-- ============================ -->
-			<MarkerImagePanel marker={marker} />
-			
-		</main>
-		
-		<!-- <footer class="footerSection">
-			<div>Interzone Technology Group</div>
-		</footer> -->
+			<div class="text-left max-w-full border-custom border-border-color bg-background-color">
 
-	</body>
-</html>
+				<SplashHeader heading={heading} description={description} />
+				<InstructionsPanel />
 
+				<QRCodePanel qrcode={qrcode} />
+				<PDFDownloadPanel pdfs={pdfs} />
+
+			</div>
+
+		</section>
+
+		<!-- ============================ -->
+		<!-- Right Section | Marker Image -->
+		<!-- ============================ -->
+		<MarkerImagePanel marker={marker} />
+
+	</main>
+
+	<!-- <footer class="footerSection">
+		<div>Interzone Technology Group</div>
+	</footer> -->
+
+</Layout>
+
+<style is:global>
+	/* Reset padding and margin for splash pages */
+	html:has(.splashMain) {
+		padding: 0;
+		margin: 0;
+	}
+
+	html:has(.splashMain) body {
+		padding: 0;
+		margin: 0;
+	}
+</style>
