@@ -41,6 +41,30 @@ const infoLink = "./project-info";
 const videoWidth = projectData.modelSettings?.videoWidth || "1";
 const videoHeight = projectData.modelSettings?.videoHeight || "1";
 
+/*===== Auto-generate video asset for video experiences =====*/
+let assetData = projectData.assets || [];
+let videoAssetId = null;
+
+if (projectData.experienceType === 'video') {
+	videoAssetId = 'display-video';
+
+	// Create video asset entry
+	const videoAsset = {
+		type: 'video',
+		id: videoAssetId,
+		src: displayFile,
+		attributes: {
+			playsinline: true,
+			crossorigin: 'anonymous',
+			loop: true,
+			autoplay: false
+		}
+	};
+
+	// Add video asset to the beginning of assets array
+	assetData = [videoAsset, ...assetData];
+}
+
 ---
 
 <ARLayout
@@ -50,7 +74,7 @@ const videoHeight = projectData.modelSettings?.videoHeight || "1";
 <CustomUI uiPreset={projectData.uiPreset} infoLink={infoLink}/>
 
 <ArScene markerFile={markerFile}>
-	<ArAssets assetData={projectData.assets} />
+	<ArAssets assetData={assetData} />
 
 	<Camera />
 
@@ -62,6 +86,7 @@ const videoHeight = projectData.modelSettings?.videoHeight || "1";
 			<ArObject
 				displayFile={displayFile}
 				experienceType={projectData.experienceType}
+				assetId={videoAssetId}
 				width={videoWidth}
 				height={videoHeight}
 				isGreenscreen={projectData.modelSettings?.isGreenscreen}
