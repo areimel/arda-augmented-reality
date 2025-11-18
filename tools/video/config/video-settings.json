@@ -1,0 +1,59 @@
+{
+  "description": "Default video processing settings for AR video optimization",
+  "outputDirectory": "public/videos",
+  "qualityPresets": {
+    "mobile": {
+      "description": "Optimized for mobile AR (720p max, higher compression)",
+      "maxWidth": 1280,
+      "maxHeight": 720,
+      "videoBitrate": "1500k",
+      "audioBitrate": "128k",
+      "crf": 28,
+      "codec": "h264"
+    },
+    "balanced": {
+      "description": "Balanced quality for desktop and mobile (1080p, moderate compression)",
+      "maxWidth": 1920,
+      "maxHeight": 1080,
+      "videoBitrate": "2500k",
+      "audioBitrate": "192k",
+      "crf": 23,
+      "codec": "h264"
+    },
+    "high": {
+      "description": "High quality with light compression (original resolution)",
+      "maxWidth": null,
+      "maxHeight": null,
+      "videoBitrate": "5000k",
+      "audioBitrate": "256k",
+      "crf": 18,
+      "codec": "h264"
+    }
+  },
+  "formats": {
+    "mp4": {
+      "extension": ".mp4",
+      "videoCodec": "libx264",
+      "audioCodec": "aac",
+      "pixelFormat": "yuv420p"
+    },
+    "webm": {
+      "extension": ".webm",
+      "videoCodec": "libvpx-vp9",
+      "audioCodec": "libopus",
+      "pixelFormat": "yuva420p"
+    }
+  },
+  "greenscreen": {
+    "defaultColor": "0x00FF00",
+    "similarity": 0.3,
+    "blend": 0.1,
+    "outputFormat": "webm",
+    "chromakeyFilter": "colorkey"
+  },
+  "notes": {
+    "crf": "Constant Rate Factor: lower = better quality, higher = smaller file. Range: 0-51. Recommended: 18-28",
+    "codecs": "h264 for MP4 (best compatibility), VP9 for WebM (better compression, alpha support)",
+    "pixelFormat": "yuv420p for standard video, yuva420p for video with alpha channel"
+  }
+}
