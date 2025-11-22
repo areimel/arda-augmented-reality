@@ -110,15 +110,25 @@ const additionalAttrs = Object.entries(additionalProps)
 
 {/* Video Play/Pause Event Handlers */}
 {experienceType === 'video' && (
-  <script define:vars={{ uniqueId, videoAssetId, isGreenscreen }}>
+  <script define:vars={{ uniqueId, videoAssetId, isGreenscreen, assetId }}>
     document.addEventListener("DOMContentLoaded", function() {
       const arTarget = document.querySelector('#mind-ar-target');
 
-      // For greenscreen videos, target the video asset element
-      // For standard videos, target the a-video element
-      const videoElement = isGreenscreen
-        ? document.querySelector(`#${videoAssetId}`)
-        : document.querySelector(`#${uniqueId}`);
+      // Get the actual HTML5 video element for playback control
+      // - Greenscreen: uses video asset element in <a-assets>
+      // - Standard with assetId: uses video asset element in <a-assets>
+      // - Standard with direct src: accesses video through a-video's material texture
+      let videoElement;
+      if (isGreenscreen) {
+        videoElement = document.querySelector(`#${videoAssetId}`);
+      } else if (assetId) {
+        // Asset exists in <a-assets>, query it directly
+        videoElement = document.querySelector(`#${assetId}`);
+      } else {
+        // Direct src - get video from a-video's internal texture
+        const aVideoEl = document.querySelector(`#${uniqueId}`);
+        videoElement = aVideoEl?.components?.material?.material?.map?.image;
+      }
 
       if (arTarget && videoElement) {
         arTarget.addEventListener("targetFound", () => {
