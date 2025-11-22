@@ -1,0 +1,53 @@
+{
+  "description": "Example batch processing configuration. Copy to batch-tasks.json and customize.",
+  "tasks": [
+    {
+      "name": "Compress mobile video",
+      "operation": "compress",
+      "input": "public/videos/source/large-video.mp4",
+      "output": "public/videos/large-video.mp4",
+      "preset": "mobile"
+    },
+    {
+      "name": "Convert MP4 to WebM",
+      "operation": "convert",
+      "input": "public/videos/test-video.mp4",
+      "output": "public/videos/test-video.webm",
+      "format": "webm"
+    },
+    {
+      "name": "Greenscreen to alpha",
+      "operation": "greenscreen",
+      "input": "public/videos/source/greenscreen-raw.mp4",
+      "output": "public/videos/greenscreen-alpha.webm",
+      "chromakey": {
+        "color": "0x00FF00",
+        "similarity": 0.3,
+        "blend": 0.1
+      }
+    },
+    {
+      "name": "Resize to 720p",
+      "operation": "resize",
+      "input": "public/videos/source/4k-video.mp4",
+      "output": "public/videos/720p-video.mp4",
+      "width": 1280,
+      "height": 720,
+      "maintainAspectRatio": true
+    },
+    {
+      "name": "Multi-step: compress and convert",
+      "operation": "convert",
+      "input": "public/videos/source/raw-footage.mp4",
+      "output": "public/videos/optimized-footage.webm",
+      "format": "webm",
+      "preset": "balanced"
+    }
+  ],
+  "notes": {
+    "operations": "compress, convert, greenscreen, resize",
+    "presets": "mobile, balanced, high (defined in video-settings.json)",
+    "paths": "All paths relative to project root",
+    "order": "Tasks run in the order listed"
+  }
+}
