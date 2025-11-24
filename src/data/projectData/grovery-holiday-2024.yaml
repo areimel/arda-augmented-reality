@@ -14,8 +14,8 @@ projectDescription: Augmented Reality experience for viewing a virtual 3D 'holog
 # AR Marker Configuration
 # ----------------------------------------------------------------------------
 # Marker files are compiled using Mind-AR: https://hiukim.github.io/mind-ar-js-doc/tools/compile/
-markerFile: /project-files/grovery-holiday-2024/markers/grovery-holiday-marker-v2.mind    # Compiled .mind file for AR tracking
-markerImage: /project-files/grovery-holiday-2024/markers/grovery-holiday-marker-v2.jpg     # Original marker image for reference/printing
+markerFile: /project-files/common/Generic-Marker.mind    # Compiled .mind file for AR tracking
+markerImage: /project-files/common/Generic-Marker.png     # Original marker image for reference/printing
 
 # ----------------------------------------------------------------------------
 # Experience Configuration
@@ -50,6 +50,6 @@ splashPage:
 # ----------------------------------------------------------------------------
 # Printable marker PDFs for different orientations
 pdfs:
-  available: true
-  wall: /project-files/grovery-holiday-2024/pdf/grovery-holiday-card-2024-AssetPrintout-Wall.pdf
-  flat: /project-files/grovery-holiday-2024/pdf/grovery-holiday-card-2024-AssetPrintout-Flat.pdf
+  available: false
+  # wall: /project-files/grovery-holiday-2024/pdf/grovery-holiday-card-2024-AssetPrintout-Wall.pdf
+  # flat: /project-files/grovery-holiday-2024/pdf/grovery-holiday-card-2024-AssetPrintout-Flat.pdf

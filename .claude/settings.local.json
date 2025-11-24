@@ -25,7 +25,8 @@
       "Bash(fi)",
       "Bash(tree:*)",
       "Bash(nul)",
-      "Bash(test:*)"
+      "Bash(test:*)",
+      "Bash(dir:*)"
     ],
     "deny": [],
     "ask": []
