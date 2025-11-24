@@ -18,9 +18,11 @@
   "dependencies": {
     "@astrojs/check": "^0.9.4",
     "@astrojs/tailwind": "^6.0.2",
+    "@iconify-json/mdi": "^1.2.3",
     "@rollup/plugin-yaml": "^4.1.2",
     "@types/js-yaml": "^4.0.9",
     "astro": "^5.13.7",
+    "astro-icon": "^1.1.5",
     "js-yaml": "^4.1.1",
     "qr-scanner": "^1.4.2",
     "qrcode": "^1.5.4",

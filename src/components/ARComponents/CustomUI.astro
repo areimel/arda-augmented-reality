@@ -1,26 +1,23 @@
 ---
+import ArMenu from './ArMenu.astro';
+import ArToolbar from './ArToolbar.astro';
+
 /*===== UI TEXT PRESETS =====*/
 const UI_PRESETS = {
 	default: {
 		bigText: "Scan the Marker",
 		smallText: "Point your camera at the marker image to view the 3D object.",
-		flashingText: "[Marker Not In View]",
-		showControls: true,
-		showLinks: true
+		flashingText: "[Marker Not In View]"
 	},
 	product: {
 		bigText: "Find Your Product",
 		smallText: "Point your camera at the product marker to see it in AR.",
-		flashingText: "[Product Not Found]",
-		showControls: true,
-		showLinks: true
+		flashingText: "[Product Not Found]"
 	},
 	artwork: {
 		bigText: "Scan the Artwork",
 		smallText: "Point your camera at the marker to view artist information.",
-		flashingText: "[Artwork Not Detected]",
-		showControls: false,
-		showLinks: true
+		flashingText: "[Artwork Not Detected]"
 	}
 };
 
@@ -34,35 +31,14 @@ const preset = UI_PRESETS[uiPreset] || UI_PRESETS.default;
 const {
 	bigText = preset.bigText,
 	smallText = preset.smallText,
-	flashingText = preset.flashingText,
-	showControls = preset.showControls,
-	showLinks = preset.showLinks
+	flashingText = preset.flashingText
 } = { ...preset, ...overrides };
 ---
-{showLinks && (
-	<div class="links">
-		<a href={infoLink}>Project Info</a>
-		<a href="/learn-more">Learn More</a>
-	</div>
-)}
+<!-- AR Menu (hamburger button + slide-out menu) -->
+<ArMenu infoLink={infoLink} />
 
-{showControls && (
-	<div class="controls">
-		<div
-			class="controlButton"
-			data-control-button="wall"
-		>
-			Switch View: Wall
-		</div>
-
-		<div
-			class="controlButton"
-			data-control-button="flat"
-		>
-			Switch View: Flat
-		</div>
-	</div>
-)}
+<!-- AR Toolbar (bottom icon buttons) -->
+<ArToolbar />
 
 <!-- <div class="mindar-ui-overlay mindar-ui-compatibility">
 	<div class="content">
@@ -91,260 +67,113 @@ const {
 	<div class="loader"></div>
 </div> -->
 
-<div class="mindar-ui-overlay mindar-ui-scanning" id="custom-scanning-overlay">
-	<div class="scanning">
-		
-		<div class="inner">
-			
-			<div class="CornerBits">
-				<div class="bit topLeft"></div>
-				<div class="bit topRight"></div>
-				<div class="bit bottomLeft"></div>
-				<div class="bit bottomRight"></div>
-			</div>
+<div class="mindar-ui-overlay flex items-center justify-center absolute inset-0 bg-transparent z-[2] mindar-ui-scanning" id="custom-scanning-overlay">
+	<div class="scanning bg-trans-black mix-blend-difference">
 
-			<div class="scanline"></div>
-			<div class="scanning-text">
-				<div class="scanning-text-large">{bigText ? bigText : "Scanning..."}</div>
-				<div class="scanning-text-small">{smallText ? smallText : "Point your camera at the marker image to view the 3D object."}</div>
-				<div class="dynamicText">
+		<div class="inner relative w-full h-full opacity-100">
+
+			<!-- <div class="CornerBits absolute w-full h-full pointer-events-none">
+				<div class="bit topLeft w-[50px] h-[50px] absolute"></div>
+				<div class="bit topRight w-[50px] h-[50px] absolute"></div>
+				<div class="bit bottomLeft w-[50px] h-[50px] absolute"></div>
+				<div class="bit bottomRight w-[50px] h-[50px] absolute"></div>
+			</div> -->
+
+			<div class="scanline absolute w-full h-[10px] bg-custom-white"></div>
+			<div class="scanning-text absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full py-4 px-2 text-custom-white">
+				<div class="scanning-text-large font-bold text-center text-balance mb-2">{bigText ? bigText : "Scanning..."}</div>
+				<div class="scanning-text-small text-[1.25em] text-center text-balance">{smallText ? smallText : "Point your camera at the marker image to view the 3D object."}</div>
+				<div class="dynamicText text-[1.25em] text-center mt-4 bg-[#FF0000] py-[0.1em]">
 					{flashingText ? flashingText : "[Marker Not In View]"}
 				</div>
 			</div>
-			
+
 		</div>
 	</div>
 </div>
 
-<style lang="scss">
-	$scan-mask-border: 10px;
+<style>
+	/* Hidden state for overlay */
+	.mindar-ui-overlay.hidden {
+		display: none;
+	}
 
+	/* Font sizing using CSS variables */
 	.mindar-ui-overlay {
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		position: absolute;
-		left: 0;
-		right: 0;
-		top: 0;
-		bottom: 0;
-		background: transparent;
-		z-index: 2;
 		font-size: var(--ar-ui-size-1);
+	}
 
-		&.hidden {
-			display: none;
+	.scanning-text-large {
+		font-size: var(--ar-ui-size-2);
+	}
+
+	/* Scanning box responsive sizing */
+	.scanning {
+		@media (min-aspect-ratio: 1/1) {
+			width: 65vh;
+			height: 65vh;
+		}
+		@media (max-aspect-ratio: 1/1) {
+			width: 80vw;
+			height: 80vw;
 		}
 	}
 
-	.mindar-ui-loading {
-		.loader {
-			border: 16px solid var(--black); // background color
-			border-top: 16px solid var(--white); // foreground color
-			opacity: 0.8;
-			border-radius: 50%;
-			width: 120px;
-			height: 120px;
-			animation: spin 2s linear infinite;
-		}
-
-		@keyframes spin {
-			0% { transform: rotate(0deg); }
-			100% { transform: rotate(360deg); }
-		}
+	/* Corner bits CSS variables and positioning */
+	.CornerBits {
+		--size: 50px;
+		--thickness: 8px;
+		--offset: 0px;
+		--color: var(--white);
 	}
 
-	.mindar-ui-compatibility {
-		.content {
-			background: black;
-			color: white;
-			opacity: 0.8;
-			text-align: center;
-
-			margin: 20px;
-			padding: 20px;
-			min-height: 50vh;
-		}
+	.topLeft {
+		top: var(--offset);
+		left: var(--offset);
+		border-top: solid var(--thickness) var(--color);
+		border-left: solid var(--thickness) var(--color);
 	}
 
-	.mindar-ui-scanning {
-		.scanning {
-			background-color: var(--trans-black);
-			mix-blend-mode: difference;
-			@media (min-aspect-ratio: "1/1") {
-				width: 65vh;
-				height: 65vh;
-			}
-			@media (max-aspect-ratio: "1/1") {
-				width: 80vw;
-				height: 80vw;
-			}
-			.inner {
-				position: relative;
-				width: 100%;
-				height: 100%;
-				opacity: 1;
-
-				/* background:
-					linear-gradient(to right, var(--white) $scan-mask-border, transparent $scan-mask-border) 0 0,
-					linear-gradient(to right, var(--white) $scan-mask-border, transparent $scan-mask-border) 0 100%,
-					linear-gradient(to left, var(--white) $scan-mask-border, transparent $scan-mask-border) 100% 0,
-					linear-gradient(to left, var(--white) $scan-mask-border, transparent $scan-mask-border) 100% 100%,
-					linear-gradient(to bottom, var(--white) $scan-mask-border, transparent $scan-mask-border) 0 0,
-					linear-gradient(to bottom, var(--white) $scan-mask-border, transparent $scan-mask-border) 100% 0,
-					linear-gradient(to top, var(--white) $scan-mask-border, transparent $scan-mask-border) 0 100%,
-					linear-gradient(to top, var(--white) $scan-mask-border, transparent $scan-mask-border) 100% 100%;
-
-				background-repeat: no-repeat;
-				background-size: 8vh 8vh; */
-				background: none;
-
-				.CornerBits{
-					position: absolute;
-					width: 100%;
-					height: 100%;
-					pointer-events: none;
-					--size: 50px;
-					--thickness: 8px;
-					--offset: 0px;
-					--color: var(--white);
-
-
-					.bit{
-						width: 50px;
-						height: 50px;
-						position: absolute;
-					}
-					.topLeft{
-						top: var(--offset);
-						left: var(--offset);
-						border-top: solid var(--thickness) var(--color);
-						border-left: solid var(--thickness) var(--color);
-					}
-					.bottomRight{
-						top: var(--offset);
-						right: var(--offset);
-						border-top: solid var(--thickness) var(--color);
-						border-right: solid var(--thickness) var(--color);
-					}
-					.bottomLeft{
-						bottom: var(--offset);
-						left: var(--offset);
-						border-bottom: solid var(--thickness) var(--color);
-						border-left: solid var(--thickness) var(--color);
-					}
-					.topRight{
-						bottom: var(--offset);
-						right: var(--offset);
-						border-bottom: solid var(--thickness) var(--color);
-						border-right: solid var(--thickness) var(--color);
-					}
-				}
-
-				.scanline {
-					position: absolute;
-					width: 100%;
-					height: 10px;
-					background: var(--white);
-					animation: move 2s linear infinite;
-
-					@keyframes move {
-						0%, 100% { top: 0% }
-						50% { top: calc(100% - 10px) }
-					}
-				}
-			}
-		}
-
-		.scanning-text {
-			position: absolute;
-			top: 50%;
-			left: 50%;
-			transform: translate(-50%, -50%);
-			width: 100%;
-			padding: 1em 0.5em;
-			font-size: var(--ar-ui-size-1);
-			color: var(--white);
-			.scanning-text-large{
-				font-size: var(--ar-ui-size-2);
-				font-weight: bold;
-				text-align: center;
-				text-wrap: balance;
-				margin-bottom: 0.5em;
-			}
-			.scanning-text-small{
-				font-size: 1.25em;
-				text-align: center;
-				text-wrap: balance;
-			}
-			.dynamicText{
-				font-size: 1.25em;
-				text-align: center;
-				margin-top: 1em;
-				background-color: #FF0000;
-				padding: 0.1em 0;
-
-				animation: flash 1.5s linear infinite;
-
-				@keyframes flash {
-					0%, 49% { opacity: 1; }
-					50%, 99% { opacity: 0; }
-					100% { opacity: 1; }
-				}
-			}
-		}
+	.topRight {
+		bottom: var(--offset);
+		right: var(--offset);
+		border-bottom: solid var(--thickness) var(--color);
+		border-right: solid var(--thickness) var(--color);
 	}
 
-	.controls{
-		position: fixed;
-		z-index: 500000;
-		bottom: 5px;
-		left: 50%;
-		transform:translate(-50%, 0%);
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		width: 100%;
-		max-width: 500px;
-		margin: auto;
-
-		.controlButton{
-			margin: 0 10px;
-			border: solid 2px #FFF;
-			padding: 0.25em 0.5em;
-			color: #FFF;
-			font-size: var(--ar-font-size-1);
-			text-align: center;
-			display: none; // Hide buttons by default
-		}
-
-		// Show the appropriate button based on the current rotation setting
-		&[data-current-rotation="wall"] .controlButton[data-control-button="flat"],
-		&[data-current-rotation="flat"] .controlButton[data-control-button="wall"] {
-			display: block;
-		}
+	.bottomLeft {
+		bottom: var(--offset);
+		left: var(--offset);
+		border-bottom: solid var(--thickness) var(--color);
+		border-left: solid var(--thickness) var(--color);
 	}
 
-	.links{
-		position: fixed;
-		z-index: 500000;
-		top: 5px;
-		left: 50%;
-		transform:translate(-50%, 0%);
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		width: 100%;
-		max-width: 500px;
-		margin: auto;
-
-		a{
-			margin: 0 10px;
-			border: solid 2px #FFF;
-			padding: 0.25em 0.5em;
-			color: #FFF;
-			font-size: var(--ar-font-size-1);
-			text-align: center;
-		}
+	.bottomRight {
+		top: var(--offset);
+		right: var(--offset);
+		border-top: solid var(--thickness) var(--color);
+		border-right: solid var(--thickness) var(--color);
 	}
+
+	/* Scanline animation */
+	.scanline {
+		animation: move 2s linear infinite;
+	}
+
+	@keyframes move {
+		0%, 100% { top: 0% }
+		50% { top: calc(100% - 10px) }
+	}
+
+	/* Dynamic text flashing animation */
+	.dynamicText {
+		animation: flash 1.5s linear infinite;
+	}
+
+	@keyframes flash {
+		0%, 49% { opacity: 1; }
+		50%, 99% { opacity: 0; }
+		100% { opacity: 1; }
+	}
+
 </style>

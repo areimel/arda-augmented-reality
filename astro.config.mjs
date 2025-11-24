@@ -3,6 +3,8 @@ import tailwind from '@astrojs/tailwind';
 import yaml from '@rollup/plugin-yaml';
 import os from 'os';
 
+import icon from 'astro-icon';
+
 // Get network IP address for development
 function getNetworkIP() {
   const interfaces = os.networkInterfaces();
@@ -23,7 +25,7 @@ const networkURL = getNetworkIP();
 
 // https://astro.build/config
 export default defineConfig({
-  integrations: [tailwind()],
+  integrations: [tailwind(), icon()],
   site: import.meta.env.DEV ? networkURL : 'https://interzone-ar.netlify.app',
   server: {
     host: true,

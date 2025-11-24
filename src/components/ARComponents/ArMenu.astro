@@ -1,0 +1,114 @@
+---
+import { Icon } from 'astro-icon/components';
+
+interface Props {
+	infoLink?: string;
+}
+
+const { infoLink = '#' } = Astro.props;
+---
+
+<!-- Menu Toggle Button -->
+<button
+	id="ar-menu-toggle"
+	class="fixed top-4 left-4 z-[500001] w-12 h-12 flex items-center justify-center bg-black/50 backdrop-blur-sm rounded-lg border border-white/30 text-white"
+	aria-label="Toggle menu"
+	aria-expanded="false"
+>
+	<Icon name="mdi:menu" class="menu-icon w-7 h-7" />
+	<Icon name="mdi:close" class="close-icon w-7 h-7 hidden" />
+</button>
+
+<!-- Menu Backdrop -->
+<div
+	id="ar-menu-backdrop"
+	class="fixed inset-0 z-[500000] bg-black/60 opacity-0 pointer-events-none transition-opacity duration-300"
+></div>
+
+<!-- Slide-out Menu -->
+<nav
+	id="ar-menu-panel"
+	class="fixed top-0 left-0 z-[500001] h-full w-64 bg-black/90 backdrop-blur-md border-r border-white/20 transform -translate-x-full transition-transform duration-300 ease-out"
+>
+	<!-- Close Button -->
+	<button
+		id="ar-menu-close"
+		class="absolute top-4 right-4 w-10 h-10 flex items-center justify-center text-white rounded-lg hover:bg-white/10 transition-colors"
+		aria-label="Close menu"
+	>
+		<Icon name="mdi:close" class="w-6 h-6" />
+	</button>
+
+	<div class="pt-20 px-4">
+		<ul class="space-y-2">
+			<li>
+				<a
+					href="/"
+					class="flex items-center gap-3 px-4 py-3 text-white rounded-lg hover:bg-white/10 transition-colors"
+				>
+					<Icon name="mdi:home" class="w-6 h-6" />
+					<span>Home</span>
+				</a>
+			</li>
+			<li>
+				<a
+					href={infoLink}
+					class="flex items-center gap-3 px-4 py-3 text-white rounded-lg hover:bg-white/10 transition-colors"
+				>
+					<Icon name="mdi:information" class="w-6 h-6" />
+					<span>Project Info</span>
+				</a>
+			</li>
+		</ul>
+	</div>
+</nav>
+
+<script>
+	const menuToggle = document.getElementById('ar-menu-toggle');
+	const menuBackdrop = document.getElementById('ar-menu-backdrop');
+	const menuPanel = document.getElementById('ar-menu-panel');
+	const menuClose = document.getElementById('ar-menu-close');
+
+	let isOpen = false;
+
+	function toggleMenu() {
+		isOpen = !isOpen;
+
+		if (isOpen) {
+			// Open menu
+			menuPanel?.classList.remove('-translate-x-full');
+			menuPanel?.classList.add('translate-x-0');
+			menuBackdrop?.classList.remove('opacity-0', 'pointer-events-none');
+			menuBackdrop?.classList.add('opacity-100', 'pointer-events-auto');
+			menuToggle?.setAttribute('aria-expanded', 'true');
+			menuToggle?.querySelector('.menu-icon')?.classList.add('hidden');
+			menuToggle?.querySelector('.close-icon')?.classList.remove('hidden');
+		} else {
+			// Close menu
+			menuPanel?.classList.remove('translate-x-0');
+			menuPanel?.classList.add('-translate-x-full');
+			menuBackdrop?.classList.remove('opacity-100', 'pointer-events-auto');
+			menuBackdrop?.classList.add('opacity-0', 'pointer-events-none');
+			menuToggle?.setAttribute('aria-expanded', 'false');
+			menuToggle?.querySelector('.menu-icon')?.classList.remove('hidden');
+			menuToggle?.querySelector('.close-icon')?.classList.add('hidden');
+		}
+	}
+
+	function closeMenu() {
+		if (isOpen) {
+			toggleMenu();
+		}
+	}
+
+	menuToggle?.addEventListener('click', toggleMenu);
+	menuBackdrop?.addEventListener('click', closeMenu);
+	menuClose?.addEventListener('click', closeMenu);
+
+	// Close on escape key
+	document.addEventListener('keydown', (e) => {
+		if (e.key === 'Escape' && isOpen) {
+			closeMenu();
+		}
+	});
+</script>

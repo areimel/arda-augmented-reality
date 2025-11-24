@@ -1,0 +1,42 @@
+---
+import { Icon } from 'astro-icon/components';
+---
+
+<div class="fixed bottom-4 left-1/2 -translate-x-1/2 z-[500000] flex items-center gap-3 px-4 py-2 bg-black/50 backdrop-blur-sm rounded-full border border-white/30">
+	<button
+		class="ar-toolbar-btn w-11 h-11 flex items-center justify-center text-white rounded-full hover:bg-white/20 transition-colors"
+		data-action="info"
+		aria-label="Information"
+	>
+		<Icon name="mdi:information-outline" class="w-6 h-6" />
+	</button>
+
+	<button
+		class="ar-toolbar-btn w-11 h-11 flex items-center justify-center text-white rounded-full hover:bg-white/20 transition-colors"
+		data-action="help"
+		aria-label="Help"
+	>
+		<Icon name="mdi:help-circle-outline" class="w-6 h-6" />
+	</button>
+
+	<button
+		class="ar-toolbar-btn w-11 h-11 flex items-center justify-center text-white rounded-full hover:bg-white/20 transition-colors"
+		data-action="share"
+		aria-label="Share"
+	>
+		<Icon name="mdi:share-variant-outline" class="w-6 h-6" />
+	</button>
+</div>
+
+<script>
+	// Toolbar button handlers - functionality to be implemented later
+	const toolbarButtons = document.querySelectorAll('.ar-toolbar-btn');
+
+	toolbarButtons.forEach((btn) => {
+		btn.addEventListener('click', () => {
+			const action = btn.getAttribute('data-action');
+			console.log(`Toolbar action: ${action}`);
+			// TODO: Implement actual functionality
+		});
+	});
+</script>
