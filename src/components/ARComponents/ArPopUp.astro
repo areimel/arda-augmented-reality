@@ -1,0 +1,122 @@
+---
+import { Icon } from 'astro-icon/components';
+
+interface Props {
+	id: string;
+	title?: string;
+}
+
+const { id, title } = Astro.props;
+---
+
+<!-- Popup Container -->
+<div
+	id={id}
+	class="ar-popup fixed inset-0 z-[600000] hidden"
+	data-popup-id={id}
+>
+	<!-- Backdrop -->
+	<div
+		class="ar-popup-backdrop absolute inset-0 bg-black/70 backdrop-blur-sm"
+		data-popup-close
+	></div>
+
+	<!-- Modal Window -->
+	<div class="ar-popup-modal absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[90%] max-w-md max-h-[80vh] overflow-y-auto bg-black/90 backdrop-blur-md border border-white/20 rounded-xl">
+		<!-- Header -->
+		<div class="flex items-center justify-between p-4 border-b border-white/10">
+			{title && <h2 class="text-white text-lg font-bold">{title}</h2>}
+			{!title && <div></div>}
+			<button
+				class="ar-popup-close w-10 h-10 flex items-center justify-center text-white rounded-lg hover:bg-white/10 transition-colors"
+				data-popup-close
+				aria-label="Close popup"
+			>
+				<Icon name="mdi:close" class="w-6 h-6" />
+			</button>
+		</div>
+
+		<!-- Content (slot) -->
+		<div class="p-4 text-white">
+			<slot />
+		</div>
+	</div>
+</div>
+
+<style>
+	/* Popup show/hide animations */
+	.ar-popup {
+		opacity: 0;
+		pointer-events: none;
+		transition: opacity 0.2s ease-out;
+	}
+
+	.ar-popup.active {
+		opacity: 1;
+		pointer-events: auto;
+	}
+
+	.ar-popup-modal {
+		transform: translate(-50%, -50%) scale(0.95);
+		transition: transform 0.2s ease-out;
+	}
+
+	.ar-popup.active .ar-popup-modal {
+		transform: translate(-50%, -50%) scale(1);
+	}
+</style>
+
+<script>
+	// Popup management functions
+	function openPopup(popupId: string) {
+		const popup = document.getElementById(popupId);
+		if (popup) {
+			popup.classList.remove('hidden');
+			// Trigger reflow for animation
+			popup.offsetHeight;
+			popup.classList.add('active');
+		}
+	}
+
+	function closePopup(popupId: string) {
+		const popup = document.getElementById(popupId);
+		if (popup) {
+			popup.classList.remove('active');
+			setTimeout(() => {
+				popup.classList.add('hidden');
+			}, 200); // Match transition duration
+		}
+	}
+
+	function closeAllPopups() {
+		document.querySelectorAll('.ar-popup').forEach((popup) => {
+			const id = popup.getAttribute('id');
+			if (id) closePopup(id);
+		});
+	}
+
+	// Expose functions globally for other components to use
+	(window as any).arPopup = {
+		open: openPopup,
+		close: closePopup,
+		closeAll: closeAllPopups
+	};
+
+	// Set up close handlers for this popup
+	document.querySelectorAll('.ar-popup').forEach((popup) => {
+		const popupId = popup.getAttribute('id');
+		if (!popupId) return;
+
+		// Close on backdrop or close button click
+		popup.querySelectorAll('[data-popup-close]').forEach((el) => {
+			el.addEventListener('click', () => closePopup(popupId));
+		});
+	});
+
+	// Close on Escape key
+	document.addEventListener('keydown', (e) => {
+		if (e.key === 'Escape') {
+			closeAllPopups();
+		}
+	});
+</script>

@@ -1,0 +1,116 @@
+---
+import ArPopUp from './ArPopUp.astro';
+import { Icon } from 'astro-icon/components';
+---
+
+<ArPopUp id="share-popup" title="Share">
+	<div class="space-y-6">
+		<!-- QR Code Container -->
+		<div class="flex flex-col items-center">
+			<p class="text-white/60 text-sm mb-3">Scan to open on another device</p>
+			<div
+				id="share-qr-code"
+				class="bg-white p-3 rounded-lg"
+			>
+				<!-- QR code will be generated here -->
+				<div class="w-[150px] h-[150px] flex items-center justify-center text-black/30 text-sm">
+					Loading QR...
+				</div>
+			</div>
+		</div>
+
+		<!-- Copy Link Button -->
+		<div class="flex flex-col items-center gap-2">
+			<button
+				id="share-copy-link"
+				class="flex items-center gap-2 px-4 py-2 bg-white/10 hover:bg-white/20 rounded-lg transition-colors"
+			>
+				<Icon name="mdi:content-copy" class="w-5 h-5" />
+				<span>Copy Link</span>
+			</button>
+			<span id="share-copy-status" class="text-sm text-green-400 opacity-0 transition-opacity">
+				Link copied!
+			</span>
+		</div>
+	</div>
+</ArPopUp>
+
+<script>
+	import QRCode from 'qrcode';
+
+	// Generate QR code when popup opens
+	async function generateQRCode() {
+		const container = document.getElementById('share-qr-code');
+		if (!container) return;
+
+		const url = window.location.href;
+
+		try {
+			// Clear container
+			container.innerHTML = '';
+
+			// Create canvas for QR code
+			const canvas = document.createElement('canvas');
+			canvas.width = 150;
+			canvas.height = 150;
+
+			await QRCode.toCanvas(canvas, url, {
+				width: 150,
+				margin: 0,
+				color: {
+					dark: '#000000',
+					light: '#ffffff'
+				}
+			});
+
+			container.appendChild(canvas);
+		} catch (err) {
+			console.error('QR Code generation failed:', err);
+			container.innerHTML = '<div class="w-[150px] h-[150px] flex items-center justify-center text-red-500 text-sm">QR Error</div>';
+		}
+	}
+
+	// Copy link functionality
+	function setupCopyLink() {
+		const copyBtn = document.getElementById('share-copy-link');
+		const statusEl = document.getElementById('share-copy-status');
+
+		copyBtn?.addEventListener('click', async () => {
+			try {
+				await navigator.clipboard.writeText(window.location.href);
+
+				// Show success message
+				if (statusEl) {
+					statusEl.classList.remove('opacity-0');
+					statusEl.classList.add('opacity-100');
+
+					setTimeout(() => {
+						statusEl.classList.remove('opacity-100');
+						statusEl.classList.add('opacity-0');
+					}, 2000);
+				}
+			} catch (err) {
+				console.error('Copy failed:', err);
+			}
+		});
+	}
+
+	// Generate QR code when share popup becomes visible
+	const sharePopup = document.getElementById('share-popup');
+	if (sharePopup) {
+		const observer = new MutationObserver((mutations) => {
+			mutations.forEach((mutation) => {
+				if (mutation.type === 'attributes' && mutation.attributeName === 'class') {
+					if (sharePopup.classList.contains('active')) {
+						generateQRCode();
+					}
+				}
+			});
+		});
+
+		observer.observe(sharePopup, { attributes: true });
+	}
+
+	// Setup copy link on load
+	setupCopyLink();
+</script>
