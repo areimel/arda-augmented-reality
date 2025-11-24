@@ -1,0 +1,64 @@
+# ============================================================================
+# ARDA AR Project Configuration: Building Test
+# ============================================================================
+# This file configures an AR experience for the ARDA platform.
+# For more information, see the ProjectData interface in src/types/projectData.ts
+
+# ----------------------------------------------------------------------------
+# Project Metadata
+# ----------------------------------------------------------------------------
+# Display name and description shown in the UI
+projectName: Building Test
+projectDescription: Test AR experience for 3D building model.
+
+# ----------------------------------------------------------------------------
+# AR Marker Configuration
+# ----------------------------------------------------------------------------
+# Marker files are compiled using Mind-AR: https://hiukim.github.io/mind-ar-js-doc/tools/compile/
+markerFile: /project-files/common/Generic-Marker.mind    # Compiled .mind file for AR tracking
+markerImage: /project-files/common/Generic-Marker.png     # Original marker image for reference/printing
+
+# ----------------------------------------------------------------------------
+# Experience Configuration
+# ----------------------------------------------------------------------------
+# Type of AR content: 'video', 'image', or '3d-object'
+experienceType: 3d-object
+
+# Path to the 3D model file (GLTF format)
+displayFile: /3d-objects/test-building/scene.gltf
+
+# UI preset determines the messaging and behavior
+# Options: 'default', 'product', 'artwork'
+uiPreset: default
+
+# ----------------------------------------------------------------------------
+# Model/Object Settings
+# ----------------------------------------------------------------------------
+modelSettings:
+  # Position orientation: 'wall' (vertical), 'flat' (horizontal), or 'card'
+  position: flat
+
+  # Scale preset: 'default' or 'large'
+  scale: large
+
+  # 3D MODEL SETTINGS (optional custom adjustments)
+  # Uncomment and adjust these if the default positioning/scaling doesn't work:
+  modelScale: "0.1 0.1 0.1"     # Scale X Y Z
+  # modelRotation: "0 0 0"               # Rotation X Y Z in degrees
+  # modelPosition: "0 -0.25 0"           # Position X Y Z
+
+# ----------------------------------------------------------------------------
+# Splash Page Configuration
+# ----------------------------------------------------------------------------
+splashPage:
+  # Background image for the splash screen (or null for default)
+  backgroundImage: null
+
+# ----------------------------------------------------------------------------
+# PDF Download Configuration
+# ----------------------------------------------------------------------------
+# Printable marker PDFs for different orientations
+pdfs:
+  available: false
+  # wall: /project-files/building-test/pdf/building-test-AssetPrintout-Wall.pdf
+  # flat: /project-files/building-test/pdf/building-test-AssetPrintout-Flat.pdf
