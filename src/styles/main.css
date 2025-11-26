@@ -26,6 +26,26 @@
 	box-sizing: border-box;
 }
 
+/* ===== Mind-AR Camera Feed Mobile Fix ===== */
+/* Force camera video to fill viewport on mobile devices */
+/* Overrides Mind-AR's inline styles that set fixed desktop dimensions */
+
+/* Camera feed - behind everything */
+body > video {
+	position: fixed !important;
+	top: 0 !important;
+	left: 0 !important;
+	width: 100vw !important;
+	width: 100dvw !important;
+	height: 100vh !important;
+	height: 100dvh !important;
+	object-fit: cover !important;
+	z-index: -1 !important;
+}
+
+/* Let A-Frame handle scene and canvas rendering naturally */
+/* Do NOT force positioning on a-scene or canvas - breaks WebGL rendering */
+
 
 /* ===== ===================== ===== */
 /* ===== General HTML Settings ===== */

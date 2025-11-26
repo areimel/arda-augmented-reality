@@ -110,12 +110,16 @@ const {
 	/* Scanning box responsive sizing */
 	.scanning {
 		@media (min-aspect-ratio: 1/1) {
-			width: 65vh;
+			width: 65vh; /* Fallback for older browsers */
 			height: 65vh;
+			width: 65dvh; /* Dynamic viewport height for modern mobile browsers */
+			height: 65dvh;
 		}
 		@media (max-aspect-ratio: 1/1) {
-			width: 80vw;
+			width: 80vw; /* Fallback for older browsers */
 			height: 80vw;
+			width: 80dvw; /* Dynamic viewport width for modern mobile browsers */
+			height: 80dvw;
 		}
 	}
 
